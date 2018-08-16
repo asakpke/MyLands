@@ -67,7 +67,8 @@ class AppController extends Controller
                     'fields' => [
                         'username' => 'email',
                         'password' => 'pass'
-                    ]
+                    ],
+					'finder' => 'auth',
                 ]
             ],
             'loginAction' => [

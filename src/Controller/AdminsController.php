@@ -28,12 +28,14 @@ class AdminsController extends AppController
             // echo '$admin = ';
             // pr($admin);
             // exit;
+
             if ($admin) {
                 $this->Auth->setUser($admin);
                 return $this->redirect($this->Auth->redirectUrl());
                 // echo 'You are logged in';
                 // exit;
             }
+            
             $this->Flash->error('Your username or password is incorrect.');
         }
     }

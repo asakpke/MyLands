@@ -15,5 +15,6 @@ class PagesController extends AppController
     public function home()
     {
         // $this->layout = false;
+        // echo $this->request->env('HTTP_HOST');
     }
 }

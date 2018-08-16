@@ -94,4 +94,19 @@ class AdminsTable extends Table
 
         return $rules;
     }
+
+    public function findAuth(\Cake\ORM\Query $query, array $options)
+	{
+		pr($query);
+		pr($options);
+		
+	    $query
+	        ->select(['id', 'email', 'pass'])
+	        ->where([
+	        	'status' => 'Active',
+	        	// 'subdomain' => $this->request->env('HTTP_HOST'),
+	        ]);
+
+	    return $query;
+	}
 }
