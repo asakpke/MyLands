@@ -97,14 +97,15 @@ class AdminsTable extends Table
 
     public function findAuth(\Cake\ORM\Query $query, array $options)
 	{
-		pr($query);
-		pr($options);
+		// pr($query);
+		// pr($options);
 		
 	    $query
 	        ->select(['id', 'email', 'pass'])
 	        ->where([
 	        	'status' => 'Active',
 	        	// 'subdomain' => $this->request->env('HTTP_HOST'),
+	        	'subdomain' => $_SERVER['HTTP_HOST'],
 	        ]);
 
 	    return $query;
