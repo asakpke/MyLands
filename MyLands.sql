@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.6.6deb5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 13, 2018 at 04:27 AM
--- Server version: 5.7.23-0ubuntu0.16.04.1
--- PHP Version: 7.0.30-0ubuntu0.16.04.1
+-- Host: localhost:3306
+-- Generation Time: Aug 18, 2018 at 12:24 PM
+-- Server version: 5.7.23-0ubuntu0.18.04.1
+-- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,10 +31,15 @@ CREATE TABLE `admins` (
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL,
+  `subdomain` varchar(255) NOT NULL,
   `remarks` text,
+  `status` enum('Active','Disabled') NOT NULL DEFAULT 'Active',
+  `is_verified` tinyint(1) NOT NULL DEFAULT '0',
+  `balance` decimal(13,2) NOT NULL DEFAULT '0.00',
+  `next_payment` date DEFAULT NULL COMMENT 'It''s initially null but later we will add next payment date after verified',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -50,7 +55,7 @@ CREATE TABLE `costs` (
   `remarks` text,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -59,12 +64,13 @@ CREATE TABLE `costs` (
 --
 
 CREATE TABLE `cost_cats` (
+  `admin_id` int(10) UNSIGNED DEFAULT NULL,
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `remarks` text,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -74,9 +80,10 @@ CREATE TABLE `cost_cats` (
 
 CREATE TABLE `lands` (
   `admin_id` int(10) UNSIGNED NOT NULL,
+  `land_type_id` int(10) UNSIGNED DEFAULT NULL,
+  `land_status_id` int(10) UNSIGNED DEFAULT NULL,
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `type` enum('Sale','Rent','Investment') NOT NULL DEFAULT 'Sale',
   `acre` float UNSIGNED DEFAULT NULL,
   `kanal` float UNSIGNED DEFAULT NULL,
   `marla` float UNSIGNED DEFAULT NULL,
@@ -91,10 +98,56 @@ CREATE TABLE `lands` (
   `cost` decimal(13,2) DEFAULT NULL,
   `remarks` text,
   `purchased` date DEFAULT NULL,
-  `status` enum('Available','Not Available') NOT NULL DEFAULT 'Available',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `land_statuses`
+--
+
+CREATE TABLE `land_statuses` (
+  `admin_id` int(10) UNSIGNED DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `remarks` text,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `land_types`
+--
+
+CREATE TABLE `land_types` (
+  `admin_id` int(10) UNSIGNED DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `remarks` text,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `masters`
+--
+
+CREATE TABLE `masters` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `pass` varchar(255) NOT NULL,
+  `subdomain` varchar(255) NOT NULL,
+  `remarks` text,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -111,21 +164,44 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `costs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `cost_land_id` (`land_id`),
-  ADD KEY `cost_cost_cat_id` (`cost_cat_id`);
+  ADD KEY `land_id` (`land_id`) USING BTREE,
+  ADD KEY `cost_cat_id` (`cost_cat_id`) USING BTREE;
 
 --
 -- Indexes for table `cost_cats`
 --
 ALTER TABLE `cost_cats`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD KEY `admin_id` (`admin_id`);
 
 --
 -- Indexes for table `lands`
 --
 ALTER TABLE `lands`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `land_admin_id` (`admin_id`);
+  ADD KEY `land_type_id` (`land_type_id`) USING BTREE,
+  ADD KEY `admin_id` (`admin_id`) USING BTREE,
+  ADD KEY `land_status_id` (`land_status_id`) USING BTREE;
+
+--
+-- Indexes for table `land_statuses`
+--
+ALTER TABLE `land_statuses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
+-- Indexes for table `land_types`
+--
+ALTER TABLE `land_types`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
+-- Indexes for table `masters`
+--
+ALTER TABLE `masters`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -135,12 +211,12 @@ ALTER TABLE `lands`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `costs`
 --
 ALTER TABLE `costs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cost_cats`
 --
@@ -150,7 +226,59 @@ ALTER TABLE `cost_cats`
 -- AUTO_INCREMENT for table `lands`
 --
 ALTER TABLE `lands`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `land_statuses`
+--
+ALTER TABLE `land_statuses`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `land_types`
+--
+ALTER TABLE `land_types`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `masters`
+--
+ALTER TABLE `masters`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `costs`
+--
+ALTER TABLE `costs`
+  ADD CONSTRAINT `cost_cost_cat_id` FOREIGN KEY (`cost_cat_id`) REFERENCES `cost_cats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cost_land_id` FOREIGN KEY (`land_id`) REFERENCES `lands` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cost_cats`
+--
+ALTER TABLE `cost_cats`
+  ADD CONSTRAINT `cost_cat_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `lands`
+--
+ALTER TABLE `lands`
+  ADD CONSTRAINT `land_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `land_land_status_id` FOREIGN KEY (`land_status_id`) REFERENCES `land_statuses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `land_land_type_id` FOREIGN KEY (`land_type_id`) REFERENCES `land_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `land_statuses`
+--
+ALTER TABLE `land_statuses`
+  ADD CONSTRAINT `land_status_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `land_types`
+--
+ALTER TABLE `land_types`
+  ADD CONSTRAINT `land_type_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

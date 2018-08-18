@@ -7,9 +7,10 @@ use Cake\ORM\Entity;
  * Land Entity
  *
  * @property int $admin_id
+ * @property int $land_type_id
+ * @property int $land_status_id
  * @property int $id
  * @property string $name
- * @property string $type
  * @property float $acre
  * @property float $kanal
  * @property float $marla
@@ -24,11 +25,12 @@ use Cake\ORM\Entity;
  * @property float $cost
  * @property string $remarks
  * @property \Cake\I18n\FrozenDate $purchased
- * @property string $status
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Admin $admin
+ * @property \App\Model\Entity\LandType $land_type
+ * @property \App\Model\Entity\LandStatus $land_status
  * @property \App\Model\Entity\Cost[] $costs
  */
 class Land extends Entity
@@ -45,8 +47,9 @@ class Land extends Entity
      */
     protected $_accessible = [
         'admin_id' => true,
+        'land_type_id' => true,
+        'land_status_id' => true,
         'name' => true,
-        'type' => true,
         'acre' => true,
         'kanal' => true,
         'marla' => true,
@@ -61,10 +64,11 @@ class Land extends Entity
         'cost' => true,
         'remarks' => true,
         'purchased' => true,
-        'status' => true,
         'created' => true,
         'modified' => true,
         'admin' => true,
+        'land_type' => true,
+        'land_status' => true,
         'costs' => true
     ];
 }

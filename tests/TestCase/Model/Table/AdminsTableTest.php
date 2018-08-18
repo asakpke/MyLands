@@ -25,6 +25,9 @@ class AdminsTableTest extends TestCase
      */
     public $fixtures = [
         'app.admins',
+        'app.cost_cats',
+        'app.land_statuses',
+        'app.land_types',
         'app.lands'
     ];
 
@@ -78,6 +81,16 @@ class AdminsTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test findAuth method
+     *
+     * @return void
+     */
+    public function testFindAuth()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

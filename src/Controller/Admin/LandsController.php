@@ -21,7 +21,7 @@ class LandsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Admins']
+            'contain' => ['Admins', 'LandTypes', 'LandStatuses']
         ];
         $lands = $this->paginate($this->Lands);
 
@@ -38,7 +38,7 @@ class LandsController extends AppController
     public function view($id = null)
     {
         $land = $this->Lands->get($id, [
-            'contain' => ['Admins', 'Costs']
+            'contain' => ['Admins', 'LandTypes', 'LandStatuses', 'Costs']
         ]);
 
         $this->set('land', $land);
@@ -62,7 +62,9 @@ class LandsController extends AppController
             $this->Flash->error(__('The land could not be saved. Please, try again.'));
         }
         $admins = $this->Lands->Admins->find('list', ['limit' => 200]);
-        $this->set(compact('land', 'admins'));
+        $landTypes = $this->Lands->LandTypes->find('list', ['limit' => 200]);
+        $landStatuses = $this->Lands->LandStatuses->find('list', ['limit' => 200]);
+        $this->set(compact('land', 'admins', 'landTypes', 'landStatuses'));
     }
 
     /**
@@ -87,7 +89,9 @@ class LandsController extends AppController
             $this->Flash->error(__('The land could not be saved. Please, try again.'));
         }
         $admins = $this->Lands->Admins->find('list', ['limit' => 200]);
-        $this->set(compact('land', 'admins'));
+        $landTypes = $this->Lands->LandTypes->find('list', ['limit' => 200]);
+        $landStatuses = $this->Lands->LandStatuses->find('list', ['limit' => 200]);
+        $this->set(compact('land', 'admins', 'landTypes', 'landStatuses'));
     }
 
     /**

@@ -60,38 +60,94 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
 
-        $this->loadComponent('Auth', [
-            'authenticate' => [
-                'Form' => [
-                    'userModel' => 'Admins',
-                    'fields' => [
-                        'username' => 'email',
-                        'password' => 'pass'
-                    ],
-					'finder' => 'auth',
-                ]
-            ],
-            'loginAction' => [
-                'prefix' => false,
-                'controller' => 'Admins',
-                'action' => 'login',
-            ],
-            // 'redirectUrl' => [
-            //     'prefix' => true,
-            //     'controller' => 'Lands',
-            //     'action' => 'index',
-            // ],
-            'loginRedirect' => array(
-                'prefix' => 'admin',
-                'controller' => 'Lands',
-                'action' => 'index',
-            ),
-             //use isAuthorized in Controllers
-            // 'authorize' => ['Controller'],
-             // If unauthorized, return them to page they were just on
-            'unauthorizedRedirect' => $this->referer(),
-            // 'storage' => 'Session',
-        ]);
+        // echo $this->request->getParam('prefix');
+        // pr($this->request->getParam('prefix'));
+        // pr($this->request->getParam('controller'));
+        // exit;
 
-    }
-}
+        if ($this->request->getParam('prefix') == 'master' or
+            $this->request->getParam('controller') == 'Masters'
+        ) {
+            // $this->Auth->__set('sessionKey','Auth.Master');
+            $this->loadComponent('Auth', [
+                'authenticate' => [
+                    'Form' => [
+                        'userModel' => 'Masters',
+                        'fields' => [
+                            'username' => 'email',
+                            'password' => 'pass'
+                        ],
+                        'finder' => 'auth',
+                        // 'finder' => 'authMaster',
+                    ]
+                ],
+                'loginAction' => [
+                    'prefix' => false,
+                    'controller' => 'Masters',
+                    'action' => 'login',
+                ],
+                // 'redirectUrl' => [
+                //     'prefix' => true,
+                //     'controller' => 'Lands',
+                //     'action' => 'index',
+                // ],
+                'loginRedirect' => array(
+                    'prefix' => 'master',
+                    'controller' => 'Admins',
+                    'action' => 'index',
+                ),
+                 //use isAuthorized in Controllers
+                // 'authorize' => ['Controller'],
+                 // If unauthorized, return them to page they were just on
+                'unauthorizedRedirect' => $this->referer(),
+                // 'storage' => 'Session',
+                'storage' => [
+                    'className' => 'Session',
+                    'key' => 'Auth.Master'
+                ]
+                // 'sessionKey'=>'Auth.Master',
+            ]);
+        } // if prefix = master
+        else {
+            // $this->Auth->__set('sessionKey','Auth.Admin');
+            $this->loadComponent('Auth', [
+                'authenticate' => [
+                    'Form' => [
+                        'userModel' => 'Admins',
+                        'fields' => [
+                            'username' => 'email',
+                            'password' => 'pass'
+                        ],
+                        'finder' => 'auth',
+    					// 'finder' => 'authAdmin',
+                    ]
+                ],
+                'loginAction' => [
+                    'prefix' => false,
+                    'controller' => 'Admins',
+                    'action' => 'login',
+                ],
+                // 'redirectUrl' => [
+                //     'prefix' => true,
+                //     'controller' => 'Lands',
+                //     'action' => 'index',
+                // ],
+                'loginRedirect' => array(
+                    'prefix' => 'admin',
+                    'controller' => 'Lands',
+                    'action' => 'index',
+                ),
+                 //use isAuthorized in Controllers
+                // 'authorize' => ['Controller'],
+                 // If unauthorized, return them to page they were just on
+                'unauthorizedRedirect' => $this->referer(),
+                // 'storage' => 'Session',
+                'storage' => [
+                    'className' => 'Session',
+                    'key' => 'Auth.Admin'
+                ]
+                // 'sessionKey'=>'Auth.Admin',
+            ]);
+        } // else prefix = master
+    } // initialize()
+} // AppController

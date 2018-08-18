@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Admins Model
  *
+ * @property \App\Model\Table\CostCatsTable|\Cake\ORM\Association\HasMany $CostCats
+ * @property \App\Model\Table\LandStatusesTable|\Cake\ORM\Association\HasMany $LandStatuses
+ * @property \App\Model\Table\LandTypesTable|\Cake\ORM\Association\HasMany $LandTypes
  * @property \App\Model\Table\LandsTable|\Cake\ORM\Association\HasMany $Lands
  *
  * @method \App\Model\Entity\Admin get($primaryKey, $options = [])
@@ -41,6 +44,15 @@ class AdminsTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->hasMany('CostCats', [
+            'foreignKey' => 'admin_id'
+        ]);
+        $this->hasMany('LandStatuses', [
+            'foreignKey' => 'admin_id'
+        ]);
+        $this->hasMany('LandTypes', [
+            'foreignKey' => 'admin_id'
+        ]);
         $this->hasMany('Lands', [
             'foreignKey' => 'admin_id'
         ]);
@@ -75,8 +87,33 @@ class AdminsTable extends Table
             ->notEmpty('pass');
 
         $validator
+            ->scalar('subdomain')
+            ->maxLength('subdomain', 255)
+            ->requirePresence('subdomain', 'create')
+            ->notEmpty('subdomain');
+
+        $validator
             ->scalar('remarks')
             ->allowEmpty('remarks');
+
+        $validator
+            ->scalar('status')
+            ->requirePresence('status', 'create')
+            ->notEmpty('status');
+
+        $validator
+            ->boolean('is_verified')
+            ->requirePresence('is_verified', 'create')
+            ->notEmpty('is_verified');
+
+        $validator
+            ->decimal('balance')
+            ->requirePresence('balance', 'create')
+            ->notEmpty('balance');
+
+        $validator
+            ->date('next_payment')
+            ->allowEmpty('next_payment');
 
         return $validator;
     }
@@ -96,18 +133,18 @@ class AdminsTable extends Table
     }
 
     public function findAuth(\Cake\ORM\Query $query, array $options)
-	{
-		// pr($query);
-		// pr($options);
-		
-	    $query
-	        ->select(['id', 'email', 'pass'])
-	        ->where([
-	        	'status' => 'Active',
-	        	// 'subdomain' => $this->request->env('HTTP_HOST'),
-	        	'subdomain' => $_SERVER['HTTP_HOST'],
-	        ]);
-
-	    return $query;
-	}
+    // public function findAuthAdmin(\Cake\ORM\Query $query, array $options)
+    {
+        // pr($query);
+        // pr($options);
+        
+        $query
+            ->select(['id', 'email', 'pass'])
+            ->where([
+                'status' => 'Active',
+                // 'subdomain' => $this->request->env('HTTP_HOST'),
+                'subdomain' => $_SERVER['HTTP_HOST'],
+            ]);
+        return $query;
+    }
 }

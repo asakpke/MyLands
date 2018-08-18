@@ -26,6 +26,8 @@ class LandsTableTest extends TestCase
     public $fixtures = [
         'app.lands',
         'app.admins',
+        'app.land_types',
+        'app.land_statuses',
         'app.costs'
     ];
 

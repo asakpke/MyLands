@@ -10,6 +10,8 @@ use Cake\Validation\Validator;
  * Lands Model
  *
  * @property \App\Model\Table\AdminsTable|\Cake\ORM\Association\BelongsTo $Admins
+ * @property \App\Model\Table\LandTypesTable|\Cake\ORM\Association\BelongsTo $LandTypes
+ * @property \App\Model\Table\LandStatusesTable|\Cake\ORM\Association\BelongsTo $LandStatuses
  * @property \App\Model\Table\CostsTable|\Cake\ORM\Association\HasMany $Costs
  *
  * @method \App\Model\Entity\Land get($primaryKey, $options = [])
@@ -46,6 +48,12 @@ class LandsTable extends Table
             'foreignKey' => 'admin_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('LandTypes', [
+            'foreignKey' => 'land_type_id'
+        ]);
+        $this->belongsTo('LandStatuses', [
+            'foreignKey' => 'land_status_id'
+        ]);
         $this->hasMany('Costs', [
             'foreignKey' => 'land_id'
         ]);
@@ -68,11 +76,6 @@ class LandsTable extends Table
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
             ->notEmpty('name');
-
-        $validator
-            ->scalar('type')
-            ->requirePresence('type', 'create')
-            ->notEmpty('type');
 
         $validator
             ->numeric('acre')
@@ -134,11 +137,6 @@ class LandsTable extends Table
             ->date('purchased')
             ->allowEmpty('purchased');
 
-        $validator
-            ->scalar('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
-
         return $validator;
     }
 
@@ -152,6 +150,8 @@ class LandsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['admin_id'], 'Admins'));
+        $rules->add($rules->existsIn(['land_type_id'], 'LandTypes'));
+        $rules->add($rules->existsIn(['land_status_id'], 'LandStatuses'));
 
         return $rules;
     }
