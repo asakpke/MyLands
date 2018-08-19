@@ -2,6 +2,8 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+// use Cake\Http\Exception\NotFoundException
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Lands Controller
@@ -21,9 +23,23 @@ class LandsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Admins', 'LandTypes', 'LandStatuses']
+            // // 'condition' => [
+            'conditions' => [
+            // 'where' => [
+                'Lands.admin_id' => $this->Auth->user('id')
+            // 	// 'admin_id =' => $this->Auth->user('id')
+            ],
+            // 'finder' => [
+            //     'Lands.admin_id' => $this->Auth->user('id')
+            // ],
+            'contain' => [
+                // 'Admins',
+                'LandTypes',
+                'LandStatuses',
+            ],
         ];
         $lands = $this->paginate($this->Lands);
+        // pr($lands);
 
         $this->set(compact('lands'));
     }
@@ -37,9 +53,30 @@ class LandsController extends AppController
      */
     public function view($id = null)
     {
-        $land = $this->Lands->get($id, [
-            'contain' => ['Admins', 'LandTypes', 'LandStatuses', 'Costs']
-        ]);
+        try {
+            $land = $this->Lands->get($id, [
+                'conditions' => [
+                    'Lands.admin_id' => $this->Auth->user('id')
+                    // 'admin_id' => $this->Auth->user('id')
+                ],
+                'contain' => [
+                	// 'Admins',
+                	'LandTypes',
+                	'LandStatuses',
+                	'Costs'
+                ]
+            ]);
+        } 
+        // catch (NotFoundException $e) {
+        // catch (\NotFoundException $e) {
+        // catch (/NotFoundException $e) {
+        catch (RecordNotFoundException $e) {
+        // catch () {
+            // pr($e);
+            // die('Invalid ID');
+            die();
+        }
+        
 
         $this->set('land', $land);
     }
@@ -51,9 +88,16 @@ class LandsController extends AppController
      */
     public function add()
     {
+    	// pr($this->Auth->user('id'));
         $land = $this->Lands->newEntity();
         if ($this->request->is('post')) {
+            // $data = $this->request->getData();
+            // pr($data);
             $land = $this->Lands->patchEntity($land, $this->request->getData());
+            $land['admin_id'] = $this->Auth->user('id');
+            // dd($land);
+            // pr($land);
+
             if ($this->Lands->save($land)) {
                 $this->Flash->success(__('The land has been saved.'));
 
@@ -61,10 +105,21 @@ class LandsController extends AppController
             }
             $this->Flash->error(__('The land could not be saved. Please, try again.'));
         }
-        $admins = $this->Lands->Admins->find('list', ['limit' => 200]);
-        $landTypes = $this->Lands->LandTypes->find('list', ['limit' => 200]);
-        $landStatuses = $this->Lands->LandStatuses->find('list', ['limit' => 200]);
-        $this->set(compact('land', 'admins', 'landTypes', 'landStatuses'));
+        // $admins = $this->Lands->Admins->find('list', ['limit' => 200]);
+        $landTypes = $this->Lands->LandTypes->find('list', [
+            'limit' => 200,
+            'conditions' => [
+                'LandTypes.admin_id' => $this->Auth->user('id')
+            ]
+        ]);
+        $landStatuses = $this->Lands->LandStatuses->find('list', [
+            'limit' => 200,
+            'conditions' => [
+                'LandStatuses.admin_id' => $this->Auth->user('id')
+            ]
+        ]);
+        // $this->set(compact('land', 'admins', 'landTypes', 'landStatuses'));
+        $this->set(compact('land', 'landTypes', 'landStatuses'));
     }
 
     /**
@@ -76,9 +131,20 @@ class LandsController extends AppController
      */
     public function edit($id = null)
     {
-        $land = $this->Lands->get($id, [
-            'contain' => []
-        ]);
+        try {
+            $land = $this->Lands->get($id, [
+                'conditions' => [
+                    'Lands.admin_id' => $this->Auth->user('id')
+                ],
+                'contain' => []
+            ]);
+        } 
+        // catch (Exception $e) {
+        catch (RecordNotFoundException $e) {
+           // die('Invalid ID'); 
+           die(); 
+        }
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $land = $this->Lands->patchEntity($land, $this->request->getData());
             if ($this->Lands->save($land)) {
@@ -88,10 +154,25 @@ class LandsController extends AppController
             }
             $this->Flash->error(__('The land could not be saved. Please, try again.'));
         }
-        $admins = $this->Lands->Admins->find('list', ['limit' => 200]);
-        $landTypes = $this->Lands->LandTypes->find('list', ['limit' => 200]);
-        $landStatuses = $this->Lands->LandStatuses->find('list', ['limit' => 200]);
-        $this->set(compact('land', 'admins', 'landTypes', 'landStatuses'));
+        // $admins = $this->Lands->Admins->find('list', ['limit' => 200]);
+        $landTypes = $this->Lands->LandTypes->find('list', [
+            'limit' => 200,
+            'conditions' => [
+                'LandTypes.admin_id' => $this->Auth->user('id')
+            ]
+        ]);
+        $landStatuses = $this->Lands->LandStatuses->find('list', [
+            'limit' => 200,
+            'conditions' => [
+                'LandStatuses.admin_id' => $this->Auth->user('id')
+            ]
+        ]);
+        $this->set(compact(
+        	'land',
+        	// 'admins',
+        	'landTypes',
+        	'landStatuses'
+        ));
     }
 
     /**
@@ -104,7 +185,18 @@ class LandsController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $land = $this->Lands->get($id);
+
+        try {
+            $land = $this->Lands->get($id, [
+                'conditions' => [
+                    'Lands.admin_id' => $this->Auth->user('id')
+                ]
+            ]);
+        } 
+        catch (RecordNotFoundException $e) {
+           die(); 
+        }
+
         if ($this->Lands->delete($land)) {
             $this->Flash->success(__('The land has been deleted.'));
         } else {

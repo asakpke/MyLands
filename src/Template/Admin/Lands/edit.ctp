@@ -25,7 +25,7 @@
     <fieldset>
         <legend><?= __('Edit Land') ?></legend>
         <?php
-            echo $this->Form->input('admin_id', ['options' => $admins]);
+            // echo $this->Form->input('admin_id', ['options' => $admins]);
             echo $this->Form->input('land_type_id', ['options' => $landTypes, 'empty' => true]);
             echo $this->Form->input('land_status_id', ['options' => $landStatuses, 'empty' => true]);
             echo $this->Form->input('name');

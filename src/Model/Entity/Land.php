@@ -47,6 +47,7 @@ class Land extends Entity
      */
     protected $_accessible = [
         'admin_id' => true,
+        // 'admin_id' => false,
         'land_type_id' => true,
         'land_status_id' => true,
         'name' => true,
@@ -65,7 +66,9 @@ class Land extends Entity
         'remarks' => true,
         'purchased' => true,
         'created' => true,
+        // 'created' => false,
         'modified' => true,
+        // 'modified' => false,
         'admin' => true,
         'land_type' => true,
         'land_status' => true,

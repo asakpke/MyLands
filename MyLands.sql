@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 18, 2018 at 12:24 PM
+-- Generation Time: Aug 19, 2018 at 09:15 AM
 -- Server version: 5.7.23-0ubuntu0.18.04.1
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -98,6 +98,7 @@ CREATE TABLE `lands` (
   `cost` decimal(13,2) DEFAULT NULL,
   `remarks` text,
   `purchased` date DEFAULT NULL,
+  `is_public` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -211,7 +212,7 @@ ALTER TABLE `masters`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `costs`
 --
@@ -226,17 +227,17 @@ ALTER TABLE `cost_cats`
 -- AUTO_INCREMENT for table `lands`
 --
 ALTER TABLE `lands`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `land_statuses`
 --
 ALTER TABLE `land_statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `land_types`
 --
 ALTER TABLE `land_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `masters`
 --

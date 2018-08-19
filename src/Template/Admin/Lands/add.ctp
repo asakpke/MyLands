@@ -1,3 +1,10 @@
+<?php
+// pr($this->Auth->user('id'));
+// pr($this->Session->read('Auth.User.id'))
+// pr($this->Session->read('Auth.User'))
+// pr($this->Session->read('Auth.Admin'))
+// pr($this->Session->read('Auth.Admin.id'))
+?>
 <div class="actions columns col-lg-2 col-md-3">
     <h3><?= __('Actions') ?></h3>
     <ul class="nav nav-stacked nav-pills">
@@ -18,7 +25,7 @@
     <fieldset>
         <legend><?= __('Add Land') ?></legend>
         <?php
-            echo $this->Form->input('admin_id', ['options' => $admins]);
+            // echo $this->Form->input('admin_id', ['options' => $admins]);
             echo $this->Form->input('land_type_id', ['options' => $landTypes, 'empty' => true]);
             echo $this->Form->input('land_status_id', ['options' => $landStatuses, 'empty' => true]);
             echo $this->Form->input('name');

@@ -21,8 +21,8 @@
         <div class="col-lg-5 columns strings">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Admin') ?></h6>
-                    <p><?= $land->has('admin') ? $this->Html->link($land->admin->name, ['controller' => 'Admins', 'action' => 'view', $land->admin->id]) : '' ?></p>
+                    <!-- <h6 class="subheader"><?php //= __('Admin') ?></h6>
+                    <p><?php //= $land->has('admin') ? $this->Html->link($land->admin->name, ['controller' => 'Admins', 'action' => 'view', $land->admin->id]) : '' ?></p> -->
                     <h6 class="subheader"><?= __('Land Type') ?></h6>
                     <p><?= $land->has('land_type') ? $this->Html->link($land->land_type->name, ['controller' => 'LandTypes', 'action' => 'view', $land->land_type->id]) : '' ?></p>
                     <h6 class="subheader"><?= __('Land Status') ?></h6>
@@ -43,8 +43,8 @@
         <div class="col-lg-2 columns numbers end">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Id') ?></h6>
-                    <p><?= $this->Number->format($land->id) ?></p>
+                    <!-- <h6 class="subheader"><?php //= __('Id') ?></h6>
+                    <p><?php //= $this->Number->format($land->id) ?></p> -->
                     <h6 class="subheader"><?= __('Acre') ?></h6>
                     <p><?= $this->Number->format($land->acre) ?></p>
                     <h6 class="subheader"><?= __('Kanal') ?></h6>
