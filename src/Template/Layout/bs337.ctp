@@ -66,7 +66,7 @@
       <div class="row">
         <div class="col-lg-4">
           <h2>Customized Domains</h2>          
-          <p>You will get customized domain i.e Aamir.MyLands.pk. It will setup instantly with seconds. It includes simple/advanced search for your added lands.</p>
+          <p>You will get customized domain i.e Aamir.MyLands.pk. It will setup instantly within seconds. It includes simple/advanced search for your added lands.</p>
           <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button">Get Connected Now &raquo;</a></p>
         </div>
         <div class="col-lg-4">
@@ -76,7 +76,7 @@
        </div>
         <div class="col-lg-4">
           <h2>All Devices</h2>
-          <p>You can access MyLands.pk software on almost all of your devices i.e mobile, tab, PC, Mac, Linux. It design is flexible to adopt device width.</p>
+          <p>You can access MyLands.pk software on almost all of your devices i.e mobile, tab, PC, Mac, Linux. Its design is flexible to adopt device width.</p>
           <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button">Get Connected Now &raquo;</a></p>
         </div>
       </div>
