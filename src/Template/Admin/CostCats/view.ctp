@@ -5,8 +5,6 @@
         <li><?= $this->Form->postLink(__('Delete Cost Cat'), ['action' => 'delete', $costCat->id], ['confirm' => __('Are you sure you want to delete # {0}?', $costCat->id), 'class' => 'btn-danger']) ?> </li>
         <li><?= $this->Html->link(__('List Cost Cats'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cost Cat'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Costs'), ['controller' => 'Costs', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cost'), ['controller' => 'Costs', 'action' => 'add']) ?> </li>
     </ul>
@@ -17,22 +15,22 @@
         <div class="col-lg-5 columns strings">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Admin') ?></h6>
-                    <p><?= $costCat->has('admin') ? $this->Html->link($costCat->admin->name, ['controller' => 'Admins', 'action' => 'view', $costCat->admin->id]) : '' ?></p>
+                    <!-- <h6 class="subheader"><?php //= __('Admin') ?></h6>
+                    <p><?php //= $costCat->has('admin') ? $this->Html->link($costCat->admin->name, ['controller' => 'Admins', 'action' => 'view', $costCat->admin->id]) : '' ?></p> -->
                     <h6 class="subheader"><?= __('Name') ?></h6>
                     <p><?= h($costCat->name) ?></p>
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 columns numbers end">
+        <!-- <div class="col-lg-2 columns numbers end">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Id') ?></h6>
-                    <p><?= $this->Number->format($costCat->id) ?></p>
+                    <h6 class="subheader"><?php //= __('Id') ?></h6>
+                    <p><?php //= $this->Number->format($costCat->id) ?></p>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2 columns dates end">
+        </div> -->
+        <div class="col-lg-4 columns dates end">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h6 class="subheader"><?= __('Created') ?></h6>
@@ -61,9 +59,9 @@
     <div class="table-responsive">
         <table class="table">
             <tr>
-                <th><?= __('Land Id') ?></th>
-                <th><?= __('Cost Cat Id') ?></th>
-                <th><?= __('Id') ?></th>
+                <!-- <th><?php //= __('Land Id') ?></th>
+                <th><?php //= __('Cost Cat Id') ?></th>
+                <th><?php //= __('Id') ?></th> -->
                 <th><?= __('Cost') ?></th>
                 <th><?= __('Remarks') ?></th>
                 <th><?= __('Created') ?></th>
@@ -72,9 +70,9 @@
             </tr>
             <?php foreach ($costCat->costs as $costs): ?>
             <tr>
-                <td><?= h($costs->land_id) ?></td>
-                <td><?= h($costs->cost_cat_id) ?></td>
-                <td><?= h($costs->id) ?></td>
+                <!-- <td><?php //= h($costs->land_id) ?></td>
+                <td><?php //= h($costs->cost_cat_id) ?></td>
+                <td><?php //= h($costs->id) ?></td> -->
                 <td><?= h($costs->cost) ?></td>
                 <td><?= h($costs->remarks) ?></td>
                 <td><?= h($costs->created) ?></td>

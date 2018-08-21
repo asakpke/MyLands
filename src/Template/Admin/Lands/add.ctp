@@ -10,8 +10,6 @@
     <ul class="nav nav-stacked nav-pills">
         <li class="active disabled"><?= $this->Html->link(__('New Land'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Lands'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Land Types'), ['controller' => 'LandTypes', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Land Type'), ['controller' => 'LandTypes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Land Statuses'), ['controller' => 'LandStatuses', 'action' => 'index']) ?> </li>

@@ -5,8 +5,6 @@
         <li><?= $this->Form->postLink(__('Delete Land'), ['action' => 'delete', $land->id], ['confirm' => __('Are you sure you want to delete # {0}?', $land->id), 'class' => 'btn-danger']) ?> </li>
         <li><?= $this->Html->link(__('List Lands'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Land'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Land Types'), ['controller' => 'LandTypes', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Land Type'), ['controller' => 'LandTypes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Land Statuses'), ['controller' => 'LandStatuses', 'action' => 'index']) ?> </li>
@@ -111,9 +109,9 @@
     <div class="table-responsive">
         <table class="table">
             <tr>
-                <th><?= __('Land Id') ?></th>
-                <th><?= __('Cost Cat Id') ?></th>
-                <th><?= __('Id') ?></th>
+                <!-- <th><?php //= __('Land Id') ?></th>
+                <th><?php //= __('Cost Cat Id') ?></th>
+                <th><?php //= __('Id') ?></th> -->
                 <th><?= __('Cost') ?></th>
                 <th><?= __('Remarks') ?></th>
                 <th><?= __('Created') ?></th>
@@ -122,9 +120,9 @@
             </tr>
             <?php foreach ($land->costs as $costs): ?>
             <tr>
-                <td><?= h($costs->land_id) ?></td>
-                <td><?= h($costs->cost_cat_id) ?></td>
-                <td><?= h($costs->id) ?></td>
+                <!-- <td><?php //= h($costs->land_id) ?></td>
+                <td><?php //= h($costs->cost_cat_id) ?></td>
+                <td><?php //= h($costs->id) ?></td> -->
                 <td><?= h($costs->cost) ?></td>
                 <td><?= h($costs->remarks) ?></td>
                 <td><?= h($costs->created) ?></td>

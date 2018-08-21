@@ -10,8 +10,6 @@
         ?></li>
         <li><?= $this->Html->link(__('New Cost Cat'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Cost Cats'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Costs'), ['controller' => 'Costs', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cost'), ['controller' => 'Costs', 'action' => 'add']) ?> </li>
     </ul>
@@ -21,7 +19,7 @@
     <fieldset>
         <legend><?= __('Edit Cost Cat') ?></legend>
         <?php
-            echo $this->Form->input('admin_id', ['options' => $admins, 'empty' => true]);
+            // echo $this->Form->input('admin_id', ['options' => $admins, 'empty' => true]);
             echo $this->Form->input('name');
             echo $this->Form->input('remarks');
         ?>

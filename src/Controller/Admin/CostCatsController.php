@@ -21,7 +21,12 @@ class CostCatsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Admins']
+        	'conditions' => [
+                'CostCats.admin_id' => $this->Auth->user('id')
+            ],
+            'contain' => [
+            	// 'Admins'
+            ]
         ];
         $costCats = $this->paginate($this->CostCats);
 
@@ -38,7 +43,13 @@ class CostCatsController extends AppController
     public function view($id = null)
     {
         $costCat = $this->CostCats->get($id, [
-            'contain' => ['Admins', 'Costs']
+        	'conditions' => [
+                'CostCats.admin_id' => $this->Auth->user('id')
+            ],
+            'contain' => [
+            	// 'Admins',
+            	'Costs'
+            ]
         ]);
 
         $this->set('costCat', $costCat);
@@ -54,6 +65,8 @@ class CostCatsController extends AppController
         $costCat = $this->CostCats->newEntity();
         if ($this->request->is('post')) {
             $costCat = $this->CostCats->patchEntity($costCat, $this->request->getData());
+            $costCat['admin_id'] = $this->Auth->user('id');
+            
             if ($this->CostCats->save($costCat)) {
                 $this->Flash->success(__('The cost cat has been saved.'));
 
@@ -61,8 +74,11 @@ class CostCatsController extends AppController
             }
             $this->Flash->error(__('The cost cat could not be saved. Please, try again.'));
         }
-        $admins = $this->CostCats->Admins->find('list', ['limit' => 200]);
-        $this->set(compact('costCat', 'admins'));
+        // $admins = $this->CostCats->Admins->find('list', ['limit' => 200]);
+        $this->set(compact(
+        	'costCat'
+        	// 'admins'
+        ));
     }
 
     /**
@@ -75,6 +91,9 @@ class CostCatsController extends AppController
     public function edit($id = null)
     {
         $costCat = $this->CostCats->get($id, [
+        	'conditions' => [
+                'CostCats.admin_id' => $this->Auth->user('id')
+            ],
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -86,8 +105,11 @@ class CostCatsController extends AppController
             }
             $this->Flash->error(__('The cost cat could not be saved. Please, try again.'));
         }
-        $admins = $this->CostCats->Admins->find('list', ['limit' => 200]);
-        $this->set(compact('costCat', 'admins'));
+        // $admins = $this->CostCats->Admins->find('list', ['limit' => 200]);
+        $this->set(compact(
+        	'costCat'
+			// 'admins'
+		));
     }
 
     /**
@@ -100,7 +122,12 @@ class CostCatsController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $costCat = $this->CostCats->get($id);
+        $costCat = $this->CostCats->get($id, [
+        	'conditions' => [
+                'CostCats.admin_id' => $this->Auth->user('id')
+            ],
+        ]);
+
         if ($this->CostCats->delete($costCat)) {
             $this->Flash->success(__('The cost cat has been deleted.'));
         } else {

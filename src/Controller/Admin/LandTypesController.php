@@ -21,7 +21,12 @@ class LandTypesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Admins']
+        	'conditions' => [
+                'LandTypes.admin_id' => $this->Auth->user('id')
+            ],
+            'contain' => [
+            	// 'Admins'
+            ]
         ];
         $landTypes = $this->paginate($this->LandTypes);
 
@@ -38,7 +43,13 @@ class LandTypesController extends AppController
     public function view($id = null)
     {
         $landType = $this->LandTypes->get($id, [
-            'contain' => ['Admins', 'Lands']
+        	'conditions' => [
+                'LandTypes.admin_id' => $this->Auth->user('id')
+            ],
+            'contain' => [
+            	// 'Admins',
+            	// 'Lands',
+            ]
         ]);
 
         $this->set('landType', $landType);
@@ -52,8 +63,11 @@ class LandTypesController extends AppController
     public function add()
     {
         $landType = $this->LandTypes->newEntity();
+
         if ($this->request->is('post')) {
             $landType = $this->LandTypes->patchEntity($landType, $this->request->getData());
+            $landType['admin_id'] = $this->Auth->user('id');
+
             if ($this->LandTypes->save($landType)) {
                 $this->Flash->success(__('The land type has been saved.'));
 
@@ -61,8 +75,9 @@ class LandTypesController extends AppController
             }
             $this->Flash->error(__('The land type could not be saved. Please, try again.'));
         }
-        $admins = $this->LandTypes->Admins->find('list', ['limit' => 200]);
-        $this->set(compact('landType', 'admins'));
+        // $admins = $this->LandTypes->Admins->find('list', ['limit' => 200]);
+        // $this->set(compact('landType', 'admins'));
+        $this->set(compact('landType'));
     }
 
     /**
@@ -75,8 +90,12 @@ class LandTypesController extends AppController
     public function edit($id = null)
     {
         $landType = $this->LandTypes->get($id, [
+        	'conditions' => [
+                'LandTypes.admin_id' => $this->Auth->user('id')
+            ],
             'contain' => []
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $landType = $this->LandTypes->patchEntity($landType, $this->request->getData());
             if ($this->LandTypes->save($landType)) {
@@ -86,8 +105,11 @@ class LandTypesController extends AppController
             }
             $this->Flash->error(__('The land type could not be saved. Please, try again.'));
         }
-        $admins = $this->LandTypes->Admins->find('list', ['limit' => 200]);
-        $this->set(compact('landType', 'admins'));
+        // $admins = $this->LandTypes->Admins->find('list', ['limit' => 200]);
+        $this->set(compact(
+        	'landType'
+        	// 'admins'
+        ));
     }
 
     /**
@@ -100,7 +122,12 @@ class LandTypesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $landType = $this->LandTypes->get($id);
+        $landType = $this->LandTypes->get($id, [
+        	'conditions' => [
+                'LandTypes.admin_id' => $this->Auth->user('id')
+            ],
+        ]);
+
         if ($this->LandTypes->delete($landType)) {
             $this->Flash->success(__('The land type has been deleted.'));
         } else {

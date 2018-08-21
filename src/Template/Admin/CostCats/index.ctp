@@ -3,8 +3,6 @@
     <ul class="nav nav-stacked nav-pills">
         <li><?= $this->Html->link(__('New Cost Cat'), ['action' => 'add']) ?></li>
         <li class="active disabled"><?= $this->Html->link(__('List Cost Cats'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Costs'), ['controller' => 'Costs', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cost'), ['controller' => 'Costs', 'action' => 'add']) ?> </li>
     </ul>
@@ -14,8 +12,8 @@
         <table class="table table-striped">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('admin_id') ?></th>
-                <th><?= $this->Paginator->sort('id') ?></th>
+                <!-- <th><?php //= $this->Paginator->sort('admin_id') ?></th>
+                <th><?php //= $this->Paginator->sort('id') ?></th> -->
                 <th><?= $this->Paginator->sort('name') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
@@ -25,10 +23,10 @@
         <tbody>
         <?php foreach ($costCats as $costCat): ?>
             <tr>
-            <td>
-                    <?= $costCat->has('admin') ? $this->Html->link($costCat->admin->name, ['controller' => 'Admins', 'action' => 'view', $costCat->admin->id]) : '' ?>
+            	<!-- <td>
+                    <?php //= $costCat->has('admin') ? $this->Html->link($costCat->admin->name, ['controller' => 'Admins', 'action' => 'view', $costCat->admin->id]) : '' ?>
                 </td>
-                <td><?= $this->Number->format($costCat->id) ?></td>
+                <td><?php //= $this->Number->format($costCat->id) ?></td> -->
                 <td><?= h($costCat->name) ?></td>
                 <td><?= h($costCat->created) ?></td>
                 <td><?= h($costCat->modified) ?></td>

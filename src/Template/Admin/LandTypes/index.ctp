@@ -3,8 +3,6 @@
     <ul class="nav nav-stacked nav-pills">
         <li><?= $this->Html->link(__('New Land Type'), ['action' => 'add']) ?></li>
         <li class="active disabled"><?= $this->Html->link(__('List Land Types'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Lands'), ['controller' => 'Lands', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Land'), ['controller' => 'Lands', 'action' => 'add']) ?> </li>
     </ul>
@@ -14,8 +12,8 @@
         <table class="table table-striped">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('admin_id') ?></th>
-                <th><?= $this->Paginator->sort('id') ?></th>
+                <!-- <th><?php //= $this->Paginator->sort('admin_id') ?></th> -->
+                <!-- <th><?php //= $this->Paginator->sort('id') ?></th> -->
                 <th><?= $this->Paginator->sort('name') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
@@ -25,10 +23,10 @@
         <tbody>
         <?php foreach ($landTypes as $landType): ?>
             <tr>
-            <td>
-                    <?= $landType->has('admin') ? $this->Html->link($landType->admin->name, ['controller' => 'Admins', 'action' => 'view', $landType->admin->id]) : '' ?>
-                </td>
-                <td><?= $this->Number->format($landType->id) ?></td>
+            	<!-- <td>
+                    <?php //= $landType->has('admin') ? $this->Html->link($landType->admin->name, ['controller' => 'Admins', 'action' => 'view', $landType->admin->id]) : '' ?>
+                </td> -->
+                <!-- <td><?php //= $this->Number->format($landType->id) ?></td> -->
                 <td><?= h($landType->name) ?></td>
                 <td><?= h($landType->created) ?></td>
                 <td><?= h($landType->modified) ?></td>

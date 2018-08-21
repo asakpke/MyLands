@@ -5,8 +5,6 @@
         <li><?= $this->Form->postLink(__('Delete Land Status'), ['action' => 'delete', $landStatus->id], ['confirm' => __('Are you sure you want to delete # {0}?', $landStatus->id), 'class' => 'btn-danger']) ?> </li>
         <li><?= $this->Html->link(__('List Land Statuses'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Land Status'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Lands'), ['controller' => 'Lands', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Land'), ['controller' => 'Lands', 'action' => 'add']) ?> </li>
     </ul>
@@ -17,22 +15,22 @@
         <div class="col-lg-5 columns strings">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Admin') ?></h6>
-                    <p><?= $landStatus->has('admin') ? $this->Html->link($landStatus->admin->name, ['controller' => 'Admins', 'action' => 'view', $landStatus->admin->id]) : '' ?></p>
+                    <!-- <h6 class="subheader"><?php //= __('Admin') ?></h6>
+                    <p><?php //= $landStatus->has('admin') ? $this->Html->link($landStatus->admin->name, ['controller' => 'Admins', 'action' => 'view', $landStatus->admin->id]) : '' ?></p> -->
                     <h6 class="subheader"><?= __('Name') ?></h6>
                     <p><?= h($landStatus->name) ?></p>
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 columns numbers end">
+        <!-- <div class="col-lg-2 columns numbers end">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Id') ?></h6>
-                    <p><?= $this->Number->format($landStatus->id) ?></p>
+                    <h6 class="subheader"><?php //= __('Id') ?></h6>
+                    <p><?php //= $this->Number->format($landStatus->id) ?></p>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2 columns dates end">
+        </div> -->
+        <div class="col-lg-4 columns dates end">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h6 class="subheader"><?= __('Created') ?></h6>
@@ -61,10 +59,10 @@
     <div class="table-responsive">
         <table class="table">
             <tr>
-                <th><?= __('Admin Id') ?></th>
-                <th><?= __('Land Type Id') ?></th>
-                <th><?= __('Land Status Id') ?></th>
-                <th><?= __('Id') ?></th>
+                <!-- <th><?php //= __('Admin Id') ?></th>
+                <th><?php //= __('Land Type Id') ?></th>
+                <th><?php //= __('Land Status Id') ?></th>
+                <th><?php //= __('Id') ?></th> -->
                 <th><?= __('Name') ?></th>
                 <th><?= __('Acre') ?></th>
                 <th><?= __('Kanal') ?></th>
@@ -86,10 +84,10 @@
             </tr>
             <?php foreach ($landStatus->lands as $lands): ?>
             <tr>
-                <td><?= h($lands->admin_id) ?></td>
-                <td><?= h($lands->land_type_id) ?></td>
-                <td><?= h($lands->land_status_id) ?></td>
-                <td><?= h($lands->id) ?></td>
+                <!-- <td><?php //= h($lands->admin_id) ?></td>
+                <td><?php //= h($lands->land_type_id) ?></td>
+                <td><?php //= h($lands->land_status_id) ?></td>
+                <td><?php //= h($lands->id) ?></td> -->
                 <td><?= h($lands->name) ?></td>
                 <td><?= h($lands->acre) ?></td>
                 <td><?= h($lands->kanal) ?></td>
