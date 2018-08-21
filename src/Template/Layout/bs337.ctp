@@ -6,9 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../favicon.ico">
+    <meta name="description" content="MyLands.pk is a web based project for property dealers. You can maintain your private listing online on almost any device. ">
+    <meta name="author" content="Aamir Shahzad">
+    <!-- <link rel="icon" href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../favicon.ico"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
 
     <title>MyLands.pk</title>
 
@@ -41,25 +48,41 @@
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="masthead">
-        <h3 class="text-muted">MyLands.pk</h3>
+      	<div class="row">
+      		<div class="col-md-6">
+	        	<h3 class="text-muted">
+	        		<!-- <img width="64" alt="Legenda kamieniolom" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Legenda_kamieniolom.svg/64px-Legenda_kamieniolom.svg.png"> -->
+	        		<img width="32" alt="Legenda kamieniolom" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Legenda_kamieniolom.svg/32px-Legenda_kamieniolom.svg.png">
+	        		MyLands.pk
+	        	</h3>
+      		</div>
+      		<div class="col-md-6 mt-20 text-right">
+	        	<h4 class="text-muted">Contact: <span class="em-addr text-muted"></span></h4>
+      		</div>
+      	</div>
         <nav>
           <ul class="nav nav-justified">
             <li class="active"><a href="http://mylands.pk">Home</a></li>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link">Get connected</a></li>
-            <!-- <li><a href="#">Projects</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Downloads</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li> -->
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">Get Connected Today</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">Get Connected Now &raquo;</a></li>
           </ul>
         </nav>
       </div>
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>What's MyLands.pk?</h1>
-        <p class="lead">MyLands.pk is a web based project for property dealers. You can maintain your private listing online. MyLands.pk is not launched yet. You may provide your contact information to get early access.</p>
-        <p><a class="btn btn-lg btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button">Get Connected Today</a></p>
+        <h1>
+        	What's
+			<img width="64" alt="Legenda kamieniolom" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Legenda_kamieniolom.svg/64px-Legenda_kamieniolom.svg.png">
+        	MyLands.pk?
+        </h1>
+        <p class="lead">
+			<img width="32" alt="Legenda kamieniolom" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Legenda_kamieniolom.svg/32px-Legenda_kamieniolom.svg.png">
+        	MyLands.pk is a web based project for property dealers. You can maintain your private listing online on almost any device. 
+			<img width="32" alt="Legenda kamieniolom" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Legenda_kamieniolom.svg/32px-Legenda_kamieniolom.svg.png">
+        	MyLands.pk is just not launched yet. You may provide your contact information to get early access with discounts.
+        </p>
+        <p><a class="btn btn-lg btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Today</a></p>
       </div>
 
       <!-- Example row of columns -->
@@ -67,23 +90,42 @@
         <div class="col-lg-4">
           <h2>Customized Domains</h2>          
           <p>You will get customized domain i.e Aamir.MyLands.pk. It will setup instantly within seconds. It includes simple/advanced search for your added lands.</p>
-          <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button">Get Connected Now &raquo;</a></p>
+          <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Now &raquo;</a></p>
         </div>
         <div class="col-lg-4">
           <h2>Admin Panel</h2>
           <p>You will get separate partition & login panel. After login you can add/edit/view/delete lands, land types, land statuses, cost types, cost etc.</p>
-          <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button">Get Connected Now &raquo;</a></p>
+          <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Now &raquo;</a></p>
        </div>
         <div class="col-lg-4">
           <h2>All Devices</h2>
-          <p>You can access MyLands.pk software on almost all of your devices i.e mobile, tab, PC, Mac, Linux. Its design is flexible to adopt device width.</p>
-          <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button">Get Connected Now &raquo;</a></p>
+          <p>
+          	You can access
+			<img width="16" alt="Legenda kamieniolom" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Legenda_kamieniolom.svg/16px-Legenda_kamieniolom.svg.png">
+          	MyLands.pk software on almost all of your devices i.e mobile, tab, PC, Mac, Linux. Its design is flexible to adopt device width.
+          </p>
+          <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Now &raquo;</a></p>
         </div>
       </div>
 
       <!-- Site footer -->
       <footer class="footer">
-        <p>&copy; 2018 MyLands.pk</p>
+        <div class="col-md-4">      	
+        	<p>
+        		&copy; 2018-18 
+        		<img width="16" alt="Legenda kamieniolom" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Legenda_kamieniolom.svg/16px-Legenda_kamieniolom.svg.png">
+        		<span class="text-muted">MyLands.pk</span>
+        	</p>
+        </div>
+        <div class="col-md-4">      	
+        	<p class="text-center">
+        		Contact:
+        		<span class="em-addr text-muted"></span>
+        	</p>        	
+        </div>
+        <div class="col-md-4">
+        	<p class="text-right">Powered by <span class="text-muted">RoshanTech</span></p>
+        </div>
       </footer>
 
     </div> <!-- /container -->
@@ -92,7 +134,15 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
     <?= $this->Html->script('ie10-viewport-bug-workaround.js') ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script>
+	$( document ).ready(function() {
+		var user = 'aamir';
+		var domain = 'mylands.pk';
+		$(".em-addr").html(user + '&#64;' + domain);
+	});
+	</script>
   </body>
 </html>
