@@ -21,7 +21,9 @@
     </ul>
 </div>
 <div class="admins form col-lg-10 col-md-9 columns">
-    <?= $this->Form->create($admin); ?>
+    <?= $this->Form->create($admin, [
+        'type' => 'post',
+    ]); ?>
     <fieldset>
         <legend><?= __('Edit Admin') ?></legend>
         <?php

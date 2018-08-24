@@ -13,7 +13,9 @@
     </ul>
 </div>
 <div class="masters form col-lg-10 col-md-9 columns">
-    <?= $this->Form->create($master); ?>
+    <?= $this->Form->create($master, [
+        'type' => 'post',
+    ]); ?>
     <fieldset>
         <legend><?= __('Edit Master') ?></legend>
         <?php

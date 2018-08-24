@@ -138,6 +138,7 @@ class LandsController extends AppController
                 ],
                 'contain' => []
             ]);
+            // pr($land);
         } 
         // catch (Exception $e) {
         catch (RecordNotFoundException $e) {
@@ -147,6 +148,9 @@ class LandsController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $land = $this->Lands->patchEntity($land, $this->request->getData());
+            // echo '<h1>Land</h1>'
+            // pr($land);
+            // exit;
             if ($this->Lands->save($land)) {
                 $this->Flash->success(__('The land has been saved.'));
 

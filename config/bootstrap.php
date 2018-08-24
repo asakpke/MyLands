@@ -199,3 +199,7 @@ Type::build('timestamp')
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 
 Plugin::load('Bootstrap', ['bootstrap' => true]);
+
+// Before loading DebugKit
+// Configure::write('DebugKit.panels', []);
+// Configure::write('DebugKit.forceEnable', true);

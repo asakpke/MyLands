@@ -17,7 +17,9 @@
     </ul>
 </div>
 <div class="costCats form col-lg-10 col-md-9 columns">
-    <?= $this->Form->create($costCat); ?>
+    <?= $this->Form->create($costCat, [
+        'type' => 'post',
+    ]); ?>
     <fieldset>
         <legend><?= __('Edit Cost Cat') ?></legend>
         <?php

@@ -15,7 +15,9 @@
     </ul>
 </div>
 <div class="landStatuses form col-lg-10 col-md-9 columns">
-    <?= $this->Form->create($landStatus); ?>
+    <?= $this->Form->create($landStatus, [
+        'type' => 'post',
+    ]); ?>
     <fieldset>
         <legend><?= __('Edit Land Status') ?></legend>
         <?php
