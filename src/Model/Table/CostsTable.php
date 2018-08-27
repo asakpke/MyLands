@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\LandsTable|\Cake\ORM\Association\BelongsTo $Lands
  * @property \App\Model\Table\CostCatsTable|\Cake\ORM\Association\BelongsTo $CostCats
+ * @property \App\Model\Table\AdminsTable|\Cake\ORM\Association\BelongsTo $Admins
  *
  * @method \App\Model\Entity\Cost get($primaryKey, $options = [])
  * @method \App\Model\Entity\Cost newEntity($data = null, array $options = [])
@@ -50,6 +51,9 @@ class CostsTable extends Table
             'foreignKey' => 'cost_cat_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('Admins', [
+            'foreignKey' => 'admin_id'
+        ]);
     }
 
     /**
@@ -87,6 +91,7 @@ class CostsTable extends Table
     {
         $rules->add($rules->existsIn(['land_id'], 'Lands'));
         $rules->add($rules->existsIn(['cost_cat_id'], 'CostCats'));
+        $rules->add($rules->existsIn(['admin_id'], 'Admins'));
 
         return $rules;
     }

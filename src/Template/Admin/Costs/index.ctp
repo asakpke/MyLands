@@ -16,7 +16,7 @@
             <tr>
                 <th><?= $this->Paginator->sort('land_id') ?></th>
                 <th><?= $this->Paginator->sort('cost_cat_id') ?></th>
-                <th><?= $this->Paginator->sort('id') ?></th>
+                <!-- <th><?php //= $this->Paginator->sort('id') ?></th> -->
                 <th><?= $this->Paginator->sort('cost') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
@@ -32,7 +32,7 @@
             <td>
                     <?= $cost->has('cost_cat') ? $this->Html->link($cost->cost_cat->name, ['controller' => 'CostCats', 'action' => 'view', $cost->cost_cat->id]) : '' ?>
                 </td>
-                <td><?= $this->Number->format($cost->id) ?></td>
+                <!-- <td><?php //= $this->Number->format($cost->id) ?></td> -->
                     <td><?= $this->Number->format($cost->cost) ?></td>
                 <td><?= h($cost->created) ?></td>
                 <td><?= h($cost->modified) ?></td>

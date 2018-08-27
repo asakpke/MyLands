@@ -27,8 +27,8 @@
         <div class="col-lg-2 columns numbers end">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h6 class="subheader"><?= __('Id') ?></h6>
-                    <p><?= $this->Number->format($cost->id) ?></p>
+                    <!-- <h6 class="subheader"><?php //= __('Id') ?></h6>
+                    <p><?php //= $this->Number->format($cost->id) ?></p> -->
                     <h6 class="subheader"><?= __('Cost') ?></h6>
                     <p><?= $this->Number->format($cost->cost) ?></p>
                 </div>

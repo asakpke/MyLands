@@ -8,6 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $land_id
  * @property int $cost_cat_id
+ * @property int $admin_id
  * @property int $id
  * @property float $cost
  * @property string $remarks
@@ -16,6 +17,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Land $land
  * @property \App\Model\Entity\CostCat $cost_cat
+ * @property \App\Model\Entity\Admin $admin
  */
 class Cost extends Entity
 {
@@ -32,11 +34,13 @@ class Cost extends Entity
     protected $_accessible = [
         'land_id' => true,
         'cost_cat_id' => true,
+        'admin_id' => true,
         'cost' => true,
         'remarks' => true,
         'created' => true,
         'modified' => true,
         'land' => true,
-        'cost_cat' => true
+        'cost_cat' => true,
+        'admin' => true,
     ];
 }
