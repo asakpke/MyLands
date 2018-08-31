@@ -23,9 +23,20 @@
     <fieldset>
         <legend><?= __('Add Land') ?></legend>
         <?php
+        	// pr($landTypes);
             // echo $this->Form->input('admin_id', ['options' => $admins]);
-            echo $this->Form->input('land_type_id', ['options' => $landTypes, 'empty' => true]);
-            echo $this->Form->input('land_status_id', ['options' => $landStatuses, 'empty' => true]);
+            echo $this->Form->input('land_type_id', [
+            	'options' => $landTypes,
+            	// 'empty' => true,
+				// 'default' => $landTypes[1],
+				'default' => 2,
+				// 'value' => 'Sale',
+            ]);
+            echo $this->Form->input('land_status_id', [
+            	'options' => $landStatuses,
+            	'empty' => true,
+            	'default' => 1,
+            ]);
             echo $this->Form->input('name');
             echo $this->Form->input('acre');
             echo $this->Form->input('kanal');

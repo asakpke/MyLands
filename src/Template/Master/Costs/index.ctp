@@ -7,6 +7,8 @@
         <li><?= $this->Html->link(__('New Land'), ['controller' => 'Lands', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cost Cat'), ['controller' => 'CostCats', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
     </ul>
 </div>
 <div class="costs index col-lg-10 col-md-9 columns">
@@ -16,6 +18,7 @@
             <tr>
                 <th><?= $this->Paginator->sort('land_id') ?></th>
                 <th><?= $this->Paginator->sort('cost_cat_id') ?></th>
+                <th><?= $this->Paginator->sort('admin_id') ?></th>
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('cost') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
@@ -31,6 +34,9 @@
                 </td>
             <td>
                     <?= $cost->has('cost_cat') ? $this->Html->link($cost->cost_cat->name, ['controller' => 'CostCats', 'action' => 'view', $cost->cost_cat->id]) : '' ?>
+                </td>
+            <td>
+                    <?= $cost->has('admin') ? $this->Html->link($cost->admin->name, ['controller' => 'Admins', 'action' => 'view', $cost->admin->id]) : '' ?>
                 </td>
                 <td><?= $this->Number->format($cost->id) ?></td>
                     <td><?= $this->Number->format($cost->cost) ?></td>

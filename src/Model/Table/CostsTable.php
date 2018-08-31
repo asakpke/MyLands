@@ -52,7 +52,8 @@ class CostsTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Admins', [
-            'foreignKey' => 'admin_id'
+            'foreignKey' => 'admin_id',
+            'joinType' => 'INNER'
         ]);
     }
 

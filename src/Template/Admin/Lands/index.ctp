@@ -12,6 +12,18 @@
     </ul>
 </div>
 <div class="lands index col-lg-10 col-md-9 columns">
+	<div class="row">
+		<div class="col-md-2">
+	    	<h2><?= h('Lands') ?></h2>
+		</div>
+		<div class="col-md-10">
+			<h2>
+				<form>
+	    			<input id="search" name="search" class="form-control" placeholder="Type your search & press enter key to filter lands" autofocus>
+	    		</form>
+			</h2>
+		</div>
+	</div>
     <div class="table-responsive">
         <table class="table table-striped">
         <thead>

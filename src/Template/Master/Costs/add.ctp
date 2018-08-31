@@ -7,6 +7,8 @@
         <li><?= $this->Html->link(__('New Land'), ['controller' => 'Lands', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cost Cat'), ['controller' => 'CostCats', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
     </ul>
 </div>
 <div class="costs form col-lg-10 col-md-9 columns">
@@ -16,6 +18,7 @@
         <?php
             echo $this->Form->input('land_id', ['options' => $lands]);
             echo $this->Form->input('cost_cat_id', ['options' => $costCats]);
+            echo $this->Form->input('admin_id', ['options' => $admins]);
             echo $this->Form->input('cost');
             echo $this->Form->input('remarks');
         ?>

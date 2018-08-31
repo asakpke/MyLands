@@ -41,6 +41,6 @@ class Cost extends Entity
         'modified' => true,
         'land' => true,
         'cost_cat' => true,
-        'admin' => true,
+        'admin' => true
     ];
 }

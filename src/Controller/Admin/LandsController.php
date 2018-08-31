@@ -22,13 +22,40 @@ class LandsController extends AppController
      */
     public function index()
     {
+    	$search = $this->request->getQuery('search');
+
+        $cond = array(
+        	'Lands.admin_id' => $this->Auth->user('id'),
+        );
+
+        if (!empty($search)) {
+            $cond['OR']['Lands.name LIKE'] = "%{$search}%";
+            $cond['OR']['LandTypes.name LIKE'] = "%{$search}%";
+            $cond['OR']['Lands.acre'] = (float)$search;
+            $cond['OR']['Lands.kanal'] = (float)$search;
+            $cond['OR']['Lands.marla'] = (float)$search;
+            $cond['OR']['Lands.location LIKE'] = "%{$search}%";
+            $cond['OR']['Lands.city LIKE'] = "%{$search}%";
+            $cond['OR']['Lands.khewat LIKE'] = "%{$search}%";
+            $cond['OR']['Lands.khasra LIKE'] = "%{$search}%";
+            $cond['OR']['Lands.patwar_halka LIKE'] = "%{$search}%";
+            $cond['OR']['Lands.best_for LIKE'] = "%{$search}%";
+            $cond['OR']['Lands.demand'] = $search;
+            $cond['OR']['Lands.sale'] = $search;
+            $cond['OR']['Lands.cost'] = $search;
+            $cond['OR']['Lands.remarks LIKE'] = "%{$search}%";
+            $cond['OR']['Lands.purchased'] = $search;
+            $cond['OR']['LandStatuses.name LIKE'] = "%{$search}%";
+        }
+
         $this->paginate = [
             // // 'condition' => [
-            'conditions' => [
-            // 'where' => [
-                'Lands.admin_id' => $this->Auth->user('id')
-            // 	// 'admin_id =' => $this->Auth->user('id')
-            ],
+            'conditions' =>  $cond,
+            // [
+            // // 'where' => [
+            //     'Lands.admin_id' => $this->Auth->user('id')
+            // // 	// 'admin_id =' => $this->Auth->user('id')
+            // ],
             // 'finder' => [
             //     'Lands.admin_id' => $this->Auth->user('id')
             // ],

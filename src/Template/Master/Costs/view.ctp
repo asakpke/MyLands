@@ -9,6 +9,8 @@
         <li><?= $this->Html->link(__('New Land'), ['controller' => 'Lands', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cost Cat'), ['controller' => 'CostCats', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Admins'), ['controller' => 'Admins', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Admin'), ['controller' => 'Admins', 'action' => 'add']) ?> </li>
     </ul>
 </div>
 <div class="costs view col-lg-10 col-md-9 columns">
@@ -21,6 +23,8 @@
                     <p><?= $cost->has('land') ? $this->Html->link($cost->land->name, ['controller' => 'Lands', 'action' => 'view', $cost->land->id]) : '' ?></p>
                     <h6 class="subheader"><?= __('Cost Cat') ?></h6>
                     <p><?= $cost->has('cost_cat') ? $this->Html->link($cost->cost_cat->name, ['controller' => 'CostCats', 'action' => 'view', $cost->cost_cat->id]) : '' ?></p>
+                    <h6 class="subheader"><?= __('Admin') ?></h6>
+                    <p><?= $cost->has('admin') ? $this->Html->link($cost->admin->name, ['controller' => 'Admins', 'action' => 'view', $cost->admin->id]) : '' ?></p>
                 </div>
             </div>
         </div>

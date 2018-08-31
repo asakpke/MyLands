@@ -18,7 +18,8 @@ class CostsControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.costs',
         'app.lands',
-        'app.cost_cats'
+        'app.cost_cats',
+        'app.admins'
     ];
 
     /**

@@ -17,6 +17,7 @@ class PagesController extends AppController
         // $this->layout = false;
         // $this->layout = 'default';
         $this->layout = 'bs337';
+        // $this->layout = 'bs413';
         // echo $this->request->env('HTTP_HOST');
     }
 }

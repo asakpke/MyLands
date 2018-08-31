@@ -21,7 +21,7 @@ class CostsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Lands', 'CostCats']
+            'contain' => ['Lands', 'CostCats', 'Admins']
         ];
         $costs = $this->paginate($this->Costs);
 
@@ -38,7 +38,7 @@ class CostsController extends AppController
     public function view($id = null)
     {
         $cost = $this->Costs->get($id, [
-            'contain' => ['Lands', 'CostCats']
+            'contain' => ['Lands', 'CostCats', 'Admins']
         ]);
 
         $this->set('cost', $cost);
@@ -63,7 +63,8 @@ class CostsController extends AppController
         }
         $lands = $this->Costs->Lands->find('list', ['limit' => 200]);
         $costCats = $this->Costs->CostCats->find('list', ['limit' => 200]);
-        $this->set(compact('cost', 'lands', 'costCats'));
+        $admins = $this->Costs->Admins->find('list', ['limit' => 200]);
+        $this->set(compact('cost', 'lands', 'costCats', 'admins'));
     }
 
     /**
@@ -89,7 +90,8 @@ class CostsController extends AppController
         }
         $lands = $this->Costs->Lands->find('list', ['limit' => 200]);
         $costCats = $this->Costs->CostCats->find('list', ['limit' => 200]);
-        $this->set(compact('cost', 'lands', 'costCats'));
+        $admins = $this->Costs->Admins->find('list', ['limit' => 200]);
+        $this->set(compact('cost', 'lands', 'costCats', 'admins'));
     }
 
     /**
