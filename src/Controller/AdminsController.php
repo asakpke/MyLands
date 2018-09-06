@@ -13,6 +13,7 @@ class AdminsController extends AppController
         $this->Auth->allow([
             'login',
             'logout',
+            'signup',
         ]);
     }
 
@@ -44,5 +45,23 @@ class AdminsController extends AppController
     {
         $this->Flash->success('You are now logged out.');
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function signup()
+    {
+        $this->layout = 'bs337';
+        $admin = $this->Admins->newEntity();
+        if ($this->request->is('post')) {
+            dd($this->request->getData());
+            die('$this->request->getData()');
+            $admin = $this->Admins->patchEntity($admin, $this->request->getData());
+            if ($this->Admins->save($admin)) {
+                $this->Flash->success(__('The admin has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The admin could not be saved. Please, try again.'));
+        }
+        $this->set(compact('admin'));
     }
 }
