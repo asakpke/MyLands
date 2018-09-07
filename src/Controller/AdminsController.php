@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-// use Cake\Auth\DefaultPasswordHasher;
+use Cake\Auth\DefaultPasswordHasher;
 
 class AdminsController extends AppController
 {
@@ -52,15 +52,30 @@ class AdminsController extends AppController
         $this->layout = 'bs337';
         $admin = $this->Admins->newEntity();
         if ($this->request->is('post')) {
-            dd($this->request->getData());
-            die('$this->request->getData()');
-            $admin = $this->Admins->patchEntity($admin, $this->request->getData());
-            if ($this->Admins->save($admin)) {
-                $this->Flash->success(__('The admin has been saved.'));
+            // dd($this->request->getData());
+            // pr($this->request->getData());
+            // die('$this->request->getData()');
+            
+            $data = $this->request->getData();
+            $data['status'] = 'Disabled';
+            $data['is_verified'] = 0;
+            $data['balance'] = 0;
+            $data['subdomain'] = $data['subdomain'].'.mylands.pk';
+            
+            $hasher = new DefaultPasswordHasher();
+            $data['pass'] = $hasher->hash($data['pass']);
 
-                return $this->redirect(['action' => 'index']);
+            $admin = $this->Admins->patchEntity($admin, $data);
+            // pr($admin);
+            // dd($admin);
+            
+            if ($this->Admins->save($admin)) {
+                $this->Flash->success(__('Please check your email & click activation link.'));
+
+                return $this->redirect(['controller' => 'pages', 'action' => 'home']);
             }
-            $this->Flash->error(__('The admin could not be saved. Please, try again.'));
+
+            $this->Flash->error(__('The admin could not be saved. Please, try later.'));
         }
         $this->set(compact('admin'));
     }
