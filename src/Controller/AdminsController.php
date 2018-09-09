@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Mailer\Email;
 
 class AdminsController extends AppController
 {
@@ -61,6 +62,7 @@ class AdminsController extends AppController
             $data['is_verified'] = 0;
             $data['balance'] = 0;
             $data['subdomain'] = $data['subdomain'].'.mylands.pk';
+            $data['email_verification_hash'] = md5(uniqid(rand(), true));
             
             $hasher = new DefaultPasswordHasher();
             $data['pass'] = $hasher->hash($data['pass']);
@@ -70,8 +72,15 @@ class AdminsController extends AppController
             // dd($admin);
             
             if ($this->Admins->save($admin)) {
-                $this->Flash->success(__('Please check your email & click activation link.'));
+                // SAS - Send admin email verification mail
+                $email = new Email('default');
+                $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
+                    ->to($data['email'])
+                    ->subject('About')
+                    ->send('My message');
+                // EAS - Send admin email verification mail
 
+                $this->Flash->success(__('Please check your email & click activation link.'));
                 return $this->redirect(['controller' => 'pages', 'action' => 'home']);
             }
 

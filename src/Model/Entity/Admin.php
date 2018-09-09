@@ -46,6 +46,8 @@ class Admin extends Entity
         'is_verified' => true,
         'balance' => true,
         'next_payment' => true,
+        'email_verification_hash' => true,
+        // 'email_verification_hash' => false,
         'created' => true,
         'modified' => true,
         'cost_cats' => true,

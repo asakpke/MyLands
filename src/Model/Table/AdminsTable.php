@@ -114,6 +114,12 @@ class AdminsTable extends Table
         $validator
             ->date('next_payment')
             ->allowEmpty('next_payment');
+           
+		$validator
+            ->scalar('email_verification_hash')
+            ->maxLength('email_verification_hash', 32)
+            ->requirePresence('email_verification_hash', 'create')
+            ->notEmpty('email_verification_hash');
 
         return $validator;
     }

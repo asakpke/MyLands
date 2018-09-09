@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 19, 2018 at 09:15 AM
+-- Generation Time: Sep 09, 2018 at 08:24 AM
 -- Server version: 5.7.23-0ubuntu0.18.04.1
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -33,10 +33,11 @@ CREATE TABLE `admins` (
   `pass` varchar(255) NOT NULL,
   `subdomain` varchar(255) NOT NULL,
   `remarks` text,
-  `status` enum('Active','Disabled') NOT NULL DEFAULT 'Active',
-  `is_verified` tinyint(1) NOT NULL DEFAULT '0',
-  `balance` decimal(13,2) NOT NULL DEFAULT '0.00',
+  `status` enum('Active','Disabled') NOT NULL,
+  `is_verified` tinyint(1) NOT NULL,
+  `balance` decimal(13,2) NOT NULL,
   `next_payment` date DEFAULT NULL COMMENT 'It''s initially null but later we will add next payment date after verified',
+  `email_verification_hash` varchar(32) NOT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -50,6 +51,7 @@ CREATE TABLE `admins` (
 CREATE TABLE `costs` (
   `land_id` int(10) UNSIGNED NOT NULL,
   `cost_cat_id` int(10) UNSIGNED NOT NULL,
+  `admin_id` int(10) UNSIGNED NOT NULL,
   `id` int(10) UNSIGNED NOT NULL,
   `cost` decimal(13,2) NOT NULL,
   `remarks` text,
@@ -158,7 +160,8 @@ CREATE TABLE `masters` (
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `subdomain` (`subdomain`);
 
 --
 -- Indexes for table `costs`
@@ -166,7 +169,8 @@ ALTER TABLE `admins`
 ALTER TABLE `costs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `land_id` (`land_id`) USING BTREE,
-  ADD KEY `cost_cat_id` (`cost_cat_id`) USING BTREE;
+  ADD KEY `cost_cat_id` (`cost_cat_id`) USING BTREE,
+  ADD KEY `cost_admin_id` (`admin_id`);
 
 --
 -- Indexes for table `cost_cats`
@@ -212,32 +216,32 @@ ALTER TABLE `masters`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `costs`
 --
 ALTER TABLE `costs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `cost_cats`
 --
 ALTER TABLE `cost_cats`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `lands`
 --
 ALTER TABLE `lands`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `land_statuses`
 --
 ALTER TABLE `land_statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `land_types`
 --
 ALTER TABLE `land_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `masters`
 --
@@ -251,6 +255,7 @@ ALTER TABLE `masters`
 -- Constraints for table `costs`
 --
 ALTER TABLE `costs`
+  ADD CONSTRAINT `cost_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cost_cost_cat_id` FOREIGN KEY (`cost_cat_id`) REFERENCES `cost_cats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cost_land_id` FOREIGN KEY (`land_id`) REFERENCES `lands` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
