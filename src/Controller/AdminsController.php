@@ -15,6 +15,7 @@ class AdminsController extends AppController
             'login',
             'logout',
             'signup',
+            'verifyEmail',
         ]);
     }
 
@@ -61,7 +62,7 @@ class AdminsController extends AppController
             $data['status'] = 'Disabled';
             $data['is_verified'] = 0;
             $data['balance'] = 0;
-            $data['subdomain'] = $data['subdomain'].'.mylands.pk';
+            $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
             $data['email_verification_hash'] = md5(uniqid(rand(), true));
             
             $hasher = new DefaultPasswordHasher();
@@ -76,16 +77,34 @@ class AdminsController extends AppController
                 $email = new Email('default');
                 $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
                     ->to($data['email'])
-                    ->subject('About')
-                    ->send('My message');
+                    ->subject($data['subdomain'].' Activation Link')
+                    ->send($data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash']);
                 // EAS - Send admin email verification mail
 
-                $this->Flash->success(__('Please check your email & click activation link.'));
+                $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
                 return $this->redirect(['controller' => 'pages', 'action' => 'home']);
             }
 
             $this->Flash->error(__('The admin could not be saved. Please, try later.'));
         }
         $this->set(compact('admin'));
+    }
+
+    public function verifyEmail($hash)
+    {
+        // $admin = $this->Admins->get(3, [
+        //     'contain' => []
+        // ]);
+        // $admin = $this->Admins->findByEmailVerificationHash($hash);
+        // dd($admin);
+
+        $is_exist = $this->Admins->exists(['email_verification_hash' => $hash]);
+        // dd($is_exist);
+        if ($is_exist) {
+            die('yes');
+        }
+        else {
+            die('no');
+        }
     }
 }

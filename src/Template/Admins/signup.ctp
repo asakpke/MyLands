@@ -8,8 +8,8 @@
         
         echo $this->Form->input('email', [
             'type' => 'email',
-            'placeholder' => 'Please enter a valid email (we will verify this by sending an activation email.)',
-            'title' => 'Please enter a valid email (we will verify this by sending an activation email.)',
+            'placeholder' => 'Please enter a valid email (we will verify this by sending an email.)',
+            'title' => 'Please enter a valid email (we will verify this by sending an email.)',
         ]);
 
         echo $this->Form->input('pass', [
