@@ -74,11 +74,12 @@ class AdminsController extends AppController
             
             if ($this->Admins->save($admin)) {
                 // SAS - Send admin email verification mail
+                $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
                 $email = new Email('default');
                 $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
                     ->to($data['email'])
                     ->subject($data['subdomain'].' Activation Link')
-                    ->send($data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash']);
+                    ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
                 // EAS - Send admin email verification mail
 
                 $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
@@ -92,19 +93,39 @@ class AdminsController extends AppController
 
     public function verifyEmail($hash)
     {
-        // $admin = $this->Admins->get(3, [
-        //     'contain' => []
-        // ]);
-        // $admin = $this->Admins->findByEmailVerificationHash($hash);
-        // dd($admin);
+        $this->autoRender = false;
 
-        $is_exist = $this->Admins->exists(['email_verification_hash' => $hash]);
-        // dd($is_exist);
-        if ($is_exist) {
-            die('yes');
+        $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
+        // echo $admin->subdomain;
+        // dd($admin);
+        // pr($admin);
+
+        if (!empty($admin)) {
+            $admin->status = 'Active';
+            $admin->email_verification_hash = '';
+
+            if ($this->Admins->save($admin)) {
+                // die('<h1>Status/verification updated</h1>');
+                $this->Flash->success(__('Your account is activated, login now.'));
+            }
+            else {
+                // die('<h1>NOT Empty but faild to save</h1>');
+                $this->Flash->error(__('Error in saving record. Please try later or contact administrator.'));
+            }
+
+            return $this->redirect('/admins/login');
         }
-        else {
-            die('no');
-        }
+        // else {
+        //     die('<h1>Empty</h1>');
+        // }
+
+        // $is_exist = $this->Admins->exists(['email_verification_hash' => $hash]);
+        // // dd($is_exist);
+        // if ($is_exist) {
+        //     die('yes');
+        // }
+        // else {
+        //     die('no');
+        // }
     }
 }
