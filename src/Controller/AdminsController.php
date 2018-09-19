@@ -77,6 +77,9 @@ class AdminsController extends AppController
                 $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
                 $email = new Email('default');
                 $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
+                    ->template('default', 'default')
+                    ->emailFormat('both')
+                    // ->emailFormat('html')
                     ->to($data['email'])
                     ->subject($data['subdomain'].' Activation Link')
                     ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
