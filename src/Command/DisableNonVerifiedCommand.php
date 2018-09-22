@@ -21,6 +21,7 @@ class DisableNonVerifiedCommand extends Command
             'contain' => ['CostCats', 'LandStatuses', 'LandTypes', 'Lands']
         ]);
         // pr($admin);
-        pr($admin->name);
+        // pr($admin->name);
+		$io->out($admin->name);
 	}
 } 
