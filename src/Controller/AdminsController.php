@@ -116,7 +116,8 @@ class AdminsController extends AppController
                 $this->Flash->error(__('Error in saving record. Please try later or contact administrator.'));
             }
 
-            return $this->redirect('/admins/login');
+            // return $this->redirect('/admins/login');
+            return $this->redirect('http://'.$admin->subdomain);
         }
         // else {
         //     die('<h1>Empty</h1>');

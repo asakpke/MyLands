@@ -68,7 +68,7 @@
         </div>
         <nav>
           <ul class="nav nav-justified">
-            <li class="active"><a href="http://mylands.pk">Home</a></li>
+            <li class="active"><a href="http://www.MyLands.pk/">Home</a></li>
             <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">Connect Today</a></li>
             <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">Get Connected</a></li>
             <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">Connect Us</a></li>
