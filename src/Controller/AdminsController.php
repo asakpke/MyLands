@@ -96,7 +96,7 @@ class AdminsController extends AppController
 
     public function verifyEmail($hash)
     {
-        $this->autoRender = false;
+        // $this->autoRender = false;
 
         $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
         // echo $admin->subdomain;
@@ -117,7 +117,10 @@ class AdminsController extends AppController
             }
 
             // return $this->redirect('/admins/login');
-            return $this->redirect('http://'.$admin->subdomain);
+            // return $this->redirect('http://'.$admin->subdomain);
+			return $this->redirect(
+				['controller' => 'Admins', 'action' => 'login']
+			);
         }
         // else {
         //     die('<h1>Empty</h1>');
