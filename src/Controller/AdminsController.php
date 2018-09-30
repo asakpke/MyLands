@@ -96,7 +96,7 @@ class AdminsController extends AppController
 
     public function verifyEmail($hash)
     {
-        // $this->autoRender = false;
+        $this->autoRender = false;
 
         $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
         // echo $admin->subdomain;
