@@ -1,4 +1,4 @@
-<h1>Signup</h1>
+<h1>Signup <small>(start your free 15-day trial)</small></h1>
 <?= $this->Form->create($admin); ?>
     <?php
         echo $this->Form->input('name', [
