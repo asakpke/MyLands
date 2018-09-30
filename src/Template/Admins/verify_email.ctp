@@ -1,0 +1,1 @@
+<p>Your account is activated, login now.</p>
