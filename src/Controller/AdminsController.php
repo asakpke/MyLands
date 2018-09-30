@@ -118,9 +118,10 @@ class AdminsController extends AppController
 
             // return $this->redirect('/admins/login');
             // return $this->redirect('http://'.$admin->subdomain);
-			return $this->redirect(
-				['controller' => 'Admins', 'action' => 'login']
-			);
+			// return $this->redirect(
+			// 	['controller' => 'Admins', 'action' => 'login']
+			// );
+			$this->setAction('login');
         }
         // else {
         //     die('<h1>Empty</h1>');
