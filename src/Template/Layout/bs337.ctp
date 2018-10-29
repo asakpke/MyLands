@@ -44,7 +44,7 @@
     <link href='http://fonts.googleapis.com/earlyaccess/notonastaliqurdudraft.css' rel='stylesheet' type='text/css'>
     <style>
       /*.amiri{font-family:'Amiri',serif;}*/
-      .noto{font-family: 'Noto Nastaliq Urdu Draft', tahoma, serif;}
+      .noto{font-family: 'Noto Nastaliq Urdu Draft', tahoma, serif; line-height: normal;}
     </style>
   </head>
 
