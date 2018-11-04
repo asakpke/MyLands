@@ -42,10 +42,10 @@ nbproject/*
 # SAS
 /webroot/css/lessphp_*
 /webroot/error_log
-.travis.yml
-composer.json
-composer.lock
-src/Model/Entity/empty
-src/Model/Table/empty
-tests/Fixture/empty
+
+/composer.json
+/composer.lock
+/src/Model/Entity/empty
+/src/Model/Table/empty
+/tests/Fixture/empty
 # EAS
