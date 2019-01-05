@@ -48,5 +48,24 @@ nbproject/*
 /src/Model/Entity/empty
 /src/Model/Table/empty
 /tests/Fixture/empty
+
+# !/vendor/
+# /vendor/*
+
+# !/vendor/elboletaire/
+# /vendor/elboletaire/*
+
+# !/vendor/elboletaire/twbs-cake-plugin/
+# /vendor/elboletaire/twbs-cake-plugin/*
+
+# !/vendor/elboletaire/twbs-cake-plugin/src/
+# /vendor/elboletaire/twbs-cake-plugin/src/*
+
+# !/vendor/elboletaire/twbs-cake-plugin/src/Template/
+# /vendor/elboletaire/twbs-cake-plugin/src/Template/*
+
+# !/vendor/elboletaire/twbs-cake-plugin/src/Template/Layout/
+# /vendor/elboletaire/twbs-cake-plugin/src/Template/Layout/*
+
 !/vendor/elboletaire/twbs-cake-plugin/src/Template/Layout/default.ctp
 # EAS
