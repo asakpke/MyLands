@@ -38,9 +38,18 @@
             echo $this->Form->input('khasra');
             echo $this->Form->input('patwar_halka');
             echo $this->Form->input('best_for');
-            echo $this->Form->input('demand');
-            echo $this->Form->input('sale');
-            echo $this->Form->input('cost');
+            echo $this->Form->input('demand',array(
+				'type'=>'text',
+				// 'class'=>'currency-comma',
+			));
+            echo $this->Form->input('sale',array(
+				'type'=>'text',
+				// 'class'=>'currency-comma',
+			));
+            echo $this->Form->input('cost',array(
+				'type'=>'text',
+				// 'class'=>'currency-comma',
+			));
             echo $this->Form->input('remarks');
             echo $this->Form->input('purchased');
         ?>
@@ -48,3 +57,65 @@
     <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>
+
+<script>
+// $( document ).ready(function() {
+//     console.log( "ready!" );
+
+// 	var cleave = new Cleave('.input-element', {
+// 		numeral: true,
+// 		numeralThousandsGroupStyle: 'lakh'
+// 	});
+// });
+
+// (function($) {
+// 	console.log( "ready!" );
+
+// 	var cleave = new Cleave('.input-element', {
+// 		numeral: true,
+// 		numeralThousandsGroupStyle: 'lakh'
+// 	});
+// })(jQuery);
+
+// $(function() {
+//     console.log( "ready!" );
+// });
+
+// function readyFn( jQuery ) {
+// 	console.log( "ready!" );
+// }
+ 
+// $( document ).ready( readyFn );
+// or:
+// $( window ).on( "load", readyFn );
+
+// (function() {
+// 	console.log( "START" );
+// 	var cleave = new Cleave('.input-element', {
+// 		numeral: true,
+// 		numeralThousandsGroupStyle: 'thousand'
+// 	});
+// 	console.log( "ENDED" );
+// })();
+
+document.addEventListener('DOMContentLoaded', () => {
+	// const cleave = new Cleave('.currency-comma', {
+	// const demand = new Cleave('#demand', {
+	// const cleave = new Cleave('#demand,#sale', {
+	new Cleave('#demand', {
+		numeral: true,
+		numeralThousandsGroupStyle: 'thousand'
+	});
+
+	// const sale = new Cleave('#sale', {
+	new Cleave('#sale', {
+		numeral: true,
+		numeralThousandsGroupStyle: 'thousand'
+	});
+
+	new Cleave('#cost', {
+		numeral: true,
+		numeralThousandsGroupStyle: 'thousand'
+	});
+});
+</script>

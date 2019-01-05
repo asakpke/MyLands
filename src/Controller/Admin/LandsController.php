@@ -125,6 +125,10 @@ class LandsController extends AppController
             // dd($land);
             // pr($land);
 
+            $land->demand = str_replace(',','',$land->demand);
+            $land->sale = str_replace(',','',$land->sale);
+            $land->cost = str_replace(',','',$land->cost);
+
             if ($this->Lands->save($land)) {
                 $this->Flash->success(__('The land has been saved.'));
 
@@ -175,9 +179,13 @@ class LandsController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $land = $this->Lands->patchEntity($land, $this->request->getData());
-            // echo '<h1>Land</h1>'
+            // echo '<h1>Land</h1>';
             // pr($land);
             // exit;
+            $land->demand = str_replace(',','',$land->demand);
+            $land->sale = str_replace(',','',$land->sale);
+            $land->cost = str_replace(',','',$land->cost);
+
             if ($this->Lands->save($land)) {
                 $this->Flash->success(__('The land has been saved.'));
 

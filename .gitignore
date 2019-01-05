@@ -48,4 +48,5 @@ nbproject/*
 /src/Model/Entity/empty
 /src/Model/Table/empty
 /tests/Fixture/empty
+!/vendor/elboletaire/twbs-cake-plugin/src/Template/Layout/default.ctp
 # EAS

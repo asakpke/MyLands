@@ -47,9 +47,15 @@
             echo $this->Form->input('khasra');
             echo $this->Form->input('patwar_halka');
             echo $this->Form->input('best_for');
-            echo $this->Form->input('demand');
-            echo $this->Form->input('sale');
-            echo $this->Form->input('cost');
+            echo $this->Form->input('demand',array(
+				'type'=>'text',
+			));
+            echo $this->Form->input('sale',array(
+				'type'=>'text',
+			));
+            echo $this->Form->input('cost',array(
+				'type'=>'text',
+			));
             echo $this->Form->input('remarks');
             echo $this->Form->input('purchased');
         ?>
@@ -57,3 +63,21 @@
     <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	new Cleave('#demand', {
+		numeral: true,
+		numeralThousandsGroupStyle: 'thousand'
+	});
+
+	new Cleave('#sale', {
+		numeral: true,
+		numeralThousandsGroupStyle: 'thousand'
+	});
+
+	new Cleave('#cost', {
+		numeral: true,
+		numeralThousandsGroupStyle: 'thousand'
+	});
+});
+</script>
