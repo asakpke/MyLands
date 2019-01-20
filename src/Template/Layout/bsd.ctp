@@ -17,6 +17,18 @@ elseif ($this->fetch('title') && Configure::read('App.title')) {
     $this->append('title', sprintf(' | %s', Configure::read('layoutApp.title')));
 }
 
+$this->start('navbar.top');
+// echo '<li><a href="#">Hello</a></li>';
+echo '<li>'.$this->Html->link(__('Lands'), ['controller' => 'Lands', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Land Types'), ['controller' => 'LandTypes', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Land Statuses'), ['controller' => 'LandStatuses', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Costs'), ['controller' => 'Costs', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
+$this->end();
+// $this->set('navbar.top', '<li><a href="#">Hello</a></li>');
+
+
 // Prepend some meta tags
 $this->prepend('meta', $this->Html->meta('icon'));
 $this->prepend('meta', $this->Html->meta('viewport', 'width=device-width, initial-scale=1'));
@@ -42,7 +54,7 @@ $this->prepend('script', $this->Html->script([
 <?= $this->fetch('html'); ?>
 <head>
     <?= $this->Html->charset(); ?>
-    <title>layoutz
+    <title>layout
         <?= $this->fetch('title'); ?>
     </title>
     <?php

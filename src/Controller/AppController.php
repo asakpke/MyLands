@@ -35,7 +35,9 @@ class AppController extends Controller
         'BootstrapUI.Paginator'
     ];
 
-    public $layout = 'Bootstrap.default';
+    // public $layout = 'Bootstrap.default';
+    // public $layout = 'bs337';
+    public $layout = 'bsd';
     /**
      * Initialization hook method.
      *
