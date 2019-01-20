@@ -19,6 +19,11 @@ elseif ($this->fetch('title') && Configure::read('App.title')) {
 
 $this->start('navbar.top');
 // echo '<li><a href="#">Hello</a></li>';
+
+if ($this->Session->read('Auth.Master')) {
+	echo '<li>'.$this->Html->link(__('Admins'), ['prefix' => 'master', 'controller' => 'Admins', 'action' => 'index']).'</li>';
+}
+
 echo '<li>'.$this->Html->link(__('Lands'), ['controller' => 'Lands', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Land Types'), ['controller' => 'LandTypes', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Land Statuses'), ['controller' => 'LandStatuses', 'action' => 'index']).'</li>';
