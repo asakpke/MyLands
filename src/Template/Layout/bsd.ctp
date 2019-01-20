@@ -19,11 +19,11 @@ elseif ($this->fetch('title') && Configure::read('App.title')) {
 
 $this->start('navbar.top');
 // echo '<li><a href="#">Hello</a></li>';
-echo '<li>'.$this->Html->link(__('Lands'), ['controller' => 'Lands', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Land Types'), ['controller' => 'LandTypes', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Land Statuses'), ['controller' => 'LandStatuses', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Costs'), ['controller' => 'Costs', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Lands'), ['prefix' => 'admin', 'controller' => 'Lands', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Land Types'), ['prefix' => 'admin', 'controller' => 'LandTypes', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Land Statuses'), ['prefix' => 'admin', 'controller' => 'LandStatuses', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Costs'), ['prefix' => 'admin', 'controller' => 'Costs', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Cost Cats'), ['prefix' => 'admin', 'controller' => 'CostCats', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
 $this->end();
 // $this->set('navbar.top', '<li><a href="#">Hello</a></li>');
