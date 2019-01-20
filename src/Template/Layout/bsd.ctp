@@ -19,12 +19,20 @@ elseif ($this->fetch('title') && Configure::read('App.title')) {
 
 $this->start('navbar.top');
 // echo '<li><a href="#">Hello</a></li>';
-echo '<li>'.$this->Html->link(__('Lands'), ['prefix' => 'admin', 'controller' => 'Lands', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Land Types'), ['prefix' => 'admin', 'controller' => 'LandTypes', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Land Statuses'), ['prefix' => 'admin', 'controller' => 'LandStatuses', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Costs'), ['prefix' => 'admin', 'controller' => 'Costs', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Cost Cats'), ['prefix' => 'admin', 'controller' => 'CostCats', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
+echo '<li>'.$this->Html->link(__('Lands'), ['controller' => 'Lands', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Land Types'), ['controller' => 'LandTypes', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Land Statuses'), ['controller' => 'LandStatuses', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Costs'), ['controller' => 'Costs', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']).'</li>';
+
+if ($this->Session->read('Auth.Master')) {
+	echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Masters', 'action' => 'logout']).'</li>';
+}
+
+if ($this->Session->read('Auth.Admin')) {
+	echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
+}
+
 $this->end();
 // $this->set('navbar.top', '<li><a href="#">Hello</a></li>');
 
@@ -86,7 +94,10 @@ $this->prepend('script', $this->Html->script([
                 <?php endif; ?>
                 <?= $this->Html->link(Configure::read('App.name'), '/', ['class' => 'navbar-brand']); ?>
             </div>
-            <?php if ($this->fetch('navbar.top')): ?>
+            <?php
+            if (($this->Session->read('Auth.Master') or
+            	$this->Session->read('Auth.Admin')) and
+            	$this->fetch('navbar.top')): ?>
             <nav role="navigation" class="collapse navbar-collapse" id="navbar-top">
                 <ul class="nav navbar-nav">
                     <?= $this->fetch('navbar.top'); ?>
@@ -95,6 +106,8 @@ $this->prepend('script', $this->Html->script([
             <?php endif; ?>
         </div>
     </header>
+    <?php //pr($this->Session->read('Auth.Master'),'Auth.Master') ?>
+    <?php //pr($this->Session->read('Auth.Admin'),'Auth.Admin') ?>
     <div class="container">
         <div id="content" class="row">
             <?= $this->Flash->render(); ?>
