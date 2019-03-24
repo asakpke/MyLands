@@ -16,10 +16,21 @@
         <?php
             echo $this->Form->input('land_id', ['options' => $lands]);
             echo $this->Form->input('cost_cat_id', ['options' => $costCats]);
-            echo $this->Form->input('cost');
+            // echo $this->Form->input('cost');
+            echo $this->Form->input('cost',array(
+				'type'=>'text',
+			));
             echo $this->Form->input('remarks');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+	new Cleave('#cost', {
+		numeral: true,
+		numeralThousandsGroupStyle: 'thousand'
+	});
+});
+</script>

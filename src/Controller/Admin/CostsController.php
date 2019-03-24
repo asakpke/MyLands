@@ -68,6 +68,8 @@ class CostsController extends AppController
             $cost = $this->Costs->patchEntity($cost, $this->request->getData());
             $cost['admin_id'] = $this->Auth->user('id');
 
+            $cost->cost = str_replace(',','',$cost->cost);
+
             if ($this->Costs->save($cost)) {
                 $this->Flash->success(__('The cost has been saved.'));
 
@@ -111,6 +113,9 @@ class CostsController extends AppController
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cost = $this->Costs->patchEntity($cost, $this->request->getData());
+
+            $cost->cost = str_replace(',','',$cost->cost);
+
             if ($this->Costs->save($cost)) {
                 $this->Flash->success(__('The cost has been saved.'));
 
