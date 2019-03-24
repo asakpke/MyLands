@@ -88,7 +88,8 @@ $this->prepend('script', $this->Html->script([
     h6.subheader {
         font-weight: bold;
         /*color: brown;*/
-        color: darkgreen;
+        /*color: darkgreen;*/
+        color: forestgreen;
     }
     </style>
 </head>
