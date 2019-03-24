@@ -49,6 +49,8 @@
             echo $this->Form->input('cost',array(
 				'type'=>'text',
 				// 'class'=>'currency-comma',
+				// 'label'=>'Initial Cost',
+				'label'=>'Cost (Initial)',
 			));
             echo $this->Form->input('remarks');
             echo $this->Form->input('purchased');

@@ -53,8 +53,16 @@
                     <p><?= $this->Number->format($land->demand) ?></p>
                     <h6 class="subheader"><?= __('Sale') ?></h6>
                     <p><?= $this->Number->format($land->sale) ?></p>
-                    <h6 class="subheader"><?= __('Cost') ?></h6>
-                    <p><?= $this->Number->format($land->cost) ?></p>
+                    <h6 class="subheader">
+                        Total
+                        <?= __('Cost') ?>
+                        <!-- (Total) -->
+                        <!-- (Total, Initial + Sub costs) -->
+                        <!-- (Initial + Sub costs) -->
+                        <!-- (Initial + Others) -->
+                        <!-- (Initial + Related) -->
+                    </h6>
+                    <p id="total"><?php //= $this->Number->format($land->cost) ?></p>
                 </div>
             </div>
         </div>
@@ -118,24 +126,38 @@
                 <th><?= __('Modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($land->costs as $costs): ?>
-            <tr>
-                <!-- <td><?php //= h($costs->land_id) ?></td>
-                <td><?php //= h($costs->cost_cat_id) ?></td>
-                <td><?php //= h($costs->id) ?></td> -->
-                <td><?= h($costs->cost) ?></td>
-                <td><?= h($costs->remarks) ?></td>
-                <td><?= h($costs->created) ?></td>
-                <td><?= h($costs->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link('<span class="glyphicon glyphicon-zoom-in"></span><span class="sr-only">' . __('View') . '</span>', ['controller' => 'Costs', 'action' => 'view', $costs->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('View')]) ?>
-                    <?= $this->Html->link('<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . __('Edit') . '</span>', ['controller' => 'Costs', 'action' => 'edit', $costs->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('Edit')]) ?>
-                    <?= $this->Form->postLink('<span class="glyphicon glyphicon-trash"></span><span class="sr-only">' . __('Delete') . '</span>', ['controller' => 'Costs', 'action' => 'delete', $costs->id], ['confirm' => __('Are you sure you want to delete # {0}?', $costs->id), 'escape' => false, 'class' => 'btn btn-xs btn-danger', 'title' => __('Delete')]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
+            <?php
+            $total = !empty($land->cost) ? $land->cost : 0;
+            // pr($total);
+            foreach ($land->costs as $costs):
+                // pr($costs->cost);
+                $total = $total + (!empty($costs->cost) ? $costs->cost : 0);
+                // pr($total);
+                ?>
+                <tr>
+                    <!-- <td><?php //= h($costs->land_id) ?></td>
+                    <td><?php //= h($costs->cost_cat_id) ?></td>
+                    <td><?php //= h($costs->id) ?></td> -->
+                    <td><?= h($costs->cost) ?></td>
+                    <td><?= h($costs->remarks) ?></td>
+                    <td><?= h($costs->created) ?></td>
+                    <td><?= h($costs->modified) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link('<span class="glyphicon glyphicon-zoom-in"></span><span class="sr-only">' . __('View') . '</span>', ['controller' => 'Costs', 'action' => 'view', $costs->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('View')]) ?>
+                        <?= $this->Html->link('<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . __('Edit') . '</span>', ['controller' => 'Costs', 'action' => 'edit', $costs->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('Edit')]) ?>
+                        <?= $this->Form->postLink('<span class="glyphicon glyphicon-trash"></span><span class="sr-only">' . __('Delete') . '</span>', ['controller' => 'Costs', 'action' => 'delete', $costs->id], ['confirm' => __('Are you sure you want to delete # {0}?', $costs->id), 'escape' => false, 'class' => 'btn btn-xs btn-danger', 'title' => __('Delete')]) ?>
+                    </td>
+                </tr>
+                <?php
+            endforeach;
+            ?>
         </table>
     </div>
     <?php endif; ?>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    $("#total").html("<?= $this->Number->format($total) ?>");
+});
+</script>
