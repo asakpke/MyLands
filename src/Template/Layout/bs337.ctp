@@ -45,6 +45,10 @@
     <style>
       /*.amiri{font-family:'Amiri',serif;}*/
       .noto{font-family: 'Noto Nastaliq Urdu Draft', tahoma, serif; line-height: normal;}
+      
+      /*h6.subheader {
+        font-weight: bold;
+      }*/
     </style>
   </head>
 

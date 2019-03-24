@@ -84,6 +84,13 @@ $this->prepend('script', $this->Html->script([
         // Sometimes we'll want to send scripts to the top (rarely..)
         echo $this->fetch('script.top');
     ?>
+    <style>
+    h6.subheader {
+        font-weight: bold;
+        /*color: brown;*/
+        color: darkgreen;
+    }
+    </style>
 </head>
 <body>
     <header role="banner" class="navbar navbar-inverse">
