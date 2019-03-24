@@ -60,7 +60,7 @@ class CostsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($land_id=0)
     {
         $cost = $this->Costs->newEntity();
 
@@ -91,7 +91,7 @@ class CostsController extends AppController
                 'CostCats.admin_id' => $this->Auth->user('id')
             ]
         ]);
-        $this->set(compact('cost', 'lands', 'costCats'));
+        $this->set(compact('cost', 'lands', 'costCats', 'land_id'));
     }
 
     /**

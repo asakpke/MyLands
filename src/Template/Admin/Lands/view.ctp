@@ -112,11 +112,15 @@
 </div>
 <div class="related row">
     <div class="column col-lg-12">
-    <h4 class="subheader"><?= __('Related Costs') ?></h4>
+    <h4 class="subheader">
+        <?= __('Related Costs') ?>
+        <!-- <a href="#">+</a> -->
+        <?= $this->Html->link(__('+'), ['controller' => 'Costs', 'action' => 'add', $land->id]) ?>
+    </h4>
     <?php 
     $total = !empty($land->cost) ? $land->cost : 0;
     // pr($total);
-                
+
     if (!empty($land->costs)):
         ?>
         <div class="table-responsive">

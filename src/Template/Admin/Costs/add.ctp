@@ -14,7 +14,10 @@
     <fieldset>
         <legend><?= __('Add Cost') ?></legend>
         <?php
-            echo $this->Form->input('land_id', ['options' => $lands]);
+            echo $this->Form->input('land_id', [
+            	'options' => $lands,
+            	'default' => $land_id,
+            ]);
             echo $this->Form->input('cost_cat_id', ['options' => $costCats]);
             // echo $this->Form->input('cost');
             echo $this->Form->input('cost',array(
