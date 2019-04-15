@@ -22,6 +22,7 @@ $this->start('navbar.top');
 
 if ($this->Session->read('Auth.Master')) {
 	echo '<li>'.$this->Html->link(__('Admins'), ['prefix' => 'master', 'controller' => 'Admins', 'action' => 'index']).'</li>';
+	echo '<li>'.$this->Html->link(__('Trans'), ['prefix' => 'master', 'controller' => 'Trans', 'action' => 'index']).'</li>';
 }
 
 echo '<li>'.$this->Html->link(__('Lands'), ['controller' => 'Lands', 'action' => 'index']).'</li>';
@@ -36,6 +37,13 @@ if ($this->Session->read('Auth.Master')) {
 
 if ($this->Session->read('Auth.Admin')) {
 	echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
+
+	echo '<li>';
+	echo $this->Html->link(__('Profile'), '#');
+	// echo '<ul>';
+	// echo '<li>Test1</li>';
+	// echo '</ul>';
+	echo '</li>';
 }
 
 $this->end();

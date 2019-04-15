@@ -40,6 +40,7 @@ class Admin extends Entity
         'name' => true,
         'email' => true,
         'pass' => true,
+        // 'pass' => false,
         'subdomain' => true,
         'remarks' => true,
         'status' => true,
