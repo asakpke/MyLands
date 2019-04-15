@@ -153,5 +153,5 @@ class AdminsTable extends Table
                 'subdomain' => $_SERVER['HTTP_HOST'],
             ]);
         return $query;
-    }
+    } // findAuth()
 }
