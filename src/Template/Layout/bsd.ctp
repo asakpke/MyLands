@@ -38,12 +38,12 @@ if ($this->Session->read('Auth.Master')) {
 if ($this->Session->read('Auth.Admin')) {
 	echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
 
-	echo '<li>';
-	echo $this->Html->link(__('Profile'), '#');
+	// echo '<li>';
+	// echo $this->Html->link(__('Profile'), '#');
 	// echo '<ul>';
 	// echo '<li>Test1</li>';
 	// echo '</ul>';
-	echo '</li>';
+	// echo '</li>';
 }
 
 $this->end();
