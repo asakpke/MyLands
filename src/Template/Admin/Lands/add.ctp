@@ -23,19 +23,19 @@
     <fieldset>
         <legend><?= __('Add Land') ?></legend>
         <?php
-        	// pr($landTypes);
+            // pr($landTypes);
             // echo $this->Form->input('admin_id', ['options' => $admins]);
             echo $this->Form->input('land_type_id', [
-            	'options' => $landTypes,
-            	// 'empty' => true,
-				// 'default' => $landTypes[1],
-				'default' => 2,
-				// 'value' => 'Sale',
+                'options' => $landTypes,
+                // 'empty' => true,
+                // 'default' => $landTypes[1],
+                'default' => 2,
+                // 'value' => 'Sale',
             ]);
             echo $this->Form->input('land_status_id', [
-            	'options' => $landStatuses,
-            	'empty' => true,
-            	'default' => 1,
+                'options' => $landStatuses,
+                'empty' => true,
+                'default' => 1,
             ]);
             echo $this->Form->input('name');
             echo $this->Form->input('acre');
@@ -48,18 +48,22 @@
             echo $this->Form->input('patwar_halka');
             echo $this->Form->input('best_for');
             echo $this->Form->input('demand',array(
-				'type'=>'text',
-			));
+                'type'=>'text',
+            ));
             echo $this->Form->input('sale',array(
-				'type'=>'text',
-			));
+                'type'=>'text',
+            ));
             echo $this->Form->input('cost',array(
-				'type'=>'text',
-				// 'label'=>'Initial Cost',
-				'label'=>'Cost (Initial)',
-			));
+                'type'=>'text',
+                // 'label'=>'Initial Cost',
+                'label'=>'Cost (Initial)',
+            ));
             echo $this->Form->input('remarks');
-            echo $this->Form->input('purchased');
+
+            // echo $this->Form->input('purchased');
+            echo $this->Form->input('purchased',[
+                'minYear' => 1900,
+            ]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
@@ -67,19 +71,19 @@
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-	new Cleave('#demand', {
-		numeral: true,
-		numeralThousandsGroupStyle: 'thousand'
-	});
+    new Cleave('#demand', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
 
-	new Cleave('#sale', {
-		numeral: true,
-		numeralThousandsGroupStyle: 'thousand'
-	});
+    new Cleave('#sale', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
 
-	new Cleave('#cost', {
-		numeral: true,
-		numeralThousandsGroupStyle: 'thousand'
-	});
+    new Cleave('#cost', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
 });
 </script>

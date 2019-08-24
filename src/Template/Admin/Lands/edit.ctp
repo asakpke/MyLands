@@ -1,3 +1,6 @@
+<?php
+// pr($land);
+?>
 <div class="actions columns col-lg-2 col-md-3">
     <h3><?= __('Actions') ?></h3>
     <ul class="nav nav-stacked nav-pills">
@@ -39,21 +42,32 @@
             echo $this->Form->input('patwar_halka');
             echo $this->Form->input('best_for');
             echo $this->Form->input('demand',array(
-				'type'=>'text',
-				// 'class'=>'currency-comma',
-			));
+                'type'=>'text',
+                // 'class'=>'currency-comma',
+            ));
             echo $this->Form->input('sale',array(
-				'type'=>'text',
-				// 'class'=>'currency-comma',
-			));
+                'type'=>'text',
+                // 'class'=>'currency-comma',
+            ));
             echo $this->Form->input('cost',array(
-				'type'=>'text',
-				// 'class'=>'currency-comma',
-				// 'label'=>'Initial Cost',
-				'label'=>'Cost (Initial)',
-			));
+                'type'=>'text',
+                // 'class'=>'currency-comma',
+                // 'label'=>'Initial Cost',
+                'label'=>'Cost (Initial)',
+            ));
             echo $this->Form->input('remarks');
-            echo $this->Form->input('purchased');
+
+            // echo $this->Form->input('purchased');
+            echo $this->Form->input('purchased',[
+                // 'type' => 'text',
+                // 'year' => false,
+                // 'month' => false,
+                // 'day' => false,
+                'minYear' => 1900,
+                // 'maxYear' => date('Y'),
+            ]);
+            // echo $this->Form->text('purchased', array('type' => 'date'))
+            // echo $this->Form->date('purchased');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
@@ -64,19 +78,19 @@
 // $( document ).ready(function() {
 //     console.log( "ready!" );
 
-// 	var cleave = new Cleave('.input-element', {
-// 		numeral: true,
-// 		numeralThousandsGroupStyle: 'lakh'
-// 	});
+//  var cleave = new Cleave('.input-element', {
+//      numeral: true,
+//      numeralThousandsGroupStyle: 'lakh'
+//  });
 // });
 
 // (function($) {
-// 	console.log( "ready!" );
+//  console.log( "ready!" );
 
-// 	var cleave = new Cleave('.input-element', {
-// 		numeral: true,
-// 		numeralThousandsGroupStyle: 'lakh'
-// 	});
+//  var cleave = new Cleave('.input-element', {
+//      numeral: true,
+//      numeralThousandsGroupStyle: 'lakh'
+//  });
 // })(jQuery);
 
 // $(function() {
@@ -84,7 +98,7 @@
 // });
 
 // function readyFn( jQuery ) {
-// 	console.log( "ready!" );
+//  console.log( "ready!" );
 // }
  
 // $( document ).ready( readyFn );
@@ -92,32 +106,34 @@
 // $( window ).on( "load", readyFn );
 
 // (function() {
-// 	console.log( "START" );
-// 	var cleave = new Cleave('.input-element', {
-// 		numeral: true,
-// 		numeralThousandsGroupStyle: 'thousand'
-// 	});
-// 	console.log( "ENDED" );
+//  console.log( "START" );
+//  var cleave = new Cleave('.input-element', {
+//      numeral: true,
+//      numeralThousandsGroupStyle: 'thousand'
+//  });
+//  console.log( "ENDED" );
 // })();
 
 document.addEventListener('DOMContentLoaded', () => {
-	// const cleave = new Cleave('.currency-comma', {
-	// const demand = new Cleave('#demand', {
-	// const cleave = new Cleave('#demand,#sale', {
-	new Cleave('#demand', {
-		numeral: true,
-		numeralThousandsGroupStyle: 'thousand'
-	});
+    // const cleave = new Cleave('.currency-comma', {
+    // const demand = new Cleave('#demand', {
+    // const cleave = new Cleave('#demand,#sale', {
+    new Cleave('#demand', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
 
-	// const sale = new Cleave('#sale', {
-	new Cleave('#sale', {
-		numeral: true,
-		numeralThousandsGroupStyle: 'thousand'
-	});
+    // const sale = new Cleave('#sale', {
+    new Cleave('#sale', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
 
-	new Cleave('#cost', {
-		numeral: true,
-		numeralThousandsGroupStyle: 'thousand'
-	});
+    new Cleave('#cost', {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
+
+    // $('#purchased').attr('type', 'date');
 });
 </script>
