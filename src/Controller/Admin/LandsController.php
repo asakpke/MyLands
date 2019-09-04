@@ -22,10 +22,10 @@ class LandsController extends AppController
      */
     public function index()
     {
-    	$search = $this->request->getQuery('search');
+        $search = $this->request->getQuery('search');
 
         $cond = array(
-        	'Lands.admin_id' => $this->Auth->user('id'),
+            'Lands.admin_id' => $this->Auth->user('id'),
         );
 
         if (!empty($search)) {
@@ -54,7 +54,7 @@ class LandsController extends AppController
             // [
             // // 'where' => [
             //     'Lands.admin_id' => $this->Auth->user('id')
-            // // 	// 'admin_id =' => $this->Auth->user('id')
+            // //   // 'admin_id =' => $this->Auth->user('id')
             // ],
             // 'finder' => [
             //     'Lands.admin_id' => $this->Auth->user('id')
@@ -87,10 +87,10 @@ class LandsController extends AppController
                     // 'admin_id' => $this->Auth->user('id')
                 ],
                 'contain' => [
-                	// 'Admins',
-                	'LandTypes',
-                	'LandStatuses',
-                	'Costs'
+                    // 'Admins',
+                    'LandTypes',
+                    'LandStatuses',
+                    'Costs'
                 ]
             ]);
         } 
@@ -115,7 +115,7 @@ class LandsController extends AppController
      */
     public function add()
     {
-    	// pr($this->Auth->user('id'));
+        // pr($this->Auth->user('id'));
         $land = $this->Lands->newEntity();
         if ($this->request->is('post')) {
             // $data = $this->request->getData();
@@ -207,10 +207,10 @@ class LandsController extends AppController
             ]
         ]);
         $this->set(compact(
-        	'land',
-        	// 'admins',
-        	'landTypes',
-        	'landStatuses'
+            'land',
+            // 'admins',
+            'landTypes',
+            'landStatuses'
         ));
     }
 

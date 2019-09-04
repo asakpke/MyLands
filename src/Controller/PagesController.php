@@ -7,9 +7,9 @@ class PagesController extends AppController
     {
         parent::initialize();
 
-        $this->Auth->allow([
-            'home',
-        ]);
+        // $this->Auth->allow([
+        //     'home',
+        // ]);
     }
     
     public function home()

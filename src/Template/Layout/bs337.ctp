@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+// pr($isAdmin);
+// pr($pageElements);
+// foreach ($pageElements as $pageElement) {
+//     pr($pageElement);
+// }
+// pr($LogoImageURL);
+// pr($LogoText);
+?><!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- <meta charset="utf-8"> -->
@@ -56,14 +64,32 @@
 
     <div class="container">
 
+      <!-- <div class="message warning" onclick="this.classList.add('hidden')">Testing...</div> -->
+
+      <?php
+      if (empty($isAdmin)) {
+        echo '<div role="alert" class="alert alert-dismissible fade in alert-warning">'
+          .'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'
+          .'HURRY UP! This subdomain is still available for <a href="http://www.MyLands.pk/Admins/Signup"><span class="text-primary">FREE Trial</span></a> signup.'
+          .'</div>';
+      }
+      ?>
+
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="masthead">
         <div class="row">
           <div class="col-md-6">
             <h3>
-              <img width="32" alt="Logo" src="/img/logo/logo32.png">
-              MyLands.pk
+              <!-- <img width="32" alt="Logo" src="/img/logo/logo32.png"> -->
+              <!-- <img width="32" alt="Logo" src="<?php
+                // if ($isAdmin) {
+
+                // }
+                ?>"> -->
+              <img width="32" alt="Logo" src="<?=$LogoImageURL?>">
+              <!-- MyLands.pk -->
+              <?=$LogoText?>
             </h3>
           </div>
           <div class="col-md-6 mt-20 text-right">

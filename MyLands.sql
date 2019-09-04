@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 20, 2019 at 06:09 AM
--- Server version: 5.7.26-0ubuntu0.18.04.1
--- PHP Version: 7.2.17-0ubuntu0.18.04.1
+-- Generation Time: Sep 04, 2019 at 06:08 AM
+-- Server version: 5.7.27-0ubuntu0.18.04.1
+-- PHP Version: 7.2.19-0ubuntu0.18.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -155,6 +155,21 @@ CREATE TABLE `masters` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `page_elements`
+--
+
+CREATE TABLE `page_elements` (
+  `admin_id` int(10) UNSIGNED DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `type` enum('Logo Image URL','Logo Text','Top Text','Header Menu','Home Page - Intro Text','Home Page - Footer Text') NOT NULL,
+  `content` text NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trans`
 --
 
@@ -199,8 +214,8 @@ ALTER TABLE `cost_cats`
 ALTER TABLE `lands`
   ADD PRIMARY KEY (`id`),
   ADD KEY `land_type_id` (`land_type_id`) USING BTREE,
-  ADD KEY `admin_id` (`admin_id`) USING BTREE,
-  ADD KEY `land_status_id` (`land_status_id`) USING BTREE;
+  ADD KEY `land_status_id` (`land_status_id`) USING BTREE,
+  ADD KEY `land_admin_id` (`admin_id`) USING BTREE;
 
 --
 -- Indexes for table `land_statuses`
@@ -221,6 +236,13 @@ ALTER TABLE `land_types`
 --
 ALTER TABLE `masters`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `page_elements`
+--
+ALTER TABLE `page_elements`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `page_element_admin_id` (`admin_id`);
 
 --
 -- Indexes for table `trans`
@@ -269,6 +291,11 @@ ALTER TABLE `land_types`
 ALTER TABLE `masters`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `page_elements`
+--
+ALTER TABLE `page_elements`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `trans`
 --
 ALTER TABLE `trans`
@@ -310,6 +337,12 @@ ALTER TABLE `land_statuses`
 --
 ALTER TABLE `land_types`
   ADD CONSTRAINT `land_type_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `page_elements`
+--
+ALTER TABLE `page_elements`
+  ADD CONSTRAINT `page_element_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trans`

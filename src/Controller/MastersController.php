@@ -10,6 +10,45 @@ class MastersController extends AppController
     {
         parent::initialize();
 
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'userModel' => 'Masters',
+                    'fields' => [
+                        'username' => 'email',
+                        'password' => 'pass'
+                    ],
+                    'finder' => 'auth',
+                    // 'finder' => 'authMaster',
+                ]
+            ],
+            'loginAction' => [
+                'prefix' => false,
+                'controller' => 'Masters',
+                'action' => 'login',
+            ],
+            // 'redirectUrl' => [
+            //     'prefix' => true,
+            //     'controller' => 'Lands',
+            //     'action' => 'index',
+            // ],
+            'loginRedirect' => array(
+                'prefix' => 'master',
+                'controller' => 'Admins',
+                'action' => 'index',
+            ),
+             //use isAuthorized in Controllers
+            // 'authorize' => ['Controller'],
+             // If unauthorized, return them to page they were just on
+            'unauthorizedRedirect' => $this->referer(),
+            // 'storage' => 'Session',
+            'storage' => [
+                'className' => 'Session',
+                'key' => 'Auth.Master'
+            ]
+            // 'sessionKey'=>'Auth.Master',
+        ]);
+
         $this->Auth->allow([
             'login',
             'logout',
@@ -27,6 +66,7 @@ class MastersController extends AppController
             $master = $this->Auth->identify();
             // echo '$master = ';
             // pr($master);
+            // dd($master);
             // exit;
 
             if ($master) {

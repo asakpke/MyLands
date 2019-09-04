@@ -11,6 +11,45 @@ class AdminsController extends AppController
     {
         parent::initialize();
 
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'userModel' => 'Admins',
+                    'fields' => [
+                        'username' => 'email',
+                        'password' => 'pass'
+                    ],
+                    'finder' => 'auth',
+                    // 'finder' => 'authAdmin',
+                ]
+            ],
+            'loginAction' => [
+                'prefix' => false,
+                'controller' => 'Admins',
+                'action' => 'login',
+            ],
+            // 'redirectUrl' => [
+            //     'prefix' => true,
+            //     'controller' => 'Lands',
+            //     'action' => 'index',
+            // ],
+            'loginRedirect' => array(
+                'prefix' => 'admin',
+                'controller' => 'Lands',
+                'action' => 'index',
+            ),
+             //use isAuthorized in Controllers
+            // 'authorize' => ['Controller'],
+             // If unauthorized, return them to page they were just on
+            'unauthorizedRedirect' => $this->referer(),
+            // 'storage' => 'Session',
+            'storage' => [
+                'className' => 'Session',
+                'key' => 'Auth.Admin'
+            ]
+            // 'sessionKey'=>'Auth.Admin',
+        ]);
+
         $this->Auth->allow([
             'login',
             'logout',

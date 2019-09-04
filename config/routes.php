@@ -97,5 +97,6 @@ Router::prefix('master', function ($routes) {
     // All routes here will be prefixed with `/admin`
     // And have the prefix => admin route element added.
     $routes->fallbacks(DashedRoute::class);
-    $routes->connect('/', ['controller' => 'Admins']);
+    $routes->connect('/', ['controller' => 'Admins']); // /master/Admins - list admins
+    // $routes->connect('/', ['controller' => 'Masters']); // list masters don't exists nor needed
 });

@@ -54,7 +54,10 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler', [
             'enableBeforeRedirect' => false,
         ]);
-        $this->loadComponent('Flash');
+        $this->loadComponent(
+            'Flash' //,
+            // 'Auth'
+        );
 
         /*
          * Enable the following component for recommended CakePHP security settings.
@@ -67,8 +70,8 @@ class AppController extends Controller
         // pr($this->request->getParam('controller'));
         // exit;
 
-        if ($this->request->getParam('prefix') == 'master' or
-            $this->request->getParam('controller') == 'Masters'
+        if ($this->request->getParam('prefix') == 'master' 
+            // or $this->request->getParam('controller') == 'Masters'
         ) {
             // $this->Auth->__set('sessionKey','Auth.Master');
             $this->loadComponent('Auth', [
@@ -110,7 +113,8 @@ class AppController extends Controller
                 // 'sessionKey'=>'Auth.Master',
             ]);
         } // if prefix = master
-        else {
+        // else {
+        elseif ($this->request->getParam('prefix') == 'admin') {
             // $this->Auth->__set('sessionKey','Auth.Admin');
             $this->loadComponent('Auth', [
                 'authenticate' => [
@@ -121,7 +125,7 @@ class AppController extends Controller
                             'password' => 'pass'
                         ],
                         'finder' => 'auth',
-    					// 'finder' => 'authAdmin',
+                        // 'finder' => 'authAdmin',
                     ]
                 ],
                 'loginAction' => [
@@ -151,5 +155,119 @@ class AppController extends Controller
                 // 'sessionKey'=>'Auth.Admin',
             ]);
         } // else prefix = master
+        
+        // pr($this->Session->read('Auth.Admin'));
+        // $AuthAdmin = $this->Session->read('Auth.Admin');
+        // pr($AuthAdmin);
+        // pr($this->Auth->user('id'));
+        // pr($this->Auth->user());
+
+        // if ($this->Session->read('Auth.Admin')) {
+        //  die('if Session Auth.Admin');
+        // }
+
+        // $this->loadModel('PageElements');
+        // $pageElements = $this->PageElements->find('list', [
+        //     'conditions' => [
+        //         'PageElements.admin_id' => $this->Auth->user('id')
+        //     ],
+        //     'limit' => 200,
+        // ]);
+        // pr($pageElements);
+
+        // foreach ($pageElements as $pageElement) {
+        //     pr($pageElement);
+        // }
+
+        // Above test code for page element don't work because user is not logged in
+        // We need to read subdoamin & link with admin
+        // So if user has page elements, show them
+        // And if subdomain is available for signup, so available subdomain message
+
+        $this->loadModel('Admins');
+        $admin = $this->Admins
+            ->find('all', [
+                'fields' => [
+                    'id',
+                ],
+                'conditions' => [
+                    'subdomain' => $_SERVER['HTTP_HOST'],
+                    // 'subdomain' => $_SERVER['HTTP_HOST'].'x',
+                ],
+                'limit' => 1,
+            ])
+            ->first();
+
+        // pr($admin);
+        // dd($admin);
+
+        $conditions = array('PageElements.admin_id is null');
+        $isAdmin = false;
+
+        if (!empty($admin)) {
+            // echo '<h1>$admin not empty</h1>';
+
+            // $conditions['PageElements.admin_id'] = $admin->id;
+            $conditions = array('PageElements.admin_id' => $admin->id);
+            $isAdmin = true;
+        }
+        // else {
+        //     $conditions['PageElements.admin_id is null'];
+        // }
+
+        $this->loadModel('PageElements');
+        $pageElements = $this->PageElements->find('all', [
+        // $pageElements = $this->PageElements->find('list', [
+            // 'fields' => [
+            //     'id',
+            //     'type',
+            //     'content',
+            // ],
+            'conditions' => // [
+                // 'PageElements.admin_id' => !empty($admin) ? $admin->id : null,
+                // 'PageElements.admin_id' => !empty($admin) ? $admin->id : '',
+                // 'PageElements.admin_id' => !empty($admin) ? $admin->id : 'null',
+                // 'PageElements.admin_id is null',
+                // 'PageElements.admin_id' => !empty($admin) ? $admin->id : 'is null',
+                // ],
+                $conditions,
+            // 'limit' => 200,
+            'keyField' => 'type',
+            'valueField' => 'content',
+            // 'groupField' => 'type'
+        ]);
+        // $pageElements = $pageElements->all();
+        // $pageElements = $pageElements->toList();
+        $pageElements = $pageElements->toArray();
+        // pr($pageElements);
+        // dd($pageElements);
+
+        $LogoImageURL = '/img/logo/logo32.png';
+        $LogoText = 'MyLands.pk';
+
+        foreach ($pageElements as $pageElement) {
+            // pr($pageElement);
+
+            switch ($pageElement->type) {
+                case 'Logo Image URL':
+                    $LogoImageURL = $pageElement->content;
+                    break;
+
+                case 'Logo Text':
+                    $LogoText = $pageElement->content;
+                    break;
+            }
+        }
+
+        // else {
+        //     echo '<h1>$admin is empty</h1>';
+        // }
+
+        $this->set(compact(
+            // 'pageElements',
+            'isAdmin',
+            'LogoImageURL',
+            'LogoText'//,
+        ));
     } // initialize()
 } // AppController

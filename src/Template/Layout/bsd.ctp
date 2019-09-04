@@ -21,8 +21,8 @@ $this->start('navbar.top');
 // echo '<li><a href="#">Hello</a></li>';
 
 if ($this->Session->read('Auth.Master')) {
-	echo '<li>'.$this->Html->link(__('Admins'), ['prefix' => 'master', 'controller' => 'Admins', 'action' => 'index']).'</li>';
-	echo '<li>'.$this->Html->link(__('Trans'), ['prefix' => 'master', 'controller' => 'Trans', 'action' => 'index']).'</li>';
+    echo '<li>'.$this->Html->link(__('Admins'), ['prefix' => 'master', 'controller' => 'Admins', 'action' => 'index']).'</li>';
+    echo '<li>'.$this->Html->link(__('Trans'), ['prefix' => 'master', 'controller' => 'Trans', 'action' => 'index']).'</li>';
 }
 
 echo '<li>'.$this->Html->link(__('Lands'), ['controller' => 'Lands', 'action' => 'index']).'</li>';
@@ -30,20 +30,21 @@ echo '<li>'.$this->Html->link(__('Land Types'), ['controller' => 'LandTypes', 'a
 echo '<li>'.$this->Html->link(__('Land Statuses'), ['controller' => 'LandStatuses', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Costs'), ['controller' => 'Costs', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']).'</li>';
+echo '<li>'.$this->Html->link(__('Page Elements'), ['controller' => 'PageElements', 'action' => 'index']).'</li>';
 
 if ($this->Session->read('Auth.Master')) {
-	echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Masters', 'action' => 'logout']).'</li>';
+    echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Masters', 'action' => 'logout']).'</li>';
 }
 
 if ($this->Session->read('Auth.Admin')) {
-	echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
+    echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
 
-	// echo '<li>';
-	// echo $this->Html->link(__('Profile'), '#');
-	// echo '<ul>';
-	// echo '<li>Test1</li>';
-	// echo '</ul>';
-	// echo '</li>';
+    // echo '<li>';
+    // echo $this->Html->link(__('Profile'), '#');
+    // echo '<ul>';
+    // echo '<li>Test1</li>';
+    // echo '</ul>';
+    // echo '</li>';
 }
 
 $this->end();
@@ -70,8 +71,7 @@ $this->prepend('script', $this->Html->script([
     '//cdnjs.cloudflare.com/ajax/libs/cleave.js/1.4.7/cleave.min.js', 
 ]));
 
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <?= $this->fetch('html'); ?>
 <head>
     <?= $this->Html->charset(); ?>
@@ -117,8 +117,8 @@ $this->prepend('script', $this->Html->script([
             </div>
             <?php
             if (($this->Session->read('Auth.Master') or
-            	$this->Session->read('Auth.Admin')) and
-            	$this->fetch('navbar.top')): ?>
+                $this->Session->read('Auth.Admin')) and
+                $this->fetch('navbar.top')): ?>
             <nav role="navigation" class="collapse navbar-collapse" id="navbar-top">
                 <ul class="nav navbar-nav">
                     <?= $this->fetch('navbar.top'); ?>
@@ -140,9 +140,9 @@ $this->prepend('script', $this->Html->script([
 <script>
 // document.addEventListener('DOMContentLoaded', () => {
 //     const cleave = new Cleave('.currency-comma', {
-// 		numeral: true,
-// 		numeralThousandsGroupStyle: 'thousand'
-// 	});
+//      numeral: true,
+//      numeralThousandsGroupStyle: 'thousand'
+//  });
 // });
 </script>
 </body>
