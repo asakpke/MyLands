@@ -21,7 +21,7 @@
                 <th><?= $this->Paginator->sort('admin_id') ?></th>
                 <th><?= $this->Paginator->sort('land_type_id') ?></th>
                 <th><?= $this->Paginator->sort('land_status_id') ?></th>
-                <th><?= $this->Paginator->sort('id') ?></th>
+                <th><?= $this->Paginator->sort('id', 'ID') ?></th>
                 <th><?= $this->Paginator->sort('name') ?></th>
                 <th><?= $this->Paginator->sort('acre') ?></th>
                 <th><?= $this->Paginator->sort('kanal') ?></th>
