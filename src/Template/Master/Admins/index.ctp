@@ -18,7 +18,7 @@
         <table class="table table-striped">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
+                <th><?= $this->Paginator->sort('id' , 'ID') ?></th>
                 <th><?= $this->Paginator->sort('name') ?></th>
                 <th><?= $this->Paginator->sort('email') ?></th>
                 <th><?php //= $this->Paginator->sort('pass') ?></th>
