@@ -111,13 +111,14 @@ class AdminsController extends AppController
             //     exit();
             // }
 
-            $mystring = $data['subdomain'];
-            $findme   = '.mylands.pk';
-            $pos = strpos($mystring, $findme);
+            $subdomain = strtolower($data['subdomain']);
+          //  $findme   = '.mylands.pk';
+            //$pos = strpos($mystring, $findme);
+           $pos = strrpos($mystring, '.mylands.pk');
 
             if ($pos === false) {
                 // echo "The string '$findme' was not found in the string '$mystring'";
-                 $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
+                 $subdomain= strtolower($subdomain).'.mylands.pk';
             } else {
                 // echo "The string '$findme' was found in the string '$mystring'";
                 // echo " and exists at position $pos";
