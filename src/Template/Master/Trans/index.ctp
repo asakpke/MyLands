@@ -13,7 +13,7 @@
         <thead>
             <tr>
                 <th><?= $this->Paginator->sort('admin_id') ?></th>
-                <th><?= $this->Paginator->sort('id') ?></th>
+                <th><?= $this->Paginator->sort('id', 'ID') ?></th>
                 <th><?= $this->Paginator->sort('amount') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>

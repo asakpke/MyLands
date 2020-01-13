@@ -90,18 +90,45 @@ class AdminsController extends AppController
 
     public function signup()
     {
+
         $this->layout = 'bs337';
         $admin = $this->Admins->newEntity();
         if ($this->request->is('post')) {
             // dd($this->request->getData());
             // pr($this->request->getData());
             // die('$this->request->getData()');
-            
+
             $data = $this->request->getData();
             $data['status'] = 'Disabled';
             $data['is_verified'] = 0;
             $data['balance'] = 0;
-            $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
+
+            // sheikh salar start----------------------------------
+
+            //   if ($data['subdomain'] != " " && strrpos(
+            // $data['subdomain'] , '.mylands.pk')) {
+            //     echo "Please only enter domain name";
+            //     exit();
+            // }
+
+            $mystring = $data['subdomain'];
+            $findme   = '.mylands.pk';
+            $pos = strpos($mystring, $findme);
+
+            if ($pos === false) {
+                // echo "The string '$findme' was not found in the string '$mystring'";
+                 $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
+            } else {
+                // echo "The string '$findme' was found in the string '$mystring'";
+                // echo " and exists at position $pos";
+            }
+
+            // sheikh salar end------------------------------------
+
+            // $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
+
+
+
             $data['email_verification_hash'] = md5(uniqid(rand(), true));
             
             $hasher = new DefaultPasswordHasher();
@@ -116,12 +143,12 @@ class AdminsController extends AppController
                 $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
                 $email = new Email('default');
                 $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
-                    ->template('default', 'default')
-                    ->emailFormat('both')
+                ->template('default', 'default')
+                ->emailFormat('both')
                     // ->emailFormat('html')
-                    ->to($data['email'])
-                    ->subject($data['subdomain'].' Activation Link')
-                    ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
+                ->to($data['email'])
+                ->subject($data['subdomain'].' Activation Link')
+                ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
                 // EAS - Send admin email verification mail
 
                 $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
@@ -161,7 +188,7 @@ class AdminsController extends AppController
 			// return $this->redirect(
 			// 	['controller' => 'Admins', 'action' => 'login']
 			// );
-			$this->setAction('login');
+            $this->setAction('login');
         }
         // else {
         //     die('<h1>Empty</h1>');
