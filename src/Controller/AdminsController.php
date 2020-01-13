@@ -114,11 +114,11 @@ class AdminsController extends AppController
             $subdomain = strtolower($data['subdomain']);
           //  $findme   = '.mylands.pk';
             //$pos = strpos($mystring, $findme);
-           $pos = strrpos($mystring, '.mylands.pk');
+           $pos = strrpos($subdomain, '.mylands.pk');
 
             if ($pos === false) {
                 // echo "The string '$findme' was not found in the string '$mystring'";
-                 $subdomain= strtolower($subdomain).'.mylands.pk';
+                 $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
             } else {
                 // echo "The string '$findme' was found in the string '$mystring'";
                 // echo " and exists at position $pos";
@@ -137,18 +137,18 @@ class AdminsController extends AppController
 
             $admin = $this->Admins->patchEntity($admin, $data);
             // pr($admin);
-            // dd($admin);
+           // dd($admin);
             
             if ($this->Admins->save($admin)) {
                 // SAS - Send admin email verification mail
-                $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
+                $activation_url = 'http://'.$subdomain.'/Admins/verifyEmail/'.$data['email_verification_hash'];
                 $email = new Email('default');
                 $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
                 ->template('default', 'default')
                 ->emailFormat('both')
                     // ->emailFormat('html')
                 ->to($data['email'])
-                ->subject($data['subdomain'].' Activation Link')
+                ->subject($subdomain.' Activation Link')
                 ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
                 // EAS - Send admin email verification mail
 
