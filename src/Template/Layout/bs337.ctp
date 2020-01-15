@@ -115,7 +115,7 @@
       <footer class="footer">
         <div class="col-md-4">        
           <p>
-            &copy; 2018-18 
+            &copy; 2018-20 
             <img width="16" alt="Logo" src="/img/logo/logo16.png">
             <span class="text-muted">MyLands.pk</span>
           </p>

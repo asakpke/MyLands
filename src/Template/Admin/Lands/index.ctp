@@ -36,6 +36,7 @@
                 <th><?= $this->Paginator->sort('name') ?></th>
                 <th><?= $this->Paginator->sort('acre') ?></th>
                 <th><?= $this->Paginator->sort('kanal') ?></th>
+                <th><?= $this->Paginator->sort('marla') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -55,6 +56,8 @@
                 <td><?= h($land->name) ?></td>
                     <td><?= $this->Number->format($land->acre) ?></td>
                     <td><?= $this->Number->format($land->kanal) ?></td>
+                    <td><?= $this->Number->format($land->marla) ?></td>
+
                     <td class="actions">
                     <?= $this->Html->link('<span class="glyphicon glyphicon-zoom-in"></span><span class="sr-only">' . __('View') . '</span>', ['action' => 'view', $land->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('View')]) ?>
                     <?= $this->Html->link('<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . __('Edit') . '</span>', ['action' => 'edit', $land->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('Edit')]) ?>
