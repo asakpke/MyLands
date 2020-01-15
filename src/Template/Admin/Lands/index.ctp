@@ -34,7 +34,7 @@
                 <th><?= $this->Paginator->sort('land_status_id') ?></th>
                 <!-- <th><?php //= $this->Paginator->sort('id') ?></th> -->
                 <th><?= $this->Paginator->sort('name') ?></th>
-                <th><?= $this->Paginator->sort('acre') ?></th>
+                <!-- <th><?= $this->Paginator->sort('acre') ?></th> -->
                 <th><?= $this->Paginator->sort('kanal') ?></th>
                 <th><?= $this->Paginator->sort('marla') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
@@ -54,7 +54,7 @@
                 </td>
                 <!-- <td><?php //= $this->Number->format($land->id) ?></td> -->
                 <td><?= h($land->name) ?></td>
-                    <td><?= $this->Number->format($land->acre) ?></td>
+                    <!-- <td><?= $this->Number->format($land->acre) ?></td> -->
                     <td><?= $this->Number->format($land->kanal) ?></td>
                     <td><?= $this->Number->format($land->marla) ?></td>
 
