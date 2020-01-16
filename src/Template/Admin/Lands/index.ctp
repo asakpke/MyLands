@@ -15,18 +15,18 @@
 <div class="lands index col-lg-10 col-md-9 columns">
 	<div class="row">
 		<div class="col-md-2">
-	    	<h2><?= h('Lands') ?></h2>
-		</div>
-		<div class="col-md-10">
-			<h2>
-				<form>
-	    			<input id="search" name="search" class="form-control" placeholder="Type your search & press enter key to filter lands" autofocus>
-	    		</form>
-			</h2>
-		</div>
-	</div>
-    <div class="table-responsive">
-        <table class="table table-striped">
+          <h2><?= h('Lands') ?></h2>
+      </div>
+      <div class="col-md-10">
+         <h2>
+            <form>
+                <input id="search" name="search" class="form-control" placeholder="Type your search & press enter key to filter lands" autofocus>
+            </form>
+        </h2>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <!-- <th><?php //= $this->Paginator->sort('admin_id') ?></th> -->
@@ -41,24 +41,24 @@
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($lands as $land): ?>
-            <tr>
+            <?php foreach ($lands as $land): ?>
+                <tr>
             <!-- <td>
                     <?php //= $land->has('admin') ? $this->Html->link($land->admin->name, ['controller' => 'Admins', 'action' => 'view', $land->admin->id]) : '' ?>
-			</td> -->
-            <td>
+                </td> -->
+                <td>
                     <?= $land->has('land_type') ? $this->Html->link($land->land_type->name, ['controller' => 'LandTypes', 'action' => 'view', $land->land_type->id]) : '' ?>
                 </td>
-            <td>
+                <td>
                     <?= $land->has('land_status') ? $this->Html->link($land->land_status->name, ['controller' => 'LandStatuses', 'action' => 'view', $land->land_status->id]) : '' ?>
                 </td>
                 <!-- <td><?php //= $this->Number->format($land->id) ?></td> -->
                 <td><?= h($land->name) ?></td>
-                    <!-- <td><?= $this->Number->format($land->acre) ?></td> -->
-                    <td><?= $this->Number->format($land->kanal) ?></td>
-                    <td><?= $this->Number->format($land->marla) ?></td>
+                <!-- <td><?= $this->Number->format($land->acre) ?></td> -->
+                <td><?= $this->Number->format($land->kanal) ?></td>
+                <td><?= $this->Number->format($land->marla) ?></td>
 
-                    <td class="actions">
+                <td class="actions">
                     <?= $this->Html->link('<span class="glyphicon glyphicon-zoom-in"></span><span class="sr-only">' . __('View') . '</span>', ['action' => 'view', $land->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('View')]) ?>
                     <?= $this->Html->link('<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . __('Edit') . '</span>', ['action' => 'edit', $land->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('Edit')]) ?>
                     <?= $this->Form->postLink('<span class="glyphicon glyphicon-trash"></span><span class="sr-only">' . __('Delete') . '</span>', ['action' => 'delete', $land->id], ['confirm' => __('Are you sure you want to delete # {0}?', $land->id), 'escape' => false, 'class' => 'btn btn-xs btn-danger', 'title' => __('Delete')]) ?>
@@ -66,15 +66,15 @@
             </tr>
 
         <?php endforeach; ?>
-        </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
-    </div>
+    </tbody>
+</table>
+</div>
+<div class="paginator">
+    <ul class="pagination">
+        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('next') . ' >') ?>
+    </ul>
+    <p><?= $this->Paginator->counter() ?></p>
+</div>
 </div>
