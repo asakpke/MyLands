@@ -111,18 +111,18 @@ class AdminsController extends AppController
             //     exit();
             // }
 
-            $subdomain = strtolower($data['subdomain']);
+            $data['subdomain'] = strtolower($data['subdomain']);
           //  $findme   = '.mylands.pk';
             //$pos = strpos($mystring, $findme);
-            $pos = strrpos($subdomain, '.mylands.pk');
+            $pos = strrpos($data['subdomain'], '.mylands.pk');
 
             if ($pos === false) {
                 // echo "The string '$findme' was not found in the string '$mystring'";
-               $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
-           } else {
+              $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
+          } else {
                 // echo "The string '$findme' was found in the string '$mystring'";
                 // echo " and exists at position $pos";
-           }
+          }
 
             // sheikh salar end------------------------------------
 
@@ -130,25 +130,25 @@ class AdminsController extends AppController
 
 
 
-           $data['email_verification_hash'] = md5(uniqid(rand(), true));
-           
-           $hasher = new DefaultPasswordHasher();
-           $data['pass'] = $hasher->hash($data['pass']);
+         $data['email_verification_hash'] = md5(uniqid(rand(), true));
 
-           $admin = $this->Admins->patchEntity($admin, $data);
+         $hasher = new DefaultPasswordHasher();
+         $data['pass'] = $hasher->hash($data['pass']);
+
+         $admin = $this->Admins->patchEntity($admin, $data);
             // pr($admin);
            // dd($admin);
-           
-           if ($this->Admins->save($admin)) {
+
+         if ($this->Admins->save($admin)) {
                 // SAS - Send admin email verification mail
-            $activation_url = 'http://'.$subdomain.'/Admins/verifyEmail/'.$data['email_verification_hash'];
+            $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
             $email = new Email('default');
             $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
             ->template('default', 'default')
             ->emailFormat('both')
                     // ->emailFormat('html')
             ->to($data['email'])
-            ->subject($subdomain.' Activation Link')
+            ->subject($data['subdomain'].' Activation Link')
             ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
                 // EAS - Send admin email verification mail
 

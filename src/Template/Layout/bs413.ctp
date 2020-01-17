@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <!-- <link href="hFix "© 2018-18 Logo MyLands.pk" to "© 2018-19 Logo MyLands.pk" or current yearttps://getbootstrap.com/docs/3.3/examples/justified-nav/../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+  <!-- <link href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
   <?= $this->Html->css('ie10-viewport-bug-workaround.css') ?>
 
   <!-- Custom styles for this template -->
