@@ -111,17 +111,18 @@ class AdminsController extends AppController
             //     exit();
             // }
 
-            $mystring = $data['subdomain'];
-            $findme   = '.mylands.pk';
-            $pos = strpos($mystring, $findme);
+            $data['subdomain'] = strtolower($data['subdomain']);
+          //  $findme   = '.mylands.pk';
+            //$pos = strpos($mystring, $findme);
+            $pos = strrpos($data['subdomain'], '.mylands.pk');
 
             if ($pos === false) {
                 // echo "The string '$findme' was not found in the string '$mystring'";
-                 $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
-            } else {
+              $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
+          } else {
                 // echo "The string '$findme' was found in the string '$mystring'";
                 // echo " and exists at position $pos";
-            }
+          }
 
             // sheikh salar end------------------------------------
 
@@ -129,67 +130,67 @@ class AdminsController extends AppController
 
 
 
-            $data['email_verification_hash'] = md5(uniqid(rand(), true));
-            
-            $hasher = new DefaultPasswordHasher();
-            $data['pass'] = $hasher->hash($data['pass']);
+         $data['email_verification_hash'] = md5(uniqid(rand(), true));
 
-            $admin = $this->Admins->patchEntity($admin, $data);
+         $hasher = new DefaultPasswordHasher();
+         $data['pass'] = $hasher->hash($data['pass']);
+
+         $admin = $this->Admins->patchEntity($admin, $data);
             // pr($admin);
-            // dd($admin);
-            
-            if ($this->Admins->save($admin)) {
+           // dd($admin);
+
+         if ($this->Admins->save($admin)) {
                 // SAS - Send admin email verification mail
-                $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
-                $email = new Email('default');
-                $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
-                ->template('default', 'default')
-                ->emailFormat('both')
+            $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
+            $email = new Email('default');
+            $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
+            ->template('default', 'default')
+            ->emailFormat('both')
                     // ->emailFormat('html')
-                ->to($data['email'])
-                ->subject($data['subdomain'].' Activation Link')
-                ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
+            ->to($data['email'])
+            ->subject($data['subdomain'].' Activation Link')
+            ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
                 // EAS - Send admin email verification mail
 
-                $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
-                return $this->redirect(['controller' => 'pages', 'action' => 'home']);
-            }
-
-            $this->Flash->error(__('The admin could not be saved. Please, try later.'));
+            $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
+            return $this->redirect(['controller' => 'pages', 'action' => 'home']);
         }
-        $this->set(compact('admin'));
+
+        $this->Flash->error(__('The admin could not be saved. Please, try later.'));
     }
+    $this->set(compact('admin'));
+}
 
-    public function verifyEmail($hash)
-    {
+public function verifyEmail($hash)
+{
         // $this->autoRender = false;
-        $this->layout = 'bs337';
+    $this->layout = 'bs337';
 
-        $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
+    $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
         // echo $admin->subdomain;
         // dd($admin);
         // pr($admin);
 
-        if (!empty($admin)) {
-            $admin->status = 'Active';
-            $admin->email_verification_hash = '';
+    if (!empty($admin)) {
+        $admin->status = 'Active';
+        $admin->email_verification_hash = '';
 
-            if ($this->Admins->save($admin)) {
+        if ($this->Admins->save($admin)) {
                 // die('<h1>Status/verification updated</h1>');
-                $this->Flash->success(__('Your account is activated, login now.'));
-            }
-            else {
+            $this->Flash->success(__('Your account is activated, login now.'));
+        }
+        else {
                 // die('<h1>NOT Empty but faild to save</h1>');
-                $this->Flash->error(__('Error in saving record. Please try later or contact administrator.'));
-            }
+            $this->Flash->error(__('Error in saving record. Please try later or contact administrator.'));
+        }
 
             // return $this->redirect('/admins/login');
             // return $this->redirect('http://'.$admin->subdomain);
 			// return $this->redirect(
 			// 	['controller' => 'Admins', 'action' => 'login']
 			// );
-            $this->setAction('login');
-        }
+        $this->setAction('login');
+    }
         // else {
         //     die('<h1>Empty</h1>');
         // }
@@ -202,5 +203,5 @@ class AdminsController extends AppController
         // else {
         //     die('no');
         // }
-    }
+}
 }
