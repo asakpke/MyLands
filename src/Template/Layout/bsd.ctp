@@ -99,6 +99,10 @@ $this->prepend('script', $this->Html->script([
         /*color: darkgreen;*/
         color: forestgreen;
     }
+
+    .pagination > li {
+        display: inline-block;
+    }
     </style>
 </head>
 <body>
