@@ -90,9 +90,9 @@ class AdminsController extends AppController
 
     public function signup()
     {
-
         $this->layout = 'bs337';
         $admin = $this->Admins->newEntity();
+
         if ($this->request->is('post')) {
             // dd($this->request->getData());
             // pr($this->request->getData());
@@ -143,13 +143,32 @@ class AdminsController extends AppController
                 $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
                 $email = new Email('default');
                 $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
-                ->template('default', 'default')
-                ->emailFormat('both')
-                    // ->emailFormat('html')
-                ->to($data['email'])
-                ->subject($data['subdomain'].' Activation Link')
-                ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
+                    ->template('default', 'default')
+                    ->emailFormat('both')
+                        // ->emailFormat('html')
+                    ->to($data['email'])
+                    ->subject($data['subdomain'].' Activation Link')
+                    ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
                 // EAS - Send admin email verification mail
+
+                $this->loadModel('LandStatuses');
+                $LandStatuses = $this->LandStatuses->find('all')
+                    ->where([
+                        'admin_id is null',
+                    ])
+                ;
+
+                $saveLandStatusV = 0;
+                
+                foreach ($LandStatuses as $LandStatus) {
+                    $saveLandStatus[$saveLandStatusV]['name'] = $LandStatus->name;
+                    $saveLandStatus[$saveLandStatusV]['remarks'] = $LandStatus->remarks;
+                    $saveLandStatus[$saveLandStatusV]['admin_id'] = $admin->id;
+                    $saveLandStatusV++;
+                }
+
+                $LandStatuses = $this->LandStatuses->newEntities($saveLandStatus);
+                $this->LandStatuses->saveMany($LandStatuses);
 
                 $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
                 return $this->redirect(['controller' => 'pages', 'action' => 'home']);
@@ -185,9 +204,9 @@ class AdminsController extends AppController
 
             // return $this->redirect('/admins/login');
             // return $this->redirect('http://'.$admin->subdomain);
-			// return $this->redirect(
-			// 	['controller' => 'Admins', 'action' => 'login']
-			// );
+            // return $this->redirect(
+            //  ['controller' => 'Admins', 'action' => 'login']
+            // );
             $this->setAction('login');
         }
         // else {
