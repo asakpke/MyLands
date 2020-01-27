@@ -56,31 +56,21 @@ class AdminsController extends AppController
             'signup',
             'verifyEmail',
         ]);
-    }
+    } // initialize()
 
     public function login()
     {
-        // echo (new DefaultPasswordHasher)->hash('welcome');
         if ($this->request->is('post')) {
-            // $hasher = new DefaultPasswordHasher();
-            // echo $hasher->hash('abc').'<br>';
-            // echo $hasher->hash('abc').'<br>';
-            // echo $hasher->hash('abc').'<br>';
             $admin = $this->Auth->identify();
-            // echo '$admin = ';
-            // pr($admin);
-            // exit;
 
             if ($admin) {
                 $this->Auth->setUser($admin);
                 return $this->redirect($this->Auth->redirectUrl());
-                // echo 'You are logged in';
-                // exit;
             }
             
             $this->Flash->error('Your username or password is incorrect.');
         }
-    }
+    } // login()
 
     public function logout()
     {
@@ -94,40 +84,17 @@ class AdminsController extends AppController
         $admin = $this->Admins->newEntity();
 
         if ($this->request->is('post')) {
-            // dd($this->request->getData());
-            // pr($this->request->getData());
-            // die('$this->request->getData()');
-
             $data = $this->request->getData();
             $data['status'] = 'Disabled';
             $data['is_verified'] = 0;
             $data['balance'] = 0;
-
-            // sheikh salar start----------------------------------
-
-            //   if ($data['subdomain'] != " " && strrpos(
-            // $data['subdomain'] , '.mylands.pk')) {
-            //     echo "Please only enter domain name";
-            //     exit();
-            // }
-
             $mystring = $data['subdomain'];
             $findme   = '.mylands.pk';
             $pos = strpos($mystring, $findme);
 
             if ($pos === false) {
-                // echo "The string '$findme' was not found in the string '$mystring'";
                  $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
-            } else {
-                // echo "The string '$findme' was found in the string '$mystring'";
-                // echo " and exists at position $pos";
             }
-
-            // sheikh salar end------------------------------------
-
-            // $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
-
-
 
             $data['email_verification_hash'] = md5(uniqid(rand(), true));
             
@@ -135,8 +102,6 @@ class AdminsController extends AppController
             $data['pass'] = $hasher->hash($data['pass']);
 
             $admin = $this->Admins->patchEntity($admin, $data);
-            // pr($admin);
-            // dd($admin);
             
             if ($this->Admins->save($admin)) {
                 // SAS - Send admin email verification mail
@@ -172,54 +137,32 @@ class AdminsController extends AppController
 
                 $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
                 return $this->redirect(['controller' => 'pages', 'action' => 'home']);
-            }
+            } // if ($this->Admins->save($admin))
 
             $this->Flash->error(__('The admin could not be saved. Please, try later.'));
-        }
+        } // if ($this->request->is('post'))
+
         $this->set(compact('admin'));
-    }
+    } // signup()
 
     public function verifyEmail($hash)
     {
-        // $this->autoRender = false;
         $this->layout = 'bs337';
 
         $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
-        // echo $admin->subdomain;
-        // dd($admin);
-        // pr($admin);
 
         if (!empty($admin)) {
             $admin->status = 'Active';
             $admin->email_verification_hash = '';
 
             if ($this->Admins->save($admin)) {
-                // die('<h1>Status/verification updated</h1>');
                 $this->Flash->success(__('Your account is activated, login now.'));
             }
             else {
-                // die('<h1>NOT Empty but faild to save</h1>');
                 $this->Flash->error(__('Error in saving record. Please try later or contact administrator.'));
             }
 
-            // return $this->redirect('/admins/login');
-            // return $this->redirect('http://'.$admin->subdomain);
-            // return $this->redirect(
-            //  ['controller' => 'Admins', 'action' => 'login']
-            // );
             $this->setAction('login');
-        }
-        // else {
-        //     die('<h1>Empty</h1>');
-        // }
-
-        // $is_exist = $this->Admins->exists(['email_verification_hash' => $hash]);
-        // // dd($is_exist);
-        // if ($is_exist) {
-        //     die('yes');
-        // }
-        // else {
-        //     die('no');
-        // }
-    }
-}
+        } // if (!empty($admin))
+    } // verifyEmail($hash)
+} // AdminsController
