@@ -69,6 +69,22 @@
     </tbody>
 </table>
 </div>
+<!---<div class="paginator">
+    <ul class="pagination"> 
+         <?= $this->Paginator->prev('< ' . __('previous')) ?>
+     </ul>
+      <ul class="pagination"> 
+         <?= $this->Paginator->numbers() ?>
+     </ul>
+     <ul class="pagination">
+         <?= $this->Paginator->next(__('next') . ' >') ?>
+    </ul>
+     <p><?= $this->Paginator->counter() ?></p>
+</div>
+
+.pagination > li {
+    display: inline-block;
+}--->
 <div class="paginator">
     <ul class="pagination">
         <?= $this->Paginator->prev('< ' . __('previous')) ?>
