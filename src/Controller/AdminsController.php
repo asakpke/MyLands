@@ -151,6 +151,7 @@ class AdminsController extends AppController
 
         $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
 
+
         if (!empty($admin)) {
             $admin->status = 'Active';
             $admin->email_verification_hash = '';

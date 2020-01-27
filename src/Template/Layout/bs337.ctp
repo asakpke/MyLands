@@ -8,16 +8,16 @@
 // pr($LogoText);
 ?><!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- <meta charset="utf-8"> -->
-    <?= $this->Html->charset() ?>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="MyLands.pk is a web based project for property dealers. You can maintain your private listing online from any device.">
-    <meta name="author" content="Aamir Shahzad">
-    <!-- <link rel="icon" href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../favicon.ico"> -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<head>
+  <!-- <meta charset="utf-8"> -->
+  <?= $this->Html->charset() ?>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="MyLands.pk is a web based project for property dealers. You can maintain your private listing online from any device.">
+  <meta name="author" content="Aamir Shahzad">
+  <!-- <link rel="icon" href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../favicon.ico"> -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
@@ -25,24 +25,24 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 
-    <title>MyLands.pk</title>
+  <title>MyLands.pk</title>
 
-    <!-- Bootstrap core CSS -->
-    <!-- <link href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <!-- <link href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
-    <?= $this->Html->css('ie10-viewport-bug-workaround.css') ?>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!-- <link href="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+  <?= $this->Html->css('ie10-viewport-bug-workaround.css') ?>
 
-    <!-- Custom styles for this template -->
-    <!-- <link href="https://getbootstrap.com/docs/3.3/examples/justified-nav/justified-nav.css" rel="stylesheet"> -->
-    <?= $this->Html->css('justified-nav.css') ?>    
+  <!-- Custom styles for this template -->
+  <!-- <link href="https://getbootstrap.com/docs/3.3/examples/justified-nav/justified-nav.css" rel="stylesheet"> -->
+  <?= $this->Html->css('justified-nav.css') ?>    
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -56,28 +56,28 @@
       
       /*h6.subheader {
         font-weight: bold;
-      }*/
-    </style>
-  </head>
+        }*/
+      </style>
+    </head>
 
-  <body>
+    <body>
 
-    <div class="container">
+      <div class="container">
 
-      <!-- <div class="message warning" onclick="this.classList.add('hidden')">Testing...</div> -->
+        <!-- <div class="message warning" onclick="this.classList.add('hidden')">Testing...</div> -->
 
-      <?php
-      if (empty($isAdmin)) {
-        echo '<div role="alert" class="alert alert-dismissible fade in alert-warning">'
+        <?php
+        if (empty($isAdmin)) {
+          echo '<div role="alert" class="alert alert-dismissible fade in alert-warning">'
           .'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'
           .'HURRY UP! This subdomain is still available for <a href="http://www.MyLands.pk/Admins/Signup"><span class="text-primary">FREE Trial</span></a> signup.'
           .'</div>';
-      }
-      ?>
+        }
+        ?>
 
       <!-- The justified navigation menu is meant for single line per list item.
-           Multiple lines will require custom code not provided by Bootstrap. -->
-      <div class="masthead">
+       Multiple lines will require custom code not provided by Bootstrap. -->
+       <div class="masthead">
         <div class="row">
           <div class="col-md-6">
             <h3>
@@ -86,7 +86,7 @@
                 // if ($isAdmin) {
 
                 // }
-                ?>"> -->
+              ?>"> -->
               <img width="32" alt="Logo" src="<?=$LogoImageURL?>">
               <!-- MyLands.pk -->
               <?=$LogoText?>
@@ -115,7 +115,12 @@
       <footer class="footer">
         <div class="col-md-4">        
           <p>
-            &copy; 2018-18 
+            <!--&copy; 2018-2018 -->
+            &copy<?php
+            $fromYear = 2018;
+            $thisYear = (int)date('Y');
+            echo $fromYear . (($fromYear != $thisYear)  ? '-' . $thisYear : '');
+            ?>
             <img width="16" alt="Logo" src="/img/logo/logo16.png">
             <span class="text-muted">MyLands.pk</span>
           </p>
@@ -139,13 +144,13 @@
     <?= $this->Html->script('ie10-viewport-bug-workaround.js') ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script>
-  $( document ).ready(function() {
-    var user = 'aamir';
-    var domain = 'mylands.pk';
-    $(".em-addr").html(user + '&#64;' + domain + ', +923005393652');
-  });
-  </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+      $( document ).ready(function() {
+        var user = 'aamir';
+        var domain = 'mylands.pk';
+        $(".em-addr").html(user + '&#64;' + domain + ', +923005393652');
+      });
+    </script>
   </body>
-</html>
+  </html>
