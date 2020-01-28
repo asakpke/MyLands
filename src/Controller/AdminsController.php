@@ -1,9 +1,9 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Mailer\Email;
+use Cake\ORM\Query;
 
 class AdminsController extends AppController
 {
@@ -93,6 +93,7 @@ class AdminsController extends AppController
 
         $this->layout = 'bs337';
         $admin = $this->Admins->newEntity();
+        // pr($landType);
         if ($this->request->is('post')) {
             // dd($this->request->getData());
             // pr($this->request->getData());
@@ -105,54 +106,69 @@ class AdminsController extends AppController
 
             // sheikh salar start----------------------------------
 
-            //   if ($data['subdomain'] != " " && strrpos(
-            // $data['subdomain'] , '.mylands.pk')) {
-            //     echo "Please only enter domain name";
-            //     exit();
-            // }
-
             $data['subdomain'] = strtolower($data['subdomain']);
-          //  $findme   = '.mylands.pk';
-            //$pos = strpos($mystring, $findme);
+            
             $pos = strrpos($data['subdomain'], '.mylands.pk');
 
             if ($pos === false) {
-                // echo "The string '$findme' was not found in the string '$mystring'";
+              
               $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
-          } else {
-                // echo "The string '$findme' was found in the string '$mystring'";
-                // echo " and exists at position $pos";
           }
+          // else {
+          // }
 
             // sheikh salar end------------------------------------
 
-            // $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
+          $data['email_verification_hash'] = md5(uniqid(rand(), true));
 
+          $hasher = new DefaultPasswordHasher();
+          $data['pass'] = $hasher->hash($data['pass']);
 
-
-         $data['email_verification_hash'] = md5(uniqid(rand(), true));
-
-         $hasher = new DefaultPasswordHasher();
-         $data['pass'] = $hasher->hash($data['pass']);
-
-         $admin = $this->Admins->patchEntity($admin, $data);
+          $admin = $this->Admins->patchEntity($admin, $data);
             // pr($admin);
            // dd($admin);
 
-         if ($this->Admins->save($admin)) {
+          if ($this->Admins->save($admin)) {
+            // $id=$admin->id;
+             
                 // SAS - Send admin email verification mail
             $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
             $email = new Email('default');
             $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
             ->template('default', 'default')
             ->emailFormat('both')
-                    // ->emailFormat('html')
+                        // ->emailFormat('html')
             ->to($data['email'])
             ->subject($data['subdomain'].' Activation Link')
             ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
                 // EAS - Send admin email verification mail
 
+             // sheikh salar start
+            $this->loadModel('LandTypes');
+            $landTypes = $this->LandTypes->find('all')
+            ->where([
+              
+                'admin_id is null',
+            ]);
+            foreach ($landTypes as $landType) {
+                
+                $ltData['admin_id']= $admin->id;
+                $ltData['name']= $landType->name;
+                $landType = $this->LandTypes->newEntity();
+                $landType = $this->LandTypes->patchEntity($landType,$ltData);
+
+                if ($this->LandTypes->save($landType)) {
+                            // echo "saved";
+                }
+                
+            }
+            
+            // sheikh salar end
+
+
             $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
+
+
             return $this->redirect(['controller' => 'pages', 'action' => 'home']);
         }
 
@@ -186,9 +202,9 @@ public function verifyEmail($hash)
 
             // return $this->redirect('/admins/login');
             // return $this->redirect('http://'.$admin->subdomain);
-			// return $this->redirect(
-			// 	['controller' => 'Admins', 'action' => 'login']
-			// );
+            // return $this->redirect(
+            //  ['controller' => 'Admins', 'action' => 'login']
+            // );
         $this->setAction('login');
     }
         // else {

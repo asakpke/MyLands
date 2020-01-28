@@ -1,5 +1,15 @@
 <div class="actions columns col-lg-2 col-md-3">
     <h3><?= __('Actions') ?></h3>
+  
+<style type="text/css">
+    ul.pagination li
+    {
+        margin-top: 200px;
+        
+    }
+</style>
+
+
     <ul class="nav nav-stacked nav-pills">
         <li><?= $this->Html->link(__('New Land'), ['action' => 'add']) ?></li>
         <li class="active disabled"><?= $this->Html->link(__('List Lands'), ['action' => 'index']) ?></li>
@@ -34,7 +44,6 @@
                 <th><?= $this->Paginator->sort('land_status_id') ?></th>
                 <!-- <th><?php //= $this->Paginator->sort('id') ?></th> -->
                 <th><?= $this->Paginator->sort('name') ?></th>
-                <!-- <th><?= $this->Paginator->sort('acre') ?></th> -->
                 <th><?= $this->Paginator->sort('kanal') ?></th>
                 <th><?= $this->Paginator->sort('marla') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
@@ -54,7 +63,6 @@
                 </td>
                 <!-- <td><?php //= $this->Number->format($land->id) ?></td> -->
                 <td><?= h($land->name) ?></td>
-                <!-- <td><?= $this->Number->format($land->acre) ?></td> -->
                 <td><?= $this->Number->format($land->kanal) ?></td>
                 <td><?= $this->Number->format($land->marla) ?></td>
 
