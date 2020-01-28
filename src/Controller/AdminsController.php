@@ -3,7 +3,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Mailer\Email;
-use Cake\ORM\Query;
 
 class AdminsController extends AppController
 {
