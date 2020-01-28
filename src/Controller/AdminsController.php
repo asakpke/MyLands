@@ -1,9 +1,9 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Mailer\Email;
+use Cake\ORM\Query;
 
 class AdminsController extends AppController
 {
@@ -76,7 +76,7 @@ class AdminsController extends AppController
     {
         $this->Flash->success('You are now logged out.');
         return $this->redirect($this->Auth->logout());
-    }
+    } // logout()
 
     public function signup()
     {
@@ -88,21 +88,23 @@ class AdminsController extends AppController
             $data['status'] = 'Disabled';
             $data['is_verified'] = 0;
             $data['balance'] = 0;
-            $mystring = $data['subdomain'];
-            $findme   = '.mylands.pk';
-            $pos = strpos($mystring, $findme);
+
+            // sheikh salar start----------------------------------
+            $data['subdomain'] = strtolower($data['subdomain']);
+            
+            $pos = strrpos($data['subdomain'], '.mylands.pk');
 
             if ($pos === false) {
-                 $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
+              
+              $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
             }
+            // sheikh salar end------------------------------------
 
             $data['email_verification_hash'] = md5(uniqid(rand(), true));
-            
             $hasher = new DefaultPasswordHasher();
             $data['pass'] = $hasher->hash($data['pass']);
-
             $admin = $this->Admins->patchEntity($admin, $data);
-            
+
             if ($this->Admins->save($admin)) {
                 // SAS - Send admin email verification mail
                 $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
@@ -110,11 +112,27 @@ class AdminsController extends AppController
                 $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
                     ->template('default', 'default')
                     ->emailFormat('both')
-                        // ->emailFormat('html')
+                    // ->emailFormat('html')
                     ->to($data['email'])
                     ->subject($data['subdomain'].' Activation Link')
                     ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
                 // EAS - Send admin email verification mail
+
+                // sheikh salar start
+                $this->loadModel('LandTypes');
+                $landTypes = $this->LandTypes->find('all')
+                    ->where([
+                        'admin_id is null',
+                    ]);
+
+                foreach ($landTypes as $landType) {
+                    $ltData['admin_id']= $admin->id;
+                    $ltData['name']= $landType->name;
+                    $landType = $this->LandTypes->newEntity();
+                    $landType = $this->LandTypes->patchEntity($landType,$ltData);
+                    $this->LandTypes->save($landType);
+                }
+                // sheikh salar end
 
                 $this->loadModel('LandStatuses');
                 $LandStatuses = $this->LandStatuses->find('all')
@@ -124,6 +142,7 @@ class AdminsController extends AppController
                 ;
 
                 $saveLandStatusV = 0;
+                $saveLandStatus = array();
                 
                 foreach ($LandStatuses as $LandStatus) {
                     $saveLandStatus[$saveLandStatusV]['name'] = $LandStatus->name;
@@ -132,10 +151,12 @@ class AdminsController extends AppController
                     $saveLandStatusV++;
                 }
 
-                $LandStatuses = $this->LandStatuses->newEntities($saveLandStatus);
-                $this->LandStatuses->saveMany($LandStatuses);
+                if (!empty($saveLandStatus)) {
+                    $LandStatuses = $this->LandStatuses->newEntities($saveLandStatus);
+                    $this->LandStatuses->saveMany($LandStatuses);
+                }
 
-                $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
+                $this->Flash->success(__('Please check your email/spam & open verification link in the web browser.'));
                 return $this->redirect(['controller' => 'pages', 'action' => 'home']);
             } // if ($this->Admins->save($admin))
 
@@ -148,9 +169,7 @@ class AdminsController extends AppController
     public function verifyEmail($hash)
     {
         $this->layout = 'bs337';
-
-        $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
-
+        $admin = $this->Admins->findByEmailVerificationHash($hash)->first();
 
         if (!empty($admin)) {
             $admin->status = 'Active';

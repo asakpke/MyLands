@@ -1,5 +1,15 @@
 <div class="actions columns col-lg-2 col-md-3">
     <h3><?= __('Actions') ?></h3>
+  
+    <style type="text/css">
+        ul.pagination li
+        {
+            margin-top: 200px;
+            
+        }
+    </style>
+
+
     <ul class="nav nav-stacked nav-pills">
         <li><?= $this->Html->link(__('New Land'), ['action' => 'add']) ?></li>
         <li class="active disabled"><?= $this->Html->link(__('List Lands'), ['action' => 'index']) ?></li>
@@ -57,7 +67,6 @@
                         <!-- <td><?= $this->Number->format($land->acre) ?></td> -->
                         <td><?= $this->Number->format($land->kanal) ?></td>
                         <td><?= $this->Number->format($land->marla) ?></td>
-
                         <td class="actions">
                             <?= $this->Html->link('<span class="glyphicon glyphicon-zoom-in"></span><span class="sr-only">' . __('View') . '</span>', ['action' => 'view', $land->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('View')]) ?>
                             <?= $this->Html->link('<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . __('Edit') . '</span>', ['action' => 'edit', $land->id], ['escape' => false, 'class' => 'btn btn-xs btn-default', 'title' => __('Edit')]) ?>
