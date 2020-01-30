@@ -118,19 +118,54 @@ class AdminsController extends AppController
                 // EAS - Send admin email verification mail
 
                 // sheikh salar start
+                // $this->loadModel('LandTypes');
+                // $landTypes = $this->LandTypes->find('all')
+                //     ->where([
+                //         'admin_id is null',
+                //     ]);
+
+                //     $saveLandTypeV = 0;
+                //     $saveLandType = array();
+
+                // foreach ($landTypes as $landType) {
+                //     $saveLandType[$saveLandTypeV]['admin_id']= $admin->id;
+                //     $saveLandType[$saveLandTypeV]['name']= $landType->name;
+                //     $saveLandType[$saveLandTypeV]['remarks']= $landType->remarks;
+                //     $saveLandTypeV++;
+                //     // $landType = $this->LandTypes->newEntity();
+                //     // $landType = $this->LandTypes->patchEntity($landType,$ltData);
+                //     // $this->LandTypes->save($landType);
+                // }
+
+                // if (!empty($saveLandType)) {
+
+                //     $landType = $this->LandTypes->newEntities($saveLandType);
+                //     $this->LandTypes->saveMany($landType);
+                    
+                // }
+
                 $this->loadModel('LandTypes');
-                $landTypes = $this->LandTypes->find('all')
+                $LandTypes = $this->LandTypes->find('all')
                     ->where([
                         'admin_id is null',
-                    ]);
+                    ])
+                ;
 
-                foreach ($landTypes as $landType) {
-                    $ltData['admin_id']= $admin->id;
-                    $ltData['name']= $landType->name;
-                    $landType = $this->LandTypes->newEntity();
-                    $landType = $this->LandTypes->patchEntity($landType,$ltData);
-                    $this->LandTypes->save($landType);
+                $saveLandTypeV = 0;
+                $saveLandType = array();
+                
+                foreach ($LandTypes as $LandType) {
+                    $saveLandType[$saveLandTypeV]['name'] = $LandType->name;
+                    $saveLandType[$saveLandTypeV]['remarks'] = $LandType->remarks;
+                    $saveLandType[$saveLandTypeV]['admin_id'] = $admin->id;
+                    $saveLandTypeV++;
                 }
+
+                if (!empty($saveLandType)) {
+                    $LandTypes = $this->LandTypes->newEntities($saveLandType);
+                    $this->LandTypes->saveMany($LandTypes);
+                }
+
                 // sheikh salar end
 
                 $this->loadModel('LandStatuses');
