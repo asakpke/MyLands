@@ -115,34 +115,9 @@ class AdminsController extends AppController
                     ->to($data['email'])
                     ->subject($data['subdomain'].' Activation Link')
                     ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
-                // EAS - Send admin email verification mail
+                // // EAS - Send admin email verification mail
 
-                // sheikh salar start
-                // $this->loadModel('LandTypes');
-                // $landTypes = $this->LandTypes->find('all')
-                //     ->where([
-                //         'admin_id is null',
-                //     ]);
-
-                //     $saveLandTypeV = 0;
-                //     $saveLandType = array();
-
-                // foreach ($landTypes as $landType) {
-                //     $saveLandType[$saveLandTypeV]['admin_id']= $admin->id;
-                //     $saveLandType[$saveLandTypeV]['name']= $landType->name;
-                //     $saveLandType[$saveLandTypeV]['remarks']= $landType->remarks;
-                //     $saveLandTypeV++;
-                //     // $landType = $this->LandTypes->newEntity();
-                //     // $landType = $this->LandTypes->patchEntity($landType,$ltData);
-                //     // $this->LandTypes->save($landType);
-                // }
-
-                // if (!empty($saveLandType)) {
-
-                //     $landType = $this->LandTypes->newEntities($saveLandType);
-                //     $this->LandTypes->saveMany($landType);
-                    
-                // }
+                // sheikh salar start LandType
 
                 $this->loadModel('LandTypes');
                 $LandTypes = $this->LandTypes->find('all')
@@ -166,8 +141,9 @@ class AdminsController extends AppController
                     $this->LandTypes->saveMany($LandTypes);
                 }
 
-                // sheikh salar end
+                // // sheikh salar end LandType
 
+                // // LandStatuses start
                 $this->loadModel('LandStatuses');
                 $LandStatuses = $this->LandStatuses->find('all')
                     ->where([
@@ -189,6 +165,35 @@ class AdminsController extends AppController
                     $LandStatuses = $this->LandStatuses->newEntities($saveLandStatus);
                     $this->LandStatuses->saveMany($LandStatuses);
                 }
+
+                // LandStatuses end----------------------------------
+
+                // pageElement start---------------------------------
+
+                $this->loadModel('PageElements');
+                $pageElements = $this->PageElements->find('all')
+                    ->where([
+                        'admin_id is null',
+                    ])
+                ;
+
+                // $PEData['type'] = 'Logo Image Url';
+                // $PEData['content'] = 'This is Logo Image Url';
+                // $PEData['admin_id'] = $admin->id;
+                
+                foreach ($pageElements as $pageElement) {
+                    $PEData['type'] = $pageElement->type;
+                    $PEData['content'] = $pageElement->content;
+                    $PEData['admin_id'] = $admin->id;
+
+                    $pageElement = $this->PageElements->newEntity();
+                    $pageElement = $this->PageElements->patchEntity($pageElement,$PEData);
+                    $this->PageElements->save($pageElement);
+
+                }
+
+                // pageElement end
+
 
                 $this->Flash->success(__('Please check your email/spam & open verification link in the web browser.'));
                 return $this->redirect(['controller' => 'pages', 'action' => 'home']);
