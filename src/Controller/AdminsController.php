@@ -90,6 +90,81 @@ class AdminsController extends AppController
 
     public function signup()
     {
+        // echo "<h1>start</h1>";
+        // $query = 'mylands';
+        // $query = array(
+        //     'abc' => 123,
+        //     'xyz' => 456,
+        // );
+        // pr($query);
+        // $this->loadModel('CostCats');
+        // $cost_cats = $this->CostCats->find('all')
+        //     ->where([
+        //         'admin_id is null',
+        // ]);
+
+
+        // foreach ($cost_cats as $cost_cat) {
+        //     // pr($cost_cat);
+        //     pr ($cost_cat->name);
+        //     pr ($cost_cat->remarks);
+        // }
+        // $costCats['name']= 'hashir14';
+        // $costCats['remarks']= 'this is abc2355';
+        // $costCats['admin_id']= '2';
+        // $costCat = $this->CostCats->newEntity();
+        // $costCat = $this->CostCats->patchEntity($costCat,$costCats);
+        //     if ($this->CostCats->save($costCat)) {
+        //         echo "save record";
+        //     }
+        //         else{
+        //             echo "record not saved";
+        //         }
+
+        //  check all the admin id null in costcats then insert that all null values change with (HC) in costcat and these insert value will be equal as null values.
+        // Insert all the null value in admin_id and then after record addeded in costcat so recorded value should be as many null values.  
+        // Insert as many new records with hard coded values in CostCats as we have all records in CostCats with admin_id null,make sure admin id will be 2 when you added new record.
+        // $this->loadModel('CostCats');
+        // $cost_cats = $this->CostCats->find('all')
+        //     ->where([
+        //         'admin_id is null',
+        // ]);
+
+        // foreach ($cost_cats as $CostCats) {
+        //     $costCats['name']= 'aamir';
+        //     // $costCats['name']= 'hashir14';
+        //     $costCats['remarks']= 'this is aamir';
+        //     // $costCats['remarks']= 'this is hashir14';
+        //     $costCats['admin_id']= '2';
+        //     $costCat = $this->CostCats->newEntity();
+        //     $costCat = $this->CostCats->patchEntity($costCat,$costCats);
+        //     $this->CostCats->save($costCat);
+        // }
+        // exit();
+        // }
+
+        // // foreach ($cost_cats as $CostCats) {
+        // //     $costCats['name']= $CostCats->name;
+        // //     // $costCats['name']= 'hashir14';
+        // //     $costCats['remarks']= $CostCats->remarks;
+        // //     // $costCats['remarks']= 'this is hashir14';
+        // //     $costCats['admin_id']= '2';
+        // //     $costCat = $this->CostCats->newEntity();
+        // //     $costCat = $this->CostCats->patchEntity($costCat,$costCats);
+        // //     $this->CostCats->save($costCat);
+        // // }
+        // foreach ($cost_cats as $CostCats) {
+        //     $costCats['name'] = $CostCats->name;
+        //     // $costCats['name']= 'hashir14';
+        //     $costCats['remarks'] = $CostCats->remarks;
+        //     // $costCats['remarks']= 'this is hashir14';
+        //     $costCats['admin_id'] = $admin->id;
+        //     $costCat = $this->CostCats->newEntity();
+        //     $costCat = $this->CostCats->patchEntity($costCat,$costCats);
+        //     $this->CostCats->save($costCat);
+        // }
+        // echo "<h1>end</h>"; 
+        // exit();
 
         $this->layout = 'bs337';
         $admin = $this->Admins->newEntity();
@@ -123,7 +198,6 @@ class AdminsController extends AppController
                 // echo "The string '$findme' was found in the string '$mystring'";
                 // echo " and exists at position $pos";
           }
-
             // sheikh salar end------------------------------------
 
             // $data['subdomain'] = strtolower($data['subdomain']).'.mylands.pk';
@@ -139,39 +213,59 @@ class AdminsController extends AppController
             // pr($admin);
            // dd($admin);
 
-         if ($this->Admins->save($admin)) {
-                // SAS - Send admin email verification mail
-            $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
-            $email = new Email('default');
-            $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
-            ->template('default', 'default')
-            ->emailFormat('both')
-                    // ->emailFormat('html')
-            ->to($data['email'])
-            ->subject($data['subdomain'].' Activation Link')
-            ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
-                // EAS - Send admin email verification mail
+        if ($this->Admins->save($admin)){
+         // echo $admin->id;
+         // exit(); $this->loadModel('CostCats');
 
-            $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
-            return $this->redirect(['controller' => 'pages', 'action' => 'home']);
+            // SAS - Send admin email verification mail
+            // $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
+            // $email = new Email('default');
+            // $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
+            // ->template('default', 'default')
+            // ->emailFormat('both')
+            //         // ->emailFormat('html')
+            // ->to($data['email'])
+            // ->subject($data['subdomain'].' Activation Link')
+            // ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
+            // EAS - Send admin email verification mail
+            //fahad start
+           $this->loadModel('CostCats');
+        $cost_cats = $this->CostCats->find('all')
+            ->where([
+                'admin_id is null',
+        ]);
+
+        foreach ($cost_cats as $CostCats) {
+            $costCats['name']= $CostCats->name;
+            // $costCats['name']= 'hashir14';
+            $costCats['remarks']= $CostCats->remarks;
+            // $costCats['remarks']= 'this is hashir14';
+            $costCats['admin_id']= $admin->id;
+            $costCat = $this->CostCats->newEntity();
+            $costCat = $this->CostCats->patchEntity($costCat,$costCats);
+            $this->CostCats->save($costCat);
         }
 
+            //fahad end
+            $this->Flash->success(__('Please check your email & open verification link in the web browser.'));
+           return $this->redirect(['controller' => 'pages', 'action' => 'home']);
+       }
         $this->Flash->error(__('The admin could not be saved. Please, try later.'));
     }
     $this->set(compact('admin'));
-}
 
+}
 public function verifyEmail($hash)
-{
+    {
         // $this->autoRender = false;
     $this->layout = 'bs337';
 
-    $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
+        $admin = $this->Admins->findByEmailVerificationHash($hash)->first();;
         // echo $admin->subdomain;
         // dd($admin);
         // pr($admin);
 
-    if (!empty($admin)) {
+        if (!empty($admin)) {
         $admin->status = 'Active';
         $admin->email_verification_hash = '';
 
@@ -182,7 +276,7 @@ public function verifyEmail($hash)
         else {
                 // die('<h1>NOT Empty but faild to save</h1>');
             $this->Flash->error(__('Error in saving record. Please try later or contact administrator.'));
-        }
+            }
 
             // return $this->redirect('/admins/login');
             // return $this->redirect('http://'.$admin->subdomain);
@@ -190,7 +284,7 @@ public function verifyEmail($hash)
 			// 	['controller' => 'Admins', 'action' => 'login']
 			// );
         $this->setAction('login');
-    }
+        }
         // else {
         //     die('<h1>Empty</h1>');
         // }
@@ -202,6 +296,7 @@ public function verifyEmail($hash)
         // }
         // else {
         //     die('no');
-        // }
-}
-}
+    }   // }
+}   
+
+

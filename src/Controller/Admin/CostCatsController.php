@@ -74,7 +74,7 @@ class CostCatsController extends AppController
             }
             $this->Flash->error(__('The cost cat could not be saved. Please, try again.'));
         }
-        // $admins = $this->CostCats->Admins->find('list', ['limit' => 200]);
+        //$admins = $this->CostCats->Admins->find('list', ['limit' => 200]);
         $this->set(compact(
         	'costCat'
         	// 'admins'
