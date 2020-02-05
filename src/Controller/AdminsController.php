@@ -93,8 +93,7 @@ class AdminsController extends AppController
             
             $pos = strrpos($data['subdomain'], '.mylands.pk');
 
-            if ($pos === false) {
-              
+            if ($pos === false) {              
               $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
             }
             // sheikh salar end------------------------------------
@@ -165,8 +164,26 @@ class AdminsController extends AppController
                     $LandStatuses = $this->LandStatuses->newEntities($saveLandStatus);
                     $this->LandStatuses->saveMany($LandStatuses);
                 }
-
                 // LandStatuses end----------------------------------
+
+                // START Fahad - Added CostCats default values for current admin
+                $this->loadModel('CostCats');
+                $cost_cats = $this->CostCats->find('all')
+                    ->where([
+                        'admin_id is null',
+                ]);
+
+                foreach ($cost_cats as $CostCats) {
+                    $costCats['name']= $CostCats->name;
+                    // $costCats['name']= 'hashir14';
+                    $costCats['remarks']= $CostCats->remarks;
+                    // $costCats['remarks']= 'this is hashir14';
+                    $costCats['admin_id']= $admin->id;
+                    $costCat = $this->CostCats->newEntity();
+                    $costCat = $this->CostCats->patchEntity($costCat,$costCats);
+                    $this->CostCats->save($costCat);
+                }
+                // ENDED Fahad -  - Added CostCats default values for current admin                
 
                 // pageElement start---------------------------------
 
@@ -193,7 +210,6 @@ class AdminsController extends AppController
                 }
 
                 // pageElement end
-
 
                 $this->Flash->success(__('Please check your email/spam & open verification link in the web browser.'));
                 return $this->redirect(['controller' => 'pages', 'action' => 'home']);
