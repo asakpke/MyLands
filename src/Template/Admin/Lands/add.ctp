@@ -27,7 +27,7 @@
             // echo $this->Form->input('admin_id', ['options' => $admins]);
             echo $this->Form->input('land_type_id', [
                 'options' => $landTypes,
-                // 'empty' => true,
+                'empty' => true,
                 // 'default' => $landTypes[1],
                 'default' => 2,
                 // 'value' => 'Sale',
