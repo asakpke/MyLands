@@ -119,16 +119,18 @@ class LandsController extends AppController
         $land = $this->Lands->newEntity();
         if ($this->request->is('post')) {
             // $data = $this->request->getData();
-            // pr($data);
+            // dd($data);
+            // exit();
             $land = $this->Lands->patchEntity($land, $this->request->getData());
             $land['admin_id'] = $this->Auth->user('id');
             // dd($land);
+            // exit;
             // pr($land);
 
             $land->demand = str_replace(',','',$land->demand);
             $land->sale = str_replace(',','',$land->sale);
             $land->cost = str_replace(',','',$land->cost);
-
+            
             if ($this->Lands->save($land)) {
                 $this->Flash->success(__('The land has been saved.'));
 

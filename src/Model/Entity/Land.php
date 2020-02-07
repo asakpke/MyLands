@@ -72,6 +72,7 @@ class Land extends Entity
         'admin' => true,
         'land_type' => true,
         'land_status' => true,
-        'costs' => true
+        'costs' => true,
+        'is_public' => true
     ];
 }

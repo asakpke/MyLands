@@ -64,6 +64,9 @@
             echo $this->Form->input('purchased',[
                 'minYear' => 1900,
             ]);
+            // sheikh salar start
+            echo $this->Form->input('is_public');
+            // sheikh salar end
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
