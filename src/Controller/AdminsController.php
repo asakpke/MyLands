@@ -99,8 +99,12 @@ class AdminsController extends AppController
             $pos = strrpos($data['subdomain'], '.mylands.pk');
 
             if ($pos === false) {              
-              // $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
-              $data['subdomain']= strtolower($data['subdomain']).'.'.$_SERVER['HTTP_HOST'];
+                // $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
+                $data['subdomain']= strtolower($data['subdomain']).'.'.$_SERVER['HTTP_HOST'];
+
+                if ($_SERVER['HTTP_HOST'] == 'www.mylands.pk') {
+                    $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
+                }
             }
 
             $data['email_verification_hash'] = md5(uniqid(rand(), true));
