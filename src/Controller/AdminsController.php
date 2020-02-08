@@ -100,10 +100,13 @@ class AdminsController extends AppController
 
             if ($pos === false) {              
                 // $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
-                $data['subdomain']= strtolower($data['subdomain']).'.'.$_SERVER['HTTP_HOST'];
+                // $data['subdomain']= strtolower($data['subdomain']).'.'.$_SERVER['HTTP_HOST'];
 
                 if ($_SERVER['HTTP_HOST'] == 'www.mylands.pk') {
                     $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
+                }
+                else {
+                    $data['subdomain']= strtolower($data['subdomain']).'.'.$_SERVER['HTTP_HOST'];
                 }
             }
 
