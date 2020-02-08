@@ -204,6 +204,8 @@ class AppController extends Controller
         $conditions = array('PageElements.admin_id is null');
         $isAdmin = false;
 
+        // dd($_SERVER['HTTP_HOST']);
+
         if (!empty($admin)) {
             // echo '<h1>$admin not empty</h1>';
 
@@ -211,6 +213,13 @@ class AppController extends Controller
             $conditions = array('PageElements.admin_id' => $admin->id);
             $isAdmin = true;
         }
+        // elseif ($_SERVER['HTTP_HOST'] == 'mylands.pk'
+        //     or $_SERVER['HTTP_HOST'] == 'MyLands.pk'
+        //     or $_SERVER['HTTP_HOST'] == 'localhost:8765'
+        // ) {
+        //     $conditions = array('PageElements.admin_id is null');
+        //     $isAdmin = true;
+        // }
         // else {
         //     $conditions['PageElements.admin_id is null'];
         // }

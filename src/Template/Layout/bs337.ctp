@@ -67,7 +67,11 @@
         <!-- <div class="message warning" onclick="this.classList.add('hidden')">Testing...</div> -->
 
         <?php
-        if (empty($isAdmin)) {
+        if (empty($isAdmin)
+            and $_SERVER['HTTP_HOST'] != 'mylands.pk'
+            and $_SERVER['HTTP_HOST'] != 'localhost'
+            and $_SERVER['HTTP_HOST'] != 'localhost:8765'
+        ) {
           echo '<div role="alert" class="alert alert-dismissible fade in alert-warning">'
           .'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'
           .'HURRY UP! This subdomain is still available for <a href="http://www.MyLands.pk/Admins/Signup"><span class="text-primary">FREE Trial</span></a> signup.'
