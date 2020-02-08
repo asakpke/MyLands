@@ -81,22 +81,26 @@ class AdminsController extends AppController
     {
         $this->layout = 'bs337';
         $admin = $this->Admins->newEntity();
+        $this->set(compact('admin'));
 
         if ($this->request->is('post')) {
             $data = $this->request->getData();
             $data['status'] = 'Disabled';
             $data['is_verified'] = 0;
             $data['balance'] = 0;
-
-            // sheikh salar start----------------------------------
             $data['subdomain'] = strtolower($data['subdomain']);
-            
+
+            if ($data['subdomain'] == 'www') {
+                $this->Flash->error(__('Please try another Subdomain, www is not allowed as Subdomain.'));
+                // return $this->redirect(['controller' => 'admins', 'action' => 'signup']);
+                return;
+            }
+
             $pos = strrpos($data['subdomain'], '.mylands.pk');
 
             if ($pos === false) {              
               $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
             }
-            // sheikh salar end------------------------------------
 
             $data['email_verification_hash'] = md5(uniqid(rand(), true));
             $hasher = new DefaultPasswordHasher();
@@ -218,7 +222,7 @@ class AdminsController extends AppController
             $this->Flash->error(__('The admin could not be saved. Please, try later.'));
         } // if ($this->request->is('post'))
 
-        $this->set(compact('admin'));
+        // $this->set(compact('admin'));
     } // signup()
 
     public function verifyEmail($hash)
