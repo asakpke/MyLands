@@ -99,7 +99,8 @@ class AdminsController extends AppController
             $pos = strrpos($data['subdomain'], '.mylands.pk');
 
             if ($pos === false) {              
-              $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
+              // $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
+              $data['subdomain']= strtolower($data['subdomain']).'.'.$_SERVER['HTTP_HOST'];
             }
 
             $data['email_verification_hash'] = md5(uniqid(rand(), true));
@@ -109,16 +110,16 @@ class AdminsController extends AppController
 
             if ($this->Admins->save($admin)) {
                 // SAS - Send admin email verification mail
-                $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
-                $email = new Email('default');
-                $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
-                    ->template('default', 'default')
-                    ->emailFormat('both')
-                    // ->emailFormat('html')
-                    ->to($data['email'])
-                    ->subject($data['subdomain'].' Activation Link')
-                    ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
-                // // EAS - Send admin email verification mail
+                // $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
+                // $email = new Email('default');
+                // $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
+                //     ->template('default', 'default')
+                //     ->emailFormat('both')
+                //     // ->emailFormat('html')
+                //     ->to($data['email'])
+                //     ->subject($data['subdomain'].' Activation Link')
+                //     ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
+                // EAS - Send admin email verification mail
 
                 // sheikh salar start LandType
 
@@ -210,10 +211,21 @@ class AdminsController extends AppController
                     $pageElement = $this->PageElements->newEntity();
                     $pageElement = $this->PageElements->patchEntity($pageElement,$PEData);
                     $this->PageElements->save($pageElement);
-
                 }
 
                 // pageElement end
+
+                // SAS - Send admin email verification mail
+                $activation_url = 'http://'.$data['subdomain'].'/Admins/verifyEmail/'.$data['email_verification_hash'];
+                $email = new Email('default');
+                $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
+                    ->template('default', 'default')
+                    ->emailFormat('both')
+                    // ->emailFormat('html')
+                    ->to($data['email'])
+                    ->subject($data['subdomain'].' Activation Link')
+                    ->send("<a href=\"{$activation_url}\">{$activation_url}</a>");
+                // EAS - Send admin email verification mail
 
                 $this->Flash->success(__('Please check your email/spam & open verification link in the web browser.'));
                 return $this->redirect(['controller' => 'pages', 'action' => 'home']);
