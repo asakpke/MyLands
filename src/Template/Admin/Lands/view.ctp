@@ -78,6 +78,16 @@
                 </div>
             </div>
         </div>
+        <!-- sheikh salar start -->
+         <div class="col-lg-2 columns booleans end">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h6 class="subheader"><?= __('Is Public') ?></h6>
+                    <p><?= $land->is_public ? __('Yes') : __('No'); ?></p>
+                </div>
+            </div>
+        </div>
+        <!-- sheikh salar end -->
     </div>
     <div class="row texts">
         <div class="columns col-lg-9">

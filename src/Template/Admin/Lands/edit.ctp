@@ -66,6 +66,11 @@
                 'minYear' => 1900,
                 // 'maxYear' => date('Y'),
             ]);
+
+            // sheikh salar start
+            echo $this->Form->input('is_public');
+            // sheikh salar end
+
             // echo $this->Form->text('purchased', array('type' => 'date'))
             // echo $this->Form->date('purchased');
         ?>
