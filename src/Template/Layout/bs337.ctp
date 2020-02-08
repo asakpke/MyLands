@@ -69,6 +69,7 @@
         <?php
         if (empty($isAdmin)
             and $_SERVER['HTTP_HOST'] != 'mylands.pk'
+            and $_SERVER['HTTP_HOST'] != 'www.mylands.pk'
             and $_SERVER['HTTP_HOST'] != 'localhost'
             and $_SERVER['HTTP_HOST'] != 'localhost:8765'
         ) {
