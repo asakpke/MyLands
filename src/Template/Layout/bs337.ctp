@@ -138,7 +138,7 @@
           </p>          
         </div>
         <div class="col-md-4">
-          <p class="text-right">Powered by <span class="text-muted"><a href="http://www.mylands.pk/">www.MyLands.pk</a></span></p>
+          <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
         </div>
       </footer>
 
