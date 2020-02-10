@@ -4,6 +4,7 @@ use App\Controller\AppController;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Mailer\Email;
 
+
 class AdminsController extends AppController
 {
     public function initialize()
@@ -54,6 +55,9 @@ class AdminsController extends AppController
             'logout',
             'signup',
             'verifyEmail',
+            'forgotPassword',
+            'resetPassword',
+
         ]);
     } // initialize()
 
@@ -70,6 +74,80 @@ class AdminsController extends AppController
             $this->Flash->error('Your username or password is incorrect.');
         }
     } // login()
+
+    public function forgotPassword()
+    {
+        if ($this->request->is('post')) 
+        {
+            if (!empty($this->request->data))
+            {
+                $email = $this->request->data['email'];
+                $admin = $this->Admins->findByEmail($email)->first();
+
+                if (!empty($admin))
+                {
+                    $password = sha1(Text::uuid());
+
+                    $password_token = Security::hash($password, 'sha256', true);
+
+                    $hashval = sha1($admin->name . rand(O, 100));
+
+                    $admin->password_reset_token = $password_token;
+                    $admin->hashval = $hashval;
+
+                    $reset_token_link = Router::url(['controller' => 'Admins', 'action' => 'resetPassword'], TRUE) . '/' . $password_token . '#' . $hashval;
+
+                    $emaildata = [$admin->email, $reset_token_link];
+                    $this->getMailer('SendEmail')->send('forgotPasswordEmail', [$emaildata]);
+
+                    $this->Admins->save($admin);
+                    $this->Flash->success('Please click on password reset link, sent in your email address to reset password.');
+                }
+                else
+                {
+                    $this->Flash->error('Sorry! Email address is not available here.');
+                }
+            }
+        }
+    } // forgotPassword()-------------------------------
+
+    public function resetPassword($token = null) {
+        if (!empty($token)) {
+
+            $admin = $this->Admins->findByPasswordResetToken($token)->first();
+
+            if ($admin) {
+                
+                if (!empty($this->request->data)) {
+                    $admin = $this->Admins->patchEntity($admin, [
+                        'password' => $this->request->data['new_password'],
+                        'new_password' => $this->request->data['new_password'],
+                        'confirm_password' => $this->request->data['confirm_password']
+                            ], ['validate' => 'password']
+                    );
+
+                    $hashval_new = sha1($admin->username . rand(O, 100));
+                    $admin->password_reset_token = $hashval_new;
+
+                    if ($this->Admins->save($admin)) {
+                        $this->Flash->success('Your password has been changed successfully');
+                        $emaildata = ['name' => $admin->first_name, 'email' => $admin->email];
+                        $this->getMailer('SendEmail')->send('changePasswordEmail', [$emaildata]); //Send Email functionality
+
+                        $this->redirect(['action' => 'view']);
+                    } else {
+                        $this->Flash->error('Error changing password. Please try again!');
+                    }
+                }
+            } else {
+                $this->Flash->error('Sorry your password token has been expired.');
+            }
+        } else {
+            $this->Flash->error('Error loading password reset.');
+        }
+        $this->set(compact('admin'));
+        $this->set('_serialize', ['admin']);
+    } // reset password--------------------------------------------
 
     public function logout()
     {
