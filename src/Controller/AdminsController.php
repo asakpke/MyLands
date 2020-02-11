@@ -92,7 +92,7 @@ class AdminsController extends AppController
 
                     $hashval = sha1($admin->name . rand(O, 100));
 
-                    $admin->password_reset_token = $password_token;
+                    $admin->email_verification_hash = $password_token;
                     $admin->hashval = $hashval;
 
                     $reset_token_link = Router::url(['controller' => 'Admins', 'action' => 'resetPassword'], TRUE) . '/' . $password_token . '#' . $hashval;
@@ -127,7 +127,7 @@ class AdminsController extends AppController
                     );
 
                     $hashval_new = sha1($admin->username . rand(O, 100));
-                    $admin->password_reset_token = $hashval_new;
+                    $admin->email_verification_hash = $hashval_new;
 
                     if ($this->Admins->save($admin)) {
                         $this->Flash->success('Your password has been changed successfully');
