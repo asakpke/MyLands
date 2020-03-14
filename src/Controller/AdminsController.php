@@ -112,7 +112,7 @@ class AdminsController extends AppController
                     // $verification_url = 'http://'.$admin->subdomain.'/Admins/resetPassword/'.$admin->email_verification_hash;
                     // $verification_url = 'http://'.$admin->subdomain.'/Admins/resetPassword/'.$admin->forgot_password_hash;
                     $verification_url = 'http://'.$admin->subdomain.'/Admins/forgotPassword2/'.$admin->forgot_password_hash;
-                    dd($verification_url);
+                    // dd($verification_url);
                     $email = new Email('default');
                     $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
                         ->template('default', 'default')
