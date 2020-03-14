@@ -107,7 +107,12 @@
             <li><a href="http://esite.pk/" target="_blank">eSite.pk</a></li>            
             <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">50% Off</a></li>
             <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">Contact Us</a></li>
-            <li><a href="/Admins/Login">Login</a></li>
+            <!-- <li><a href="/Admins/Login">Login</a></li> -->
+            <?php
+            if (!empty($isAdmin)) {
+              echo '<li><a href="/Admins/Login">Login</a></li>';
+            }
+            ?>
             <!-- <li><a href="http://www.MyLands.pk/Admins/Signup"><span class="text-primary">FREE Trial</span></a></li> -->
             <li><a href="http://mylands.pk/admins/signup"><span class="text-primary">FREE Trial</span></a></li>
           </ul>
