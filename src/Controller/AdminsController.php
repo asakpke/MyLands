@@ -56,9 +56,9 @@ class AdminsController extends AppController
             'signup',
             'verifyEmail',
             'forgotPassword',
-            'resetPassword',
-            'profile',
-
+            // 'resetPassword',
+            'forgotPassword2',
+            // 'profile',
         ]);
     } // initialize()
 
@@ -105,26 +105,45 @@ class AdminsController extends AppController
             if (!empty($this->request->data))
             {
                 $email = $this->request->data['email'];
-                $admin = $this->Admins->findByEmail($email)->first();
+                // $admin = $this->Admins->findByEmail($email)->first();
+                $admin = $this->Admins->findBySubdomainAndEmail($_SERVER['HTTP_HOST'],$email)->first();
+                // dd($admin);
 
                 if (!empty($admin))
                 {
-                    $password = sha1(Text::uuid());
+                    // $password = sha1(Text::uuid());
 
-                    $password_token = Security::hash($password, 'sha256', true);
+                    // $password_token = Security::hash($password, 'sha256', true);
 
-                    $hashval = sha1($admin->name . rand(O, 100));
+                    // $hashval = sha1($admin->name . rand(O, 100));
 
-                    $admin->email_verification_hash = $password_token;
-                    $admin->hashval = $hashval;
+                    // $admin->email_verification_hash = $password_token;
+                    // $admin->email_verification_hash = md5(uniqid(rand(), true));
+                    $admin->forgot_password_hash = md5(uniqid(rand(), true));
+                    // $admin->hashval = $hashval;
 
-                    $reset_token_link = Router::url(['controller' => 'Admins', 'action' => 'resetPassword'], TRUE) . '/' . $password_token . '#' . $hashval;
+                    // $reset_token_link = Router::url(['controller' => 'Admins', 'action' => 'resetPassword'], TRUE) . '/' . $password_token . '#' . $hashval;
 
-                    $emaildata = [$admin->email, $reset_token_link];
-                    $this->getMailer('SendEmail')->send('forgotPasswordEmail', [$emaildata]);
+                    // $emaildata = [$admin->email, $reset_token_link];
+                    // $this->getMailer('SendEmail')->send('forgotPasswordEmail', [$emaildata]);
 
                     $this->Admins->save($admin);
-                    $this->Flash->success('Please click on password reset link, sent in your email address to reset password.');
+                    $this->Flash->success('Please click on password reset link, sent in your email address to reset password. Do check spam folder if you do not find it in inbox.');
+
+                    // SAS - Send forget password mail
+                    // $verification_url = 'http://'.$admin->subdomain.'/Admins/resetPassword/'.$admin->email_verification_hash;
+                    // $verification_url = 'http://'.$admin->subdomain.'/Admins/resetPassword/'.$admin->forgot_password_hash;
+                    $verification_url = 'http://'.$admin->subdomain.'/Admins/forgotPassword2/'.$admin->forgot_password_hash;
+                    // dd($verification_url);
+                    $email = new Email('default');
+                    $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
+                        ->template('default', 'default')
+                        ->emailFormat('both')
+                        // ->emailFormat('html')
+                        ->to($admin->email)
+                        ->subject($admin->subdomain.' Reset Password Link')
+                        ->send("<a href=\"{$verification_url}\">{$verification_url}</a>");
+                    // EAS - Send forget password mail
                 }
                 else
                 {
@@ -134,43 +153,60 @@ class AdminsController extends AppController
         }
     } // forgotPassword()-------------------------------
 
-    public function resetPassword($token = null) {
+    // public function resetPassword($token = null) {
+    public function forgotPassword2($token = null) {
         if (!empty($token)) {
 
-            $admin = $this->Admins->findByPasswordResetToken($token)->first();
+            // $admin = $this->Admins->findByPasswordResetToken($token)->first();
+            $admin = $this->Admins->findByForgotPasswordHash($token)->first();
+            // dd($admin);
 
             if ($admin) {
-                
-                if (!empty($this->request->data)) {
-                    $admin = $this->Admins->patchEntity($admin, [
-                        'password' => $this->request->data['new_password'],
-                        'new_password' => $this->request->data['new_password'],
-                        'confirm_password' => $this->request->data['confirm_password']
-                            ], ['validate' => 'password']
-                    );
+                // if (!empty($this->request->data)) {
+                //     $admin = $this->Admins->patchEntity($admin, [
+                //         'password' => $this->request->data['new_password'],
+                //         'new_password' => $this->request->data['new_password'],
+                //         'confirm_password' => $this->request->data['confirm_password']
+                //             ], ['validate' => 'password']
+                //     );
 
-                    $hashval_new = sha1($admin->username . rand(O, 100));
-                    $admin->email_verification_hash = $hashval_new;
+                //     $hashval_new = sha1($admin->username . rand(O, 100));
+                //     $admin->email_verification_hash = $hashval_new;
 
-                    if ($this->Admins->save($admin)) {
-                        $this->Flash->success('Your password has been changed successfully');
-                        $emaildata = ['name' => $admin->first_name, 'email' => $admin->email];
-                        $this->getMailer('SendEmail')->send('changePasswordEmail', [$emaildata]); //Send Email functionality
+                //     if ($this->Admins->save($admin)) {
+                //         $this->Flash->success('Your password has been changed successfully');
+                //         $emaildata = ['name' => $admin->first_name, 'email' => $admin->email];
+                //         $this->getMailer('SendEmail')->send('changePasswordEmail', [$emaildata]); //Send Email functionality
 
-                        $this->redirect(['action' => 'view']);
-                    } else {
-                        $this->Flash->error('Error changing password. Please try again!');
-                    }
-                }
-            } else {
+                //         $this->redirect(['action' => 'view']);
+                //     } else {
+                //         $this->Flash->error('Error changing password. Please try again!');
+                //     }
+                // }
+
+                // SAS - Auto login & send to change password page
+                // Set null ForgotPasswordHash
+                $admin->forgot_password_hash = null;
+                $this->Admins->save($admin);
+
+                $this->Auth->setUser($admin);
+                // return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect('/admin/Admins/profile');
+                // EAS - Auto login & send to change password page
+            }
+            else {
                 $this->Flash->error('Sorry your password token has been expired.');
             }
-        } else {
+        }
+        else {
             $this->Flash->error('Error loading password reset.');
         }
-        $this->set(compact('admin'));
-        $this->set('_serialize', ['admin']);
-    } // reset password--------------------------------------------
+
+        return $this->redirect('/admins/forgot-password');
+        // $this->set(compact('admin'));
+        // $this->set('_serialize', ['admin']);
+    // } // reset password
+    } // forgotPassword2()
 
     public function logout()
     {

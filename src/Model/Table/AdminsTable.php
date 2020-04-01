@@ -121,6 +121,12 @@ class AdminsTable extends Table
             ->requirePresence('email_verification_hash', 'create')
             ->notEmpty('email_verification_hash');
 
+        $validator
+            ->scalar('forgot_password_hash')
+            ->maxLength('forgot_password_hash', 32)
+            ->allowEmpty('forgot_password_hash')
+        ;
+
         return $validator;
     }
 

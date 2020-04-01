@@ -51,6 +51,7 @@ class Admin extends Entity
         // 'email_verification_hash' => false,
         'created' => true,
         'modified' => true,
+        'forgot_password_hash' => true,
         'cost_cats' => true,
         'land_statuses' => true,
         'land_types' => true,
