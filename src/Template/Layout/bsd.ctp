@@ -32,20 +32,95 @@ echo '<li>'.$this->Html->link(__('Costs'), ['controller' => 'Costs', 'action' =>
 echo '<li>'.$this->Html->link(__('Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Page Elements'), ['controller' => 'PageElements', 'action' => 'index']).'</li>';
 
+
+?>
+<head>
+    
+<style type="text/css">
+    
+
+/*salar start*/
+
+.dropbtn
+    {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown
+    {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-content
+    {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 
+        rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+.dropdown-content a
+    {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        background:#eee; 
+    }
+.dropdown-content a:hover
+    {
+        background-color: #ddd;
+    }
+    .dropdown:hover .dropdown-content
+    {
+        display: block;
+    }
+    .dropdown:hover .dropbtn
+    {
+        background-color: #3e8e41;
+    }
+
+    /*salar end*/
+
+</style>
+
+</head>
+<!-- sheikh salar start -->
+<?php
+if ($this->Session->read('Auth.Admin')) {
+?>
+<div class="dropdown">
+    <button class="dropbtn">Menu</button>
+    <div class="dropdown-content">
+            <a href="/admins/profile">Profile</a>
+            <a href="/admins/logout">Logout</a>
+    </div>
+</div>
+<?php
+}
+// <!-- sheikh salar end -->
+
+
 if ($this->Session->read('Auth.Master')) {
     echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Masters', 'action' => 'logout']).'</li>';
 }
 
-if ($this->Session->read('Auth.Admin')) {
-    echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
+// if ($this->Session->read('Auth.Admin')) {
+//     echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';
 
-    // echo '<li>';
-    // echo $this->Html->link(__('Profile'), '#');
-    // echo '<ul>';
-    // echo '<li>Test1</li>';
-    // echo '</ul>';
-    // echo '</li>';
-}
+//     // echo '<li>';
+//     // echo $this->Html->link(__('Profile'), '#');
+//     // echo '<ul>';
+//     // echo '<li>Test1</li>';
+//     // echo '</ul>';
+//     // echo '</li>';
+// }
 
 $this->end();
 // $this->set('navbar.top', '<li><a href="#">Hello</a></li>');
