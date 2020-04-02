@@ -98,7 +98,7 @@ if ($this->Session->read('Auth.Admin')) {
 <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
-            <a href="/admins/profile">Profile</a>
+            <a href="/admin/admins/profile">Profile</a>
             <a href="/admins/logout">Logout</a>
     </div>
 </div>
