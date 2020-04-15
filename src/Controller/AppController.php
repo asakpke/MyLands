@@ -253,6 +253,7 @@ class AppController extends Controller
 
         $LogoImageURL = '/img/logo/logo32.png';
         $LogoText = 'MyLands.pk';
+        $TopText = 'aamir@mylands.pk, +923005393652';
 
         foreach ($pageElements as $pageElement) {
             // pr($pageElement);
@@ -265,6 +266,10 @@ class AppController extends Controller
                 case 'Logo Text':
                     $LogoText = $pageElement->content;
                     break;
+
+                case 'Top Text':
+                    $TopText = $pageElement->content;
+                    break;
             }
         }
 
@@ -276,7 +281,8 @@ class AppController extends Controller
             // 'pageElements',
             'isAdmin',
             'LogoImageURL',
-            'LogoText'//,
+            'LogoText',
+            'TopText'//,
         ));
     } // initialize()
 } // AppController
