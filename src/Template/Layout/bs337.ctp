@@ -95,10 +95,12 @@
               <img width="32" alt="Logo" src="<?=$LogoImageURL?>">
               <!-- MyLands.pk -->
               <?=$LogoText?>
+
             </h3>
           </div>
           <div class="col-md-6 mt-20 text-right">
-            <h4>Contact: <span class="em-addr text-success"></span></h4>
+            <h4>Contact:<span class="text-success"> <?=$TopText?></span></h4>
+            <!-- <h4>Contact: <span class="em-addr text-success"><?=$TopText?></span></h4> -->
           </div>
         </div>
         <nav>
