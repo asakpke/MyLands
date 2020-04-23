@@ -57,7 +57,7 @@ class MastersController extends AppController
 
     public function login()
     {
-        // echo (new DefaultPasswordHasher)->hash('welcome');
+        // echo (new DefaultPasswordHasher)->hash('salar');
         if ($this->request->is('post')) {
             // $hasher = new DefaultPasswordHasher();
             // echo $hasher->hash('abc').'<br>';
