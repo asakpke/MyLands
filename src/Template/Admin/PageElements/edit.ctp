@@ -28,6 +28,7 @@
                     'Header Menu' => 'Header Menu',
                     'Home Page - Intro Text' => 'Home Page - Intro Text',
                     'Home Page - Footer Text' => 'Home Page - Footer Text',
+                    'Home Page - Footer' => 'Home Page - Footer',
                 ),
             ]);
             echo $this->Form->input('content');

@@ -254,6 +254,36 @@ class AppController extends Controller
         $LogoImageURL = '/img/logo/logo32.png';
         $LogoText = 'MyLands.pk';
         $TopText = 'aamir@mylands.pk, +923005393652';
+        $HeaderMenu = '<li class="active"><a href="/">Home</a></li>
+                        <li><a href="http://esite.pk/" target="_blank">eSite.pk</a></li>            
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">50% Off</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">Contact Us</a></li>
+                        <li><a href="/Admins/Login">Login</a></li>
+                        <li><a href="http://mylands.pk/admins/signup"><span class="text-primary">FREE Trial</span></a></li>';
+
+        $HomepageIntoText = '<img width="32" alt="Logo" src="/img/logo/logo32.png">
+                                MyLands.pk is a home for property dealers. You can maintain your private or public lands listing online from any device instead of dumping your non searchable registers at office again & again.<img width="32" alt="Logo" src="/img/logo/logo32.png">
+                                    MyLands.pk is just not launched yet fully. Are you curious about current working status? Please contact me on <span class="em-addr text-success"></span>. You may provide your contact information to get early access, 15 days <big>FREE</big> demo & discounts up to <big class="text-primary">50%</big> for one year.';
+        $HomepageFooterText = '<div class="col-lg-4">
+                                <h2 class="text-danger">Customized Domain</h2>          
+                                <p class="text-warning">You will get customized domain i.e Aamir.MyLands.pk. It will setup instantly within seconds. It includes simple/advanced search for your added lands.</p>
+                                <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Now &raquo;</a></p>
+                              </div>
+                              <div class="col-lg-4">
+                                <h2 class="text-danger">Admin Panel</h2>
+                                <p class="text-warning">You will get separate partition & login panel. After login you can add/edit/view/delete lands, land types, land statuses, cost types, cost، et cetera.</p>
+                                <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Now &raquo;</a></p>
+                             </div>
+                              <div class="col-lg-4">
+                                <h2 class="text-danger">All Devices</h2>
+                                <p class="text-warning">
+                                  You can access
+                                  <img width="16" alt="Logo" src="/img/logo/logo16.png">
+                                  MyLands.pk software from all of your devices, like mobile, tab, PC, Mac, Linux. Its design is flexible to adopt device width.
+                                </p>
+                                <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Now &raquo;</a></p>
+                              </div>';                                            
+
 
         foreach ($pageElements as $pageElement) {
             // pr($pageElement);
@@ -270,6 +300,15 @@ class AppController extends Controller
                 case 'Top Text':
                     $TopText = $pageElement->content;
                     break;
+                case 'Header Menu':
+                    $HeaderMenu = $pageElement->content;
+                    break;
+                case 'Home Page - Intro Text':
+                    $HomepageIntoText = $pageElement->content;
+                    break;
+                case 'Home Page - Footer Text':
+                    $HomepageFooterText = $pageElement->content;
+                    break;        
             }
         }
 
@@ -282,7 +321,10 @@ class AppController extends Controller
             'isAdmin',
             'LogoImageURL',
             'LogoText',
-            'TopText'//,
+            'TopText',
+            'HeaderMenu',
+            'HomepageIntoText',
+            'HomepageFooterText'//,
         ));
     } // initialize()
 } // AppController
