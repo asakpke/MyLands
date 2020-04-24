@@ -253,6 +253,8 @@ class AppController extends Controller
 
         $LogoImageURL = '/img/logo/logo32.png';
         $LogoText = 'MyLands.pk';
+        $HomepageFooter='<img width="16" alt="Logo" src="/img/logo/logo16.png">
+            <span class="text-muted">MyLands.pk</span>';
         $TopText = 'aamir@mylands.pk, +923005393652';
         $HeaderMenu = '<li class="active"><a href="/">Home</a></li>
                         <li><a href="http://esite.pk/" target="_blank">eSite.pk</a></li>            
@@ -308,7 +310,10 @@ class AppController extends Controller
                     break;
                 case 'Home Page - Footer Text':
                     $HomepageFooterText = $pageElement->content;
-                    break;        
+                    break;
+                case 'Home Page - Footer':
+                    $HomepageFooter = $pageElement->content; 
+                    break;           
             }
         }
 
@@ -324,7 +329,8 @@ class AppController extends Controller
             'TopText',
             'HeaderMenu',
             'HomepageIntoText',
-            'HomepageFooterText'//,
+            'HomepageFooterText',
+            'HomepageFooter'//,
         ));
     } // initialize()
 } // AppController
