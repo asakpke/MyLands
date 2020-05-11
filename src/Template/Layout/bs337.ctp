@@ -127,26 +127,27 @@
 
       <!-- Site footer -->
       <footer class="footer">
-        <?= $HomepageFooter ?>
-        <!-- <div class="col-md-4">  -->   
+            <?= $HomepageFooter ?>
+        
+        <!-- <div class="col-md-4">     -->
 
           <!-- <p> -->
-            <!--&copy; 2018-2018 -->
-            <!-- &copy<?php
-            // $fromYear = 2018;
-            // $thisYear = (int)date('Y');
-            // echo $fromYear . (($fromYear != $thisYear)  ? '-' . $thisYear : '');
+           <!--  &copy
+           <?php
+             // $fromYear = 2018;
+             // $thisYear = (int)date('Y');
+             // echo $fromYear . (($fromYear != $thisYear)  ? '-' . $thisYear : '');
             ?> -->
-            <!-- <img width="16" alt="Logo" src="/img/logo/logo16.png">
-            <span class="text-muted">MyLands.pk</span> -->
+            <!-- <img width="16" alt="Logo" src="/img/logo/logo16.png"> -->
+            <!-- <span class="text-muted">MyLands.pk</span> -->
           <!-- </p> -->
         <!-- </div> -->
-        <!-- <div class="col-md-4">        
-          <p>
-            Contact:
-            <span class="em-addr text-success"></span>
-          </p>          
-        </div> -->
+        <!-- <div class="col-md-4">         -->
+          <!-- <p> -->
+            <!-- Contact: -->
+            <!-- <span class="em-addr text-success"></span> -->
+          <!-- </p>           -->
+        <!-- </div> -->
         <div class="col-md-4">
           <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
         </div>
