@@ -302,7 +302,7 @@ class AppController extends Controller
 
           <p>
             &copy
-
+            2018 - 2020
             <img width="16" alt="Logo" src="/img/logo/logo16.png">
             <span class="text-muted">MyLands.pk</span>
           </p>

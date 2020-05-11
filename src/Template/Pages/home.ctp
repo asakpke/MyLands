@@ -1,3 +1,9 @@
+<!-- <?php
+// echo $this->Session->read('Auth.Admin');
+// pr($this->Session->read('Auth.Admin'));
+// pr($this->Session->read('Auth.Admin.id'));
+// echo $this->Session->read('Auth.Admin.id');
+?> -->
 <!-- Jumbotron -->
 <div class="jumbotron">
     <?=$HomepageIntoText?>
@@ -21,7 +27,9 @@
   <p><a class="btn btn-lg btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Today</a></p> -->
 </div>
 <!-- sheikh salar start -->
-
+<?php
+if ($this->Session->read('Auth.Admin')) {
+?>
 <div class="row">
   <h2 class="text-primary">Lands Records</h2> 
   <?php
@@ -42,6 +50,8 @@
   </div>
   <?php } ?>
 </div>
+<?php
+}?>
 
 <!-- // echo "<h2>ok</h2>"; -->
  

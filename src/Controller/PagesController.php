@@ -7,9 +7,48 @@ class PagesController extends AppController
     {
         parent::initialize();
 
-        // $this->Auth->allow([
-        //     'home',
-        // ]);
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'userModel' => 'Admins',
+                    'fields' => [
+                        'username' => 'email',
+                        'password' => 'pass'
+                    ],
+                    'finder' => 'auth',
+                    // 'finder' => 'authAdmin',
+                ]
+            ],
+            'loginAction' => [
+                'prefix' => false,
+                'controller' => 'Admins',
+                'action' => 'login',
+            ],
+            // 'redirectUrl' => [
+            //     'prefix' => true,
+            //     'controller' => 'Lands',
+            //     'action' => 'index',
+            // ],
+            'loginRedirect' => array(
+                'prefix' => 'admin',
+                'controller' => 'Lands',
+                'action' => 'index',
+            ),
+             //use isAuthorized in Controllers
+            // 'authorize' => ['Controller'],
+             // If unauthorized, return them to page they were just on
+            'unauthorizedRedirect' => $this->referer(),
+            // 'storage' => 'Session',
+            'storage' => [
+                'className' => 'Session',
+                'key' => 'Auth.Admin'
+            ]
+            // 'sessionKey'=>'Auth.Admin',
+        ]);
+
+        $this->Auth->allow([
+            'home',
+        ]);
     }
     
     public function home()
@@ -32,13 +71,18 @@ class PagesController extends AppController
 // //                        'admin_id'=> $this->Auth->user('id'),
 //                     ]);
 
-//         $this->set('land',$data);
+        // $this->set('land',$data);
         
-        $result = $this->loadModel('Lands');       
+        $result = $this->loadModel('Lands');  
+        // echo $this->Auth->user('id');
+        // echo '123';
+        // echo $this->Session->read('Auth.Admin');
+        // echo $this->Session->read('Auth.Admin.id');
+        // die;
         $data = $result->find('all')
                     ->where([
                         'is_public'=> 1,
-//                        'admin_id'=> $this->Auth->user('id'),
+                        'admin_id'=> $this->Auth->user('id'),
                     ]);
 
         $this->set('land',$data);
