@@ -33,54 +33,46 @@ if ($this->Session->read('Auth.Admin')) {
 <div class="row">
   <h2 class="text-primary">Lands Records</h2> 
   <?php
-  foreach ($land as $row) {
+  //foreach ($land as $row) {
           ?> 
-  <div class="col-md-3" style="border:1px solid #ccc;margin-left: 5px;">
-    <?php echo "<h4>Name:</h4>".$row->name?>
-    <?php echo "<br>"?>
-    <?php echo "<h4>Acre:</h4>".$row->acre?>
-    <?php echo "<br>"?>
-    <?php echo "<h4>Kanal:</h4>".$row->kanal?>
-    <?php echo "<br>"?>
-    <?php echo "<h4>Marla:</h4>".$row->marla?>
-    <?php echo "<br>"?>
-    <?php echo "<h4>location:</h4>".$row->location?>
-    <?php echo "<br>"?>
+ <!--  <div class="col-md-3" style="border:1px solid #ccc;margin-left: 5px;">
+    <?php //echo "<h4>Name:</h4>".$row->name?>
+    <?php //echo "<br>"?>
+    <?php
+    //if($row->kanal == 0){
+      //echo "<h4>Diameter:</h4>".$row->kanal;
+  }?>
+    <?php //echo "<br>"?>
+    <?php //echo "<h4>Name:</h4>".$row->location?>
+    <?php //echo "<br>"?>
+    
 
-  </div>
+  </div> -->
+  <?php
+  foreach ($land as $row) {
+          ?>
+
+    <div class="col-lg-4">
+      <img src="img/land3.jpg" style="width: 300px;">
+      <div class="panel panel-default" style="width: 300px;">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $row->name?></div>
+    
+          <!-- List group -->
+          <ul class="list-group">
+            <li class="list-group-item"><?php if($row->kanal > 0){ echo 'Kanal '.$row->kanal; }?> 
+             <?php if($row->marla > 0){ echo 'Marla '.$row->marla; }?> </li>
+            <li class="list-group-item">Address: <?php echo $row->location?></li>
+            <li class="list-group-item list-group-item-success">Demand: <?php echo $row->demand?></li>
+          </ul>
+      </div>
+    </div>
   <?php } ?>
 </div>
 <?php
-}?>
+//}?>
 
-<!-- // echo "<h2>ok</h2>"; -->
- 
 
-          <!-- <table class="table">
-            <tr>
-              <th>Name</th>
-              <th>Acre</th>
-              <th>Kanal</th>
-              <th>Marla</th>
-              <th>Location</th>
-            </tr>
-            <?php 
-// foreach ($viewData as $row) {
-          ?> 
-            <tr>
-              <td><?= $row->name?></td>
-              <td><?= $row->acre?></td>
-              <td><?= $row->kanal?></td>
-              <td><?= $row->marla?></td>
-              <td><?= $row->location?></td>
-
-            </tr>  
-<?php
-// echo "<pre>".$row->name."</pre>";
-            // echo "<br>";
-  //      }
-  ?>
-  </table> -->
   <!-- sheikh salar end -->
 
 <!-- Example row of columns -->
