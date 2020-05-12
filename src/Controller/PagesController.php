@@ -87,5 +87,13 @@ class PagesController extends AppController
 
         $this->set('land',$data);
 
+
+        $data = $result->find('all')
+                    ->where([
+                        'is_public'=> 1,
+                    ]);
+
+        $this->set('allLands',$data);        
+
     }
 }

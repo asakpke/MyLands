@@ -27,6 +27,20 @@
   <p><a class="btn btn-lg btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Today</a></p> -->
 </div>
 <!-- sheikh salar start -->
+
+
+<div class="row">
+  <h2 class="text-primary">Lands Records</h2> 
+  <?php
+    foreach ($allLands as $land) {
+
+      echo $land->name;
+    }
+  ?>
+
+
+
+</div>
 <?php
 if ($this->Session->read('Auth.Admin')) {
 ?>
