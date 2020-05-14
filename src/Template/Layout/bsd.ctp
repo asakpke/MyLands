@@ -99,7 +99,13 @@ if ($this->Session->read('Auth.Admin')) {
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
             <a href="/admin/admins/profile">Edit Profile</a>
-            <a href="/admin/reports">Reports</a>
+            <a href="/admin/reports">Today</a>
+            <a href="/admin/reports">Yesterday</a>
+            <a href="/admin/reports">This Month</a>
+            <a href="/admin/reports">Last Month</a>
+            <a href="/admin/reports">This Year</a>
+            <a href="/admin/reports">Last Year</a>
+            <a href="/admin/reports">Custom</a>
             <a href="/admins/logout">Logout</a>
     </div>
 </div>
