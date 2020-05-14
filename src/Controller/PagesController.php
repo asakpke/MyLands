@@ -73,7 +73,7 @@ class PagesController extends AppController
 
         // $this->set('land',$data);
         
-        $result = $this->loadModel('Lands');  
+        $result = $this->loadModel('Lands'); 
         // echo $this->Auth->user('id');
         // echo '123';
         // echo $this->Session->read('Auth.Admin');

@@ -14,10 +14,21 @@ class ReportsController extends AppController
             'contain' => []
         ]);
 
-        $now = Time::now();
-		echo $now->year;
-		echo '-'. $now->month; 
-		echo '-'. $now->day; 
+        $result = $this->loadModel('Reports'); 
+
+        $data = $result->find('all');
+
+        $this->set('allLands',$data);        
+
+
+        
+        // $time = new Time('2020-05-15');
+
+        // echo $time->isYesterday();
+        // echo $time->isThisWeek();
+        // echo $time->isThisMonth();
+        // echo $time->isThisYear();
+
     }
 
 
