@@ -25,13 +25,12 @@ class ReportsController extends AppController
         // echo $today;
 
         // $time = new Time('2020-05-15');
-		$today = new Time('today');
-		$this->set('times',$today);
-        //echo $time->isYesterday();
-        // echo $time->isThisWeek();
-        // echo $time->isThisMonth();
-        // echo $time->isThisYear();
+		$time = new Time('2014-06-18');
 
+        echo $time->isYesterday();
+        echo $time->isThisWeek();
+        echo $time->isThisMonth();
+        echo $time->isThisYear();
     }
 
 
