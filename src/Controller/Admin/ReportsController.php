@@ -18,13 +18,16 @@ class ReportsController extends AppController
 
         $data = $result->find('all');
 
-        $this->set('allLands',$data);        
+        $this->set('reports',$data);        
 
 
-        
+		
+        // echo $today;
+
         // $time = new Time('2020-05-15');
-
-        // echo $time->isYesterday();
+		$today = new Time('today');
+		$this->set('times',$today);
+        //echo $time->isYesterday();
         // echo $time->isThisWeek();
         // echo $time->isThisMonth();
         // echo $time->isThisYear();
