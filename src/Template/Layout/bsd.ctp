@@ -42,49 +42,49 @@ echo '<li>'.$this->Html->link(__('Reports'), ['controller' => 'Reports', 'action
 /*salar start*/
 
 .dropbtn
-    {
-        background-color: #4CAF50;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-    }
+{
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
 
-    .dropdown
-    {
-        position: relative;
-        display: inline-block;
-    }
-    .dropdown-content
-    {
-        display: none;
-        position: absolute;
-        min-width: 160px;
-        box-shadow: 0 8px 16px 0 
-        rgba(0,0,0,0.2);
-        z-index: 1;
-    }
+.dropdown
+{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content
+{
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    ox-shadow: 0 8px 16px 0 
+    rgba(0,0,0,0.2);
+    z-index: 1;
+}
 
 .dropdown-content a
-    {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        background:#eee; 
-    }
+{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background:#eee; 
+}
 .dropdown-content a:hover
-    {
-        background-color: #ddd;
-    }
-    .dropdown:hover .dropdown-content
-    {
-        display: block;
-    }
-    .dropdown:hover .dropbtn
-    {
-        background-color: #3e8e41;
-    }
+{
+    background-color: #ddd;
+}
+.dropdown:hover .dropdown-content
+{
+    display: block;
+}
+.dropdown:hover .dropbtn
+{
+    background-color: #3e8e41;
+}
 
     /*salar end*/
 
