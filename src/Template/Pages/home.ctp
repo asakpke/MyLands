@@ -30,6 +30,10 @@
 
 
 <div class="row">
+  <?php
+   if (empty($allLands)) {
+}
+  ?>
   <h2 class="text-primary">Lands Records</h2> 
   <?php
     foreach ($allLands as $land) {?>
@@ -58,9 +62,11 @@
 <?php
 if ($this->Session->read('Auth.Admin')) {
 ?>
-<div class="row">
-  <h2 class="text-primary">Lands Records</h2> 
-
+<div class="row"> 
+ <?php
+   if (empty($land)) {
+}
+  ?>
   <?php
   foreach ($land as $row) {
           ?>
