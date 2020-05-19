@@ -27,7 +27,18 @@
 		switch ($date) {
 
 			case 'Today':
-				echo '<h4 class="text-danger">'."The selected date is: ".date("Y-m-d");
+				// echo '<h4 class="text-danger">'."The selected date is: ".date("d/m/Y ");
+
+				foreach ($reports as $report) {
+					$today = $report->created;
+					
+					
+				}
+				
+						echo $report->created;
+						echo "<br>";
+					
+				
 				
 				break;
 			case 'Yesterday':
