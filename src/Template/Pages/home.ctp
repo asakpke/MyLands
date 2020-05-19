@@ -60,22 +60,7 @@ if ($this->Session->read('Auth.Admin')) {
 ?>
 <div class="row">
   <h2 class="text-primary">Lands Records</h2> 
-  <?php
-  //foreach ($land as $row) {
-          ?> 
- <!--  <div class="col-md-3" style="border:1px solid #ccc;margin-left: 5px;">
-    <?php //echo "<h4>Name:</h4>".$row->name?>
-    <?php //echo "<br>"?>
-    <?php
-    //if($row->kanal == 0){
-      //echo "<h4>Diameter:</h4>".$row->kanal;
-  }?>
-    <?php //echo "<br>"?>
-    <?php //echo "<h4>Name:</h4>".$row->location?>
-    <?php //echo "<br>"?>
-    
 
-  </div> -->
   <?php
   foreach ($land as $row) {
           ?>
@@ -98,7 +83,7 @@ if ($this->Session->read('Auth.Admin')) {
   <?php } ?>
 </div>
 <?php
-//}?>
+}?>
 
 
   <!-- sheikh salar end -->
