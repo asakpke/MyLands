@@ -1,6 +1,14 @@
+<!-- <?php
+// echo $this->Session->read('Auth.Admin');
+// pr($this->Session->read('Auth.Admin'));
+// pr($this->Session->read('Auth.Admin.id'));
+// echo $this->Session->read('Auth.Admin.id');
+?> -->
 <!-- Jumbotron -->
 <div class="jumbotron">
-  <h1>
+    <?=$HomepageIntoText?>
+  
+  <!-- <h1>
     <span class="text-danger">
       What's
       <img width="64" alt="Logo" src="/img/logo/logo64.png">
@@ -8,17 +16,92 @@
     </span>
   </h1>
   <p class="lead">
-<!-- <img width="32" alt="Logo" src="/img/logo/logo32.png">
-    MyLands.pk is a home for property dealers. You can maintain your private or public lands listing online from any device instead of dumping your non searchable registers at office again & again. --> 
-    <?=$HomepageIntoText?>
-<!-- <img width="32" alt="Logo" src="/img/logo/logo32.png">
-    MyLands.pk is just not launched yet fully. Are you curious about current working status? Please contact me on <span class="em-addr text-success"></span>. You may provide your contact information to get early access, 15 days <big>FREE</big> demo & discounts up to <big class="text-primary">50%</big> for one year. -->
+<img width="32" alt="Logo" src="/img/logo/logo32.png">
+    MyLands.pk is a home for property dealers. You can maintain your private or public lands listing online from any device instead of dumping your non searchable registers at office again & again. 
+<img width="32" alt="Logo" src="/img/logo/logo32.png">
+    MyLands.pk is just not launched yet fully. Are you curious about current working status? Please contact me on <span class="em-addr text-success"></span>. You may provide your contact information to get early access, 15 days <big>FREE</big> demo & discounts up to <big class="text-primary">50%</big> for one year.
   </p>
   <p dir="ltr" class="noto">
 مائی لینڈز ڈاٹ پی کے پراپرتی ڈیلرز کے لیے پروگرام ہے۔ اس میں آپ جائیداد کا ریکارڈ رکھ سکتے ہیں اور سرچ بھی کر  سکتے ہیں۔ یہ ریکارڈ آپ صرف اپنے لیے بھی محفوظ کر سکتے ہیں یا اسے پبلک بنا سکتے ہیں ۔ پبلک ریکارڈز سب لوگ دیکھ سکتے ہیں۔ اپنے آفس کے رجسٹر کھاتوں سے جان چھڑائیں اور آن لائن  کے طرف آئیں۔ 
   </p>
-  <p><a class="btn btn-lg btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Today</a></p>
+  <p><a class="btn btn-lg btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Today</a></p> -->
 </div>
+<!-- sheikh salar start -->
+
+
+<div class="row">
+  <h2 class="text-primary">Lands Records</h2> 
+  <?php
+    foreach ($allLands as $land) {?>
+
+      <div class="col-lg-4">
+      <img src="img/land3.jpg" style="width: 300px;">
+      <div class="panel panel-default" style="width: 300px;">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?></div>
+    
+          <!-- List group -->
+          <ul class="list-group">
+            <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
+             <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
+            <li class="list-group-item">Address: <?php echo $land->location?></li>
+            <li class="list-group-item list-group-item-success">Demand: <?php echo $land->demand?></li>
+          </ul>
+      </div>
+    </div>
+   <?php }
+  ?>
+
+
+
+</div>
+<?php
+if ($this->Session->read('Auth.Admin')) {
+?>
+<div class="row">
+  <h2 class="text-primary">Lands Records</h2> 
+  <?php
+  //foreach ($land as $row) {
+          ?> 
+ <!--  <div class="col-md-3" style="border:1px solid #ccc;margin-left: 5px;">
+    <?php //echo "<h4>Name:</h4>".$row->name?>
+    <?php //echo "<br>"?>
+    <?php
+    //if($row->kanal == 0){
+      //echo "<h4>Diameter:</h4>".$row->kanal;
+  }?>
+    <?php //echo "<br>"?>
+    <?php //echo "<h4>Name:</h4>".$row->location?>
+    <?php //echo "<br>"?>
+    
+
+  </div> -->
+  <?php
+  foreach ($land as $row) {
+          ?>
+
+    <div class="col-lg-4">
+      <img src="img/land3.jpg" style="width: 300px;">
+      <div class="panel panel-default" style="width: 300px;">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $row->name?></div>
+    
+          <!-- List group -->
+          <ul class="list-group">
+            <li class="list-group-item"><?php if($row->kanal > 0){ echo 'Kanal '.$row->kanal; }?> 
+             <?php if($row->marla > 0){ echo 'Marla '.$row->marla; }?> </li>
+            <li class="list-group-item">Address: <?php echo $row->location?></li>
+            <li class="list-group-item list-group-item-success">Demand: <?php echo $row->demand?></li>
+          </ul>
+      </div>
+    </div>
+  <?php } ?>
+</div>
+<?php
+//}?>
+
+
+  <!-- sheikh salar end -->
 
 <!-- Example row of columns -->
 <div class="row">

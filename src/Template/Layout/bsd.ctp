@@ -31,7 +31,7 @@ echo '<li>'.$this->Html->link(__('Land Statuses'), ['controller' => 'LandStatuse
 echo '<li>'.$this->Html->link(__('Costs'), ['controller' => 'Costs', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Page Elements'), ['controller' => 'PageElements', 'action' => 'index']).'</li>';
-
+echo '<li>'.$this->Html->link(__('Reports'), ['controller' => 'Reports', 'action' => 'index']).'</li>';
 
 ?>
 <head>
@@ -98,7 +98,7 @@ if ($this->Session->read('Auth.Admin')) {
 <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
-            <a href="/admin/admins/profile">Profile</a>
+            <a href="/admin/admins/profile">Edit Profile</a>
             <a href="/admins/logout">Logout</a>
     </div>
 </div>
