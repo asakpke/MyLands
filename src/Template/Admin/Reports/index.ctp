@@ -30,16 +30,21 @@
 				// echo '<h4 class="text-danger">'."The selected date is: ".date("d/m/Y ");
 
 				foreach ($reports as $report) {
-					$today = $report->created;
+					// $today = $report->created;
 					
 					
 				}
 				
-						echo $report->created;
-						echo "<br>";
-					
-				
-				
+				echo 'Name: '.$report->name;
+				echo "<br>";
+				echo 'Location: '.$report->location;
+				echo "<br>";
+				echo "Kanal: ".$report->kanal;
+				echo "<br>";
+				echo "Marla: ".$report->marla;
+				echo "<br>";
+				echo "Created: ".$report->created;
+						
 				break;
 			case 'Yesterday':
 				echo '<h4 class="text-danger">'."The selected date is: ".$date;

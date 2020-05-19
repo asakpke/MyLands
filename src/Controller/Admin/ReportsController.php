@@ -13,16 +13,22 @@ class ReportsController extends AppController
     	$admin = $this->Admins->get($this->Auth->user('id'), [
             'contain' => []
         ]);
+    
+    if ($this->request->is('post')){
 
-        $result = $this->loadModel('Reports'); 
-        $asd = $this->loadModel('Lands'); 
+        $result = $this->loadModel('Lands'); 
 
-        $data = $result->find('all')
-        	->where([
-                      'created' => date("Y-m-d"),
-                    ]) ;
+        $data = $result->find('all'
+            ->where([
+                // 'created'=> $this->request->getData(),
+                'created'=> date('Y-m-d'),
 
-        $this->set('reports',$data);        
+            ])
+
+        );
+            
+    }
+            $this->set('reports',$data);    
 
 
 		
