@@ -32,12 +32,11 @@
 <div class="row">
   <?php
    if (empty($allLands)) {
-}
-  ?>
-  <h2 class="text-primary">Lands Records</h2> 
-  <?php
+  }
+  else
+  {
     foreach ($allLands as $land) {?>
-
+<h2 class="text-primary">Lands Records</h2>
       <div class="col-lg-4">
       <img src="img/land3.jpg" style="width: 300px;">
       <div class="panel panel-default" style="width: 300px;">
@@ -54,6 +53,7 @@
       </div>
     </div>
    <?php }
+  }
   ?>
 
 
@@ -65,7 +65,7 @@ if ($this->Session->read('Auth.Admin')) {
 <div class="row"> 
  <?php
    if (empty($land)) {
-}
+}else{
   ?>
   <?php
   foreach ($land as $row) {
@@ -86,7 +86,8 @@ if ($this->Session->read('Auth.Admin')) {
           </ul>
       </div>
     </div>
-  <?php } ?>
+  <?php } 
+  }?>
 </div>
 <?php
 }?>
