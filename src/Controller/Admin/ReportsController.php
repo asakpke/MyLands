@@ -13,6 +13,7 @@ class ReportsController extends AppController
     	$admin = $this->Admins->get($this->Auth->user('id'), [
             'contain' => []
         ]);
+
     
     if ($this->request->is('post')){
 
@@ -21,13 +22,13 @@ class ReportsController extends AppController
         $data = $result->find('all')
             ->where([
                 // 'created'=> $this->request->getData(),
-                'created'=> strtotime("today"),
+                'DATE(lands.created) >='=> strtotime("today"),
 
             ]);
-        
+         $this->set('dates',$data); 
     }
  
-    $this->set('reports',$data); 
+   
 		
         // echo $today;
 
