@@ -57,16 +57,18 @@
 			break;
 		case 'This Month':
 			// echo '<h4 class="text-danger">'."The selected date is: ".$date;
-				$d=strtotime("+1 Months");
+			$d=strtotime("+1 Months");
 			echo date("Y-m-d h:i:sa", $d) . "<br>";
 			break;
 		case 'This Year':
-			echo '<h4 class="text-danger">'."The selected date is: ".$date;
-				
+			// echo '<h4 class="text-danger">'."The selected date is: ".$date;
+			$d=strtotime("this year");
+			echo date("Y-m-d h:i:sa", $d) . "<br>";	
 			break;
 		case 'Last Year':
-			echo '<h4 class="text-danger">'."The selected date is: ".$date;
-				
+			// echo '<h4 class="text-danger">'."The selected date is: ".$date;
+			$d=strtotime("-1 Year");
+			echo date("Y-m-d h:i:sa", $d) . "<br>";	
 			break;				
 			
 		default:

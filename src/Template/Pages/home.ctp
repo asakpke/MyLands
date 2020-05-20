@@ -29,44 +29,17 @@
 <!-- sheikh salar start -->
 
 
-<div class="row">
-  <?php
-   if (empty($allLands)) {
-  }
-  else
-  {
-    foreach ($allLands as $land) {?>
-<h2 class="text-primary">Lands Records</h2>
-      <div class="col-lg-4">
-      <img src="img/land3.jpg" style="width: 300px;">
-      <div class="panel panel-default" style="width: 300px;">
-        <!-- Default panel contents -->
-        <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?></div>
-    
-          <!-- List group -->
-          <ul class="list-group">
-            <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
-             <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
-            <li class="list-group-item">Address: <?php echo $land->location?></li>
-            <li class="list-group-item list-group-item-success">Demand: <?php echo $land->demand?></li>
-          </ul>
-      </div>
-    </div>
-   <?php }
-  }
-  ?>
 
 
-
-</div>
 <?php
 if ($this->Session->read('Auth.Admin')) {
 ?>
 <div class="row"> 
  <?php
    if (empty($land)) {
-}else{
+}
   ?>
+  <h2 class="text-primary">Lands Records</h2> 
   <?php
   foreach ($land as $row) {
           ?>
@@ -86,11 +59,42 @@ if ($this->Session->read('Auth.Admin')) {
           </ul>
       </div>
     </div>
-  <?php } 
-  }?>
+  <?php } ?>
 </div>
 <?php
-}?>
+}
+else{
+  ?>
+<div class="row">
+  <?php
+   if (empty($allLands)) {
+}
+  ?>
+  <h2 class="text-primary">Lands Records</h2> 
+  <?php
+    foreach ($allLands as $land) {?>
+
+      <div class="col-lg-4">
+      <img src="img/land3.jpg" style="width: 300px;">
+      <div class="panel panel-default" style="width: 300px;">
+        <!-- Default panel contents -->
+        <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?></div>
+    
+          <!-- List group -->
+          <ul class="list-group">
+            <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
+             <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
+            <li class="list-group-item">Address: <?php echo $land->location?></li>
+            <li class="list-group-item list-group-item-success">Demand: <?php echo $land->demand?></li>
+          </ul>
+      </div>
+    </div>
+   <?php }
+  ?>
+</div>
+<?php
+}
+?>
 
 
   <!-- sheikh salar end -->
