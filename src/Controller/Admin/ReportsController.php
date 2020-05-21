@@ -25,6 +25,7 @@ class ReportsController extends AppController
 
             ]);
         $this->set('reports',$data); 
+
     }
  
     

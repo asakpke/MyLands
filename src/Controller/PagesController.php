@@ -74,26 +74,20 @@ class PagesController extends AppController
         // $this->set('land',$data);
         
         $result = $this->loadModel('Lands'); 
-        // echo $this->Auth->user('id');
-        // echo '123';
-        // echo $this->Session->read('Auth.Admin');
-        // echo $this->Session->read('Auth.Admin.id');
-        // die;
-        $data = $result->find('all')
-                    ->where([
-                        'is_public'=> 1,
-                        'admin_id'=> $this->Auth->user('id'),
-                    ]);
-
-        $this->set('land',$data);
-
-
-        $data = $result->find('all')
-                    ->where([
-                        'is_public'=> 1,
-                    ]);
-
-        $this->set('allLands',$data);        
-
+        
+        // dd ($this->viewVars['admin']->id);
+        if (!empty($this->viewVars['admin']->id)) {
+             $data = $result->find('all')->where([
+                'is_public'=> 1,
+                'admin_id'=> $this->viewVars['admin']->id,
+            ]);
+        }
+        else {
+            $data = $result->find('all')->where([
+                'is_public'=> 1,
+            ]);
+        }
+            
+        $this->set('allLands',$data);
     }
 }

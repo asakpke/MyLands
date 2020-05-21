@@ -28,49 +28,10 @@
 </div>
 <!-- sheikh salar start -->
 
-
-
-
-<?php
-if ($this->Session->read('Auth.Admin')) {
-?>
-<div class="row"> 
- <?php
-   if (empty($land)) {
-}
-  ?>
-  <h2 class="text-primary">Lands Records</h2> 
-  <?php
-  foreach ($land as $row) {
-          ?>
-
-    <div class="col-lg-4">
-      <img src="img/land3.jpg" style="width: 300px;">
-      <div class="panel panel-default" style="width: 300px;">
-        <!-- Default panel contents -->
-        <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $row->name?></div>
-    
-          <!-- List group -->
-          <ul class="list-group">
-            <li class="list-group-item"><?php if($row->kanal > 0){ echo 'Kanal '.$row->kanal; }?> 
-             <?php if($row->marla > 0){ echo 'Marla '.$row->marla; }?> </li>
-            <li class="list-group-item">Address: <?php echo $row->location?></li>
-            <li class="list-group-item list-group-item-success">Demand: <?php echo $row->demand?></li>
-          </ul>
-      </div>
-    </div>
-  <?php } ?>
-</div>
-<?php
-}
-else{
-  ?>
 <div class="row">
   <?php
-   if (empty($allLands)) {
-}
-  ?>
-  <h2 class="text-primary">Lands Records</h2> 
+  if (!empty($allLands)) {?>
+    <!-- <h2 class="text-primary">Lands Records</h2>  -->
   <?php
     foreach ($allLands as $land) {?>
 
@@ -89,13 +50,13 @@ else{
           </ul>
       </div>
     </div>
-   <?php }
+    <?php 
+    }
+  }else{
+
+  }
   ?>
 </div>
-<?php
-}
-?>
-
 
   <!-- sheikh salar end -->
 
