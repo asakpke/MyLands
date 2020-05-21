@@ -21,7 +21,8 @@ class ReportsController extends AppController
         $data = $result->find('all')
             ->where([
                 // 'created'=> $this->request->getData(),
-                'lands.created'=> strtotime("today"),
+                // 'lands.created'=> strtotime("today"),
+                'lands.created' => $this->request->getData(),
 
             ]);
         $this->set('reports',$data); 

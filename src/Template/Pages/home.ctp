@@ -31,7 +31,7 @@
 <div class="row">
   <?php
   if (!empty($allLands)) {?>
-    <!-- <h2 class="text-primary">Lands Records</h2>  -->
+    <h2 class="text-primary">Lands Records</h2> 
   <?php
     foreach ($allLands as $land) {?>
 
@@ -53,7 +53,7 @@
     <?php 
     }
   }else{
-
+    
   }
   ?>
 </div>
