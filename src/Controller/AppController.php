@@ -362,7 +362,8 @@ class AppController extends Controller
             'HeaderMenu',
             'HomepageIntoText',
             'HomepageFooterText',
-            'HomepageFooter'//,
+            'HomepageFooter',
+            'admin'//,
         ));
     } // initialize()
 } // AppController
