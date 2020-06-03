@@ -5,78 +5,92 @@
 	<div class="actions columns col-lg-2 col-md-3">
 		<label for="reports">Choose a Date:</label>
 		<?= $this->Form->create('reports',['type'=>'post']) ?>
-			<select name="reports" style="width: 100px; text-align: center;">
-				 <option value="">Select</option>
+			<select name="reports" id="mySelect" onchange="admSelectCheck(this);" style="width: 100px; text-align: center;">
+				 <option value="" disabled selected>Select</option>
 				 <option value="Today">Today</option>
 				 <option value="Yesterday">Yesterday</option>
 				 <option value="This Month">This Month</option>
 				 <option value="This Year">This Year</option>
 				 <option value="Last Year">Last Year</option>
-				 <option value="Custom">Custom</option>
+				 <option value="Custom" id="admOption">Custom</option>
 			</select><br><br>
-			<button class="btn btn-success">Submit</button> 
+			<button class="btn btn-success">Submit</button>
 		<?=$this->Form->end();?>
 	  </div>
 </div>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<div id="admDivCheck" style="display:none;">
+		<?= $this->Form->create('reports',['type'=>'get']) ?>
+		<?=$this->Form->input('start_date',['class'=>'datepicker',]); ?>
+		<?=$this->Form->input('end_date',['class'=>'datepicker',]); ?>
+		<button>Search</button>
+		<?=$this->Form->end();?>
+
+ </div>
+
+
+   <script>
+   	
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+  </script>
+
+<script type="text/javascript">
 	
-<?php
-	if (isset($_POST['reports'])) {
-		
-	$date=$_POST['reports'];
-
-	switch ($date) {
-
-		case 'Today':
-				echo '<h4 class="text-danger">'."The selected date is: ".date("d/m/Y ");
-
-			// foreach ($reports as $report) {
-			// 		// $today = $report->created;
-			// 		// echo 'Name: '.$report->name;
-					
-			// }
-		
-			// $d=strtotime("today");
-			// echo date("Y-m-d h:i:sa", $d) . "<br>";
-				
-				// echo 'Name: '.$report->name;
-				// echo "<br>";
-				// echo 'Location: '.$report->location;
-				// echo "<br>";
-				// echo "Kanal: ".$report->kanal;
-				// echo "<br>";
-				// echo "Marla: ".$report->marla;
-				// echo "<br>";
-				// echo "Created: ".$report->created;
-						
-			break;
-		case 'Yesterday':
-			// echo '<h4 class="text-danger">'."The selected date is: ".$date;
-			$d=strtotime("yesterday");
-			echo date("Y-m-d h:i:sa", $d) . "<br>";
-				
-			break;
-		case 'This Month':
-			// echo '<h4 class="text-danger">'."The selected date is: ".$date;
-			$d=strtotime("+1 Months");
-			echo date("Y-m-d h:i:sa", $d) . "<br>";
-			break;
-		case 'This Year':
-			// echo '<h4 class="text-danger">'."The selected date is: ".$date;
-			$d=strtotime("this year");
-			echo date("Y-m-d h:i:sa", $d) . "<br>";	
-			break;
-		case 'Last Year':
-			// echo '<h4 class="text-danger">'."The selected date is: ".$date;
-			$d=strtotime("-1 Year");
-			echo date("Y-m-d h:i:sa", $d) . "<br>";	
-			break;				
-			
-		default:
-			echo '<h4 class="text-danger">'."Please select date</h4>";
-				
-			break;
-	}
-
+	function admSelectCheck(nameSelect)
+{
+	// alert("admOption");
+    
+    if(nameSelect){
+        admOptionValue = document.getElementById("admOption").value;
+        if(admOptionValue == nameSelect.value){
+            document.getElementById("admDivCheck").style.display = "block";
+        }
+        else{
+            document.getElementById("admDivCheck").style.display = "none";
+        }
+    }
+    else{
+        document.getElementById("admDivCheck").style.display = "none";
+    }
 }
-	
+</script>
+
+<!-- <script>
+function myFunction() {
+  var x = document.getElementById("mySelect").value = "Custom";
+  document.getElementById("demo").innerHTML = "You selected: " + x;
+}
+</script> -->
+<br>
+<div class="row">	
+<?php
+if (!empty($reports)) {
+
+	foreach ($reports as $report) {
+		?>
+		
+			<div class="col-lg-4">
+				<!-- <img src="img/land2.jpg" style="width: 300px;"> -->
+				<div class="panel panel-default" style="width: 300px;">
+					<div class="panel-heading" style="font-weight: bold;">Name: <?php echo $report->name?></div>
+					<ul class="list-group">
+			            <li class="list-group-item"><?php if($report->kanal > 0){ echo 'Kanal '.$report->kanal; }?> 
+			             <?php if($report->marla > 0){ echo 'Marla '.$report->marla; }?> </li>
+			            <li class="list-group-item">Address: <?php echo $report->location?></li>
+			            <li class="list-group-item list-group-item-success">Demand: <?php echo $report->demand?>
+			            </li>
+		          	</ul>
+		        </div>  	
+			</div>	
+	<?php	
+	}
+}
 ?>
+</div>
+	
+
+	

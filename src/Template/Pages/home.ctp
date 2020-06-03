@@ -29,11 +29,15 @@
 <!-- sheikh salar start -->
 
 <div class="row">
+  
   <?php
   if (!empty($allLands)) {?>
-    <h2 class="text-primary">Lands Records</h2> 
+    <h2 class="text-primary">Lands Records</h2>
+    
+    
+
   <?php
-    foreach ($allLands as $land) {?>
+    foreach ($page as $land) {?>
 
       <div class="col-lg-4">
       <img src="img/land3.jpg" style="width: 300px;">
@@ -50,14 +54,24 @@
           </ul>
       </div>
     </div>
+
     <?php 
     }
   }else{
     
   }
   ?>
+  <div class="row">
+  <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+        </ul>
+        <p><?= $this->Paginator->counter() ?></p>
+    </div>
 </div>
-
+</div>
   <!-- sheikh salar end -->
 
 <!-- Example row of columns -->

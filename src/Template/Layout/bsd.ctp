@@ -17,6 +17,7 @@ elseif ($this->fetch('title') && Configure::read('App.title')) {
     $this->append('title', sprintf(' | %s', Configure::read('layoutApp.title')));
 }
 
+
 $this->start('navbar.top');
 // echo '<li><a href="#">Hello</a></li>';
 
@@ -34,7 +35,9 @@ echo '<li>'.$this->Html->link(__('Page Elements'), ['controller' => 'PageElement
 echo '<li>'.$this->Html->link(__('Reports'), ['controller' => 'Reports', 'action' => 'index']).'</li>';
 
 ?>
-<head>
+
+<!-- abc -->
+<!-- <head> -->
     
 <style type="text/css">
     
@@ -144,6 +147,7 @@ $this->prepend('script', $this->Html->script([
     '/bootstrap/js/dropdown',
     '/bootstrap/js/alert',
     '//cdnjs.cloudflare.com/ajax/libs/cleave.js/1.4.7/cleave.min.js', 
+    // 'jquery-3.5.1.js',
 ]));
 
 ?><!DOCTYPE html>
