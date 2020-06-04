@@ -299,7 +299,6 @@ class AppController extends Controller
                                 <p><a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Now &raquo;</a></p>
                               </div>';
             $HomepageFooter = '<div class="col-md-4">    
-
           <p>
             &copy
             2018 - 2020
@@ -313,9 +312,7 @@ class AppController extends Controller
             <span class="em-addr text-success"></span>
           </p>          
         </div>
-        <div class="col-md-4">
-          <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
-        </div>';                 
+        ';                 
 
 
 

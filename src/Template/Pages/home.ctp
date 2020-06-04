@@ -1,9 +1,9 @@
-<!-- <?php
+<?php
 // echo $this->Session->read('Auth.Admin');
 // pr($this->Session->read('Auth.Admin'));
 // pr($this->Session->read('Auth.Admin.id'));
 // echo $this->Session->read('Auth.Admin.id');
-?> -->
+?> 
 <!-- Jumbotron -->
 <div class="jumbotron">
     <?=$HomepageIntoText?>
@@ -29,33 +29,54 @@
 <!-- sheikh salar start -->
 
 <div class="row">
+  
   <?php
-  if (!empty($allLands)) {?>
-    <h2 class="text-primary">Lands Records</h2> 
-  <?php
-    foreach ($allLands as $land) {?>
+  if (!empty($page)) {?>
+    <h2 class="text-primary">Lands Records</h2>
+    
+    
 
+  <?php
+    foreach ($page as $land) {?>
       <div class="col-lg-4">
-      <img src="img/land3.jpg" style="width: 300px;">
-      <div class="panel panel-default" style="width: 300px;">
+        <img src="img/land3.jpg" style="width: 300px;">
+        <div class="panel panel-default" style="width: 300px;">
         <!-- Default panel contents -->
-        <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?></div>
+          <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?></div>
     
-          <!-- List group -->
-          <ul class="list-group">
-            <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
-             <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
-            <li class="list-group-item">Address: <?php echo $land->location?></li>
-            <li class="list-group-item list-group-item-success">Demand: <?php echo $land->demand?></li>
-          </ul>
-      </div>
+            <!-- List group -->
+            <ul class="list-group">
+              <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
+               <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
+              <li class="list-group-item">Address: <?php echo $land->location?></li>
+              <li class="list-group-item list-group-item-success">Demand: <?php echo $land->demand?></li>
+            </ul>
+        </div>
     </div>
-    <?php 
+
+  <?php 
     }
-  }else{
-    
+  }
+  else{ 
   }
   ?>
+  </div>
+
+  <style type="text/css">
+    .pagination li{
+      display: inline-block;
+      margin-left: 5px;
+    }
+  </style>
+  <div class="row">
+    <div class="paginator">
+      <ul class="pagination">
+        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('next') . ' >') ?>
+      </ul>
+      <p><?= $this->Paginator->counter() ?></p>
+    </div>
 </div>
 
   <!-- sheikh salar end -->

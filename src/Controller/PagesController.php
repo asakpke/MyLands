@@ -70,24 +70,95 @@ class PagesController extends AppController
 //                         'is_public'=> 1,
 // //                        'admin_id'=> $this->Auth->user('id'),
 //                     ]);
-
-        // $this->set('land',$data);
-        
         $result = $this->loadModel('Lands'); 
-        
-        // dd ($this->viewVars['admin']->id);
+
+        $this->paginate = [
+                'limit' => 3,
+
+            // 'conditions' => [
+            //     'admin_id' => $this->viewVars['admin']->id,
+            // ],
+            // 'contain' => [
+            //     // 'Admins'
+            // ]
+        ];
         if (!empty($this->viewVars['admin']->id)) {
-             $data = $result->find('all')->where([
+            # code...
+            // dd($this->viewVars['admin']->id);
+        
+        $pages = $this->paginate($result->find('all')->where([
                 'is_public'=> 1,
                 'admin_id'=> $this->viewVars['admin']->id,
-            ]);
+            ]));
         }
-        else {
-            $data = $result->find('all')->where([
+        else
+        {
+            $pages = $this->paginate($result->find('all')->where([
                 'is_public'=> 1,
-            ]);
+                // 'admin_id'=> $this->viewVars['admin']->id,
+            ]));
         }
+        // $pages = $this->paginate($result);
+        $this->set('page',$pages);
+        // dd($pages);
+
+        // $this->set('land',$data);
+        // if ($this->request->is('post')) {
+            // dd($this->request->getData('filter'));
+
+            // $conditions = array(
+            // 'admin_id'=>$this->Auth->user('id'),
+            // );
+
+            // switch ($this->request->getData('filter')) {
+
+            //     case 'Ascending':
+            //         $conditions[] = array('order'=>array('lands.id' => 'ASC'));
+            //         break;
+
+            //     case 'Descending':
+            //         $conditions[] = array('order'=>array('lands.id' => 'DESC'));
+            //         break;
+                
             
-        $this->set('allLands',$data);
+            // }
+
+
+        // $result = $this->loadModel('Lands'); 
+
+        
+        // $this->Paginator->options([
+        //     'url' => [
+        //     'sort' => 'id',
+        //     'direction' => 'desc',
+        //     'page' => 6,
+        //     'lang' => 'en'
+        //     ]
+        // ]);
+        
+        // dd ($this->viewVars['admin']->id);
+        // if (!empty($this->viewVars['admin']->id)) {
+        //      $data = $result->find('all')->where([
+        //         'is_public'=> 1,
+        //         'admin_id'=> $this->viewVars['admin']->id,
+        //     ]);
+        // }
+        // else {
+        //     $data = $result->find('all')->where([
+        //         'is_public'=> 1,
+        //     ]);
+        // }
+
+        // // dd($data);
+        // // dd($data->toArray());
+        // // $this->paginate = [
+        // //     'conditions' => $conditions,
+
+        // // ];
+
+        // // $lands = $this->paginate($result);
+        
+        // $this->set('allLands',$data);
+        // }
     }
 }

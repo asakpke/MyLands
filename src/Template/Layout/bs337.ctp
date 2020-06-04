@@ -142,15 +142,18 @@
             <!-- <span class="text-muted">MyLands.pk</span> -->
           <!-- </p> -->
         <!-- </div> -->
-        <!-- <div class="col-md-4">         -->
-          <!-- <p> -->
-            <!-- Contact: -->
-            <!-- <span class="em-addr text-success"></span> -->
-          <!-- </p>           -->
-        <!-- </div> -->
+        <!-- <div class="col-md-4">        
+          <p>
+            Contact:
+            <span class="em-addr text-success"></span>
+          </p>          
+        </div> -->
         <!-- <div class="col-md-4">
           <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
         </div> -->
+        <div class="col-md-4" style="right: 30px;position: absolute;">
+          <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
+        </div>
       </footer>
 
     </div> <!-- /container -->

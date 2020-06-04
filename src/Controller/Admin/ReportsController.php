@@ -10,38 +10,77 @@ class ReportsController extends AppController
 {
 	public function index($id = null)
     {
-    	$admin = $this->Admins->get($this->Auth->user('id'), [
-            'contain' => []
-        ]);
-    
-    if ($this->request->is('post')){
+    	// $admin = $this->Admins->get($this->Auth->user('id'), [
+     //        'contain' => []
+     //    ]);
+    // $start_date = $this->request->query('start_date');
+    // $end_date = $this->request->query('end_date');
 
-        $result = $this->loadModel('Lands'); 
+    // $this->paginate = [
+    //     'conditions' => [
+    //         'DATE(lands.created) >=' => $start_date,
+    //         'DATE(lands.created) <=' => $end_date,
+
+    //     ]
+    // ];
+
+
+    if ($this->request->is('post')){
+        // dd($this->request->getData());
+        // dd($this->request->getData('reports'));
+        // dd(strtotime("today"));
+        // dd(date('Y-m-d',strtotime("today")));
+        // dd(date('Y-m-d',strtotime($this->request->getData('reports'))));
+
+        $conditions = array(
+            'admin_id'=>$this->Auth->user('id'),
+        );
+
+        switch ($this->request->getData('reports')) {
+            case 'Today':
+                $conditions[] = "DATE(created) = '".date('Y-m-d',strtotime("today"))."'";
+                break;
+
+            case 'Yesterday':
+                $conditions[] = "DATE(created) = '".date('Y-m-d',strtotime("yesterday"))."'";
+                break;
+            
+            case 'This Month':
+                $conditions[] = "DATE(created) BETWEEN '".date('Y-m-1')."' AND '".date('Y-m-31')."'";
+                // $conditions[] = "DATE(created) BETWEEN '".date('Y-04-1')."' AND '".date('Y-04-31')."'";
+                break;
+
+            case 'This Year':
+                $conditions[] = "DATE(created) BETWEEN '".date('Y-1-1')."' AND '".date('Y-12-31')."'";
+                break;
+            case 'Last Year':
+                $conditions[] = "DATE(created) BETWEEN '".date("Y-1-1",strtotime("-1 year"))."'AND '".date("Y-12-31",strtotime("-1 year"))."'";
+                break;
+            case 'Custom':
+                $conditions[] = "DATE(created) BETWEEN '".date($this->request->query('start_date'))."'AND '".date($this->request->query('end_date'))."'";
+                break;
+        }
+
+        $result = $this->loadModel('Lands');
 
         $data = $result->find('all')
-            ->where([
+            ->where(
+                // [
                 // 'created'=> $this->request->getData(),
                 // 'lands.created'=> strtotime("today"),
-                'lands.created' => $this->request->getData(),
+                // 'lands.created' => $this->request->getData(),
 
-            ]);
-        $this->set('reports',$data); 
+                // ]
+                $conditions
+            );
+        dd($data);
+        // dd($data->toArray());
+
+
+
+        $this->set('reports',$data);
 
     }
- 
     
-		
-        // echo $today;
-
-        // $time = new Time('2020-05-15');
-		// $time = new Time('2014-06-18');
-
-  //       echo $time->isYesterday();
-  //       echo $time->isThisWeek();
-  //       echo $time->isThisMonth();
-  //       echo $time->isThisYear();
     }
-
-
-
 }
