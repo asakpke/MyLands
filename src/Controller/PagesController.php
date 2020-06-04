@@ -70,8 +70,10 @@ class PagesController extends AppController
 //                         'is_public'=> 1,
 // //                        'admin_id'=> $this->Auth->user('id'),
 //                     ]);
-        $check=$this->paginate = [
-                'limit' => 2,
+        $result = $this->loadModel('Lands'); 
+
+        $this->paginate = [
+                'limit' => 3,
 
             // 'conditions' => [
             //     'admin_id' => $this->viewVars['admin']->id,
@@ -82,19 +84,21 @@ class PagesController extends AppController
         ];
         if (!empty($this->viewVars['admin']->id)) {
             # code...
+            // dd($this->viewVars['admin']->id);
         
-        $pages = $this->paginate($this->loadModel('Lands')->find('all')->where([
+        $pages = $this->paginate($result->find('all')->where([
                 'is_public'=> 1,
                 'admin_id'=> $this->viewVars['admin']->id,
             ]));
         }
         else
         {
-            $pages = $this->paginate($this->loadModel('Lands')->find('all')->where([
+            $pages = $this->paginate($result->find('all')->where([
                 'is_public'=> 1,
                 // 'admin_id'=> $this->viewVars['admin']->id,
             ]));
         }
+        // $pages = $this->paginate($result);
         $this->set('page',$pages);
         // dd($pages);
 
@@ -120,7 +124,7 @@ class PagesController extends AppController
             // }
 
 
-        $result = $this->loadModel('Lands'); 
+        // $result = $this->loadModel('Lands'); 
 
         
         // $this->Paginator->options([
