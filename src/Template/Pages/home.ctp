@@ -4,6 +4,13 @@
 // pr($this->Session->read('Auth.Admin.id'));
 // echo $this->Session->read('Auth.Admin.id');
 ?> 
+
+  <style type="text/css">
+    .pagination li{
+      display: inline-block;
+      margin-left: 5px;
+    }
+  </style>
 <!-- Jumbotron -->
 <div class="jumbotron">
     <?=$HomepageIntoText?>
@@ -31,10 +38,17 @@
 <div class="row">
   
   <?php
-  if (!empty($page)) {?>
+// if (empty($page)) {
+//   # code...
+//   echo "this is empty";
+// }else
+// {
+//   echo "This is not empty";
+// }
+// dd($page);
+  if (!empty($page)) {
+?>
     <h2 class="text-primary">Lands Records</h2>
-    
-    
 
   <?php
     foreach ($page as $land) {?>
@@ -43,7 +57,6 @@
         <div class="panel panel-default" style="width: 300px;">
         <!-- Default panel contents -->
           <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?></div>
-    
             <!-- List group -->
             <ul class="list-group">
               <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
@@ -53,32 +66,30 @@
             </ul>
         </div>
     </div>
-
-  <?php 
+  <?php
     }
+    // echo "ok";
   }
-  else{ 
+  else{
+    
+    echo '<h4 class="list-group-item list-group-item-success">No Lands Are Public Or Added, Login and Add some Lands or public the lands if added already and refresh the page again.</h4>';
   }
   ?>
   </div>
 
-  <style type="text/css">
-    .pagination li{
-      display: inline-block;
-      margin-left: 5px;
-    }
-  </style>
-  <div class="row">
-    <div class="paginator">
-      <ul class="pagination">
-        <?= $this->Paginator->prev('< ' . __('previous')) ?>
-        <?= $this->Paginator->numbers() ?>
-        <?= $this->Paginator->next(__('next') . ' >') ?>
-      </ul>
-      <p><?= $this->Paginator->counter() ?></p>
-    </div>
+<div class="row">
+  <div class="paginator">
+    <ul class="pagination">
+      <?= $this->Paginator->prev('< ' . __('previous')) ?>
+      <?= $this->Paginator->numbers() ?>
+      <?= $this->Paginator->next(__('next') . ' >') ?>
+    </ul>
+    <p><?= $this->Paginator->counter() ?></p>
+  </div>
 </div>
 
+<?php
+// }?>
   <!-- sheikh salar end -->
 
 <!-- Example row of columns -->

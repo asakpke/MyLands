@@ -99,7 +99,15 @@ class PagesController extends AppController
             ]));
         }
         // $pages = $this->paginate($result);
-        $this->set('page',$pages);
+        $results = $pages->toArray();
+        // if (!empty($results)) {
+        //     echo "it is not empty";
+        // }else{
+        //     echo "it is empty";
+        // }
+        // dd($results);
+        // $this->set('page',$pages);
+        $this->set('page',$results);
         // dd($pages);
 
         // $this->set('land',$data);
