@@ -14,22 +14,23 @@
 				 <option value="Last Year">Last Year</option>
 				 <option value="Custom" id="admOption">Custom</option>
 			</select><br><br>
+
 			<button class="btn btn-success">Submit</button>
 		<?=$this->Form->end();?>
 	  </div>
 </div>
+
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <div id="admDivCheck" style="display:none;">
-		<?= $this->Form->create('reports',['type'=>'get']) ?>
-		<?=$this->Form->input('start_date',['class'=>'datepicker',]); ?>
-		<?=$this->Form->input('end_date',['class'=>'datepicker',]); ?>
-		<button>Search</button>
-		<?=$this->Form->end();?>
+	<?= $this->Form->create('reports',['type'=>'get']) ?>
+	<?=$this->Form->input('start_date',['class'=>'datepicker',]); ?>
+	<?=$this->Form->input('end_date',['class'=>'datepicker',]); ?>
+	<?=$this->Form->end();?>
 
- </div>
-
+</div><br><br>
 
    <script>
    	
