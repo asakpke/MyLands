@@ -99,7 +99,15 @@ class PagesController extends AppController
             ]));
         }
         // $pages = $this->paginate($result);
-        $this->set('page',$pages);
+        $results = $pages->toArray();
+        // if (!empty($results)) {
+        //     echo "it is not empty";
+        // }else{
+        //     echo "it is empty";
+        // }
+        // dd($results);
+        // $this->set('page',$pages);
+        $this->set('page',$results);
         // dd($pages);
 
         // $this->set('land',$data);
@@ -126,39 +134,5 @@ class PagesController extends AppController
 
         // $result = $this->loadModel('Lands'); 
 
-        
-        // $this->Paginator->options([
-        //     'url' => [
-        //     'sort' => 'id',
-        //     'direction' => 'desc',
-        //     'page' => 6,
-        //     'lang' => 'en'
-        //     ]
-        // ]);
-        
-        // dd ($this->viewVars['admin']->id);
-        // if (!empty($this->viewVars['admin']->id)) {
-        //      $data = $result->find('all')->where([
-        //         'is_public'=> 1,
-        //         'admin_id'=> $this->viewVars['admin']->id,
-        //     ]);
-        // }
-        // else {
-        //     $data = $result->find('all')->where([
-        //         'is_public'=> 1,
-        //     ]);
-        // }
-
-        // // dd($data);
-        // // dd($data->toArray());
-        // // $this->paginate = [
-        // //     'conditions' => $conditions,
-
-        // // ];
-
-        // // $lands = $this->paginate($result);
-        
-        // $this->set('allLands',$data);
-        // }
     }
 }

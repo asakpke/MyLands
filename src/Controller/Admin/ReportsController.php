@@ -57,7 +57,7 @@ class ReportsController extends AppController
                 $conditions[] = "DATE(created) BETWEEN '".date("Y-1-1",strtotime("-1 year"))."'AND '".date("Y-12-31",strtotime("-1 year"))."'";
                 break;
             case 'Custom':
-                $conditions[] = "DATE(created) BETWEEN '".date($this->request->query('start_date'))."'AND '".date($this->request->query('end_date'))."'";
+                $conditions[] = "DATE(created) BETWEEN '".date($this->request->getData('start_date'))."'AND '".date($this->request->getData('end_date'))."'";
                 break;
         }
 
@@ -73,12 +73,12 @@ class ReportsController extends AppController
                 // ]
                 $conditions
             );
-        dd($data);
+        // dd($data);
         // dd($data->toArray());
 
+            $results = $data->toArray();
 
-
-        $this->set('reports',$data);
+            $this->set('reports',$results);
 
     }
     
