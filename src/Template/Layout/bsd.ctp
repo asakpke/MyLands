@@ -101,8 +101,8 @@ if ($this->Session->read('Auth.Admin')) {
 <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
-            <a href="/admin/admins/profile">Edit Profile</a>
-            <a href="/admins/logout">Logout</a>
+        <a href="/admin/admins/profile">Edit Profile</a>
+        <a href="/admins/logout">Logout</a>
     </div>
 </div>
 <?php
@@ -158,30 +158,31 @@ $this->prepend('script', $this->Html->script([
         <?= $this->fetch('title'); ?>
     </title>
     <?php
-        // Meta
-        echo $this->fetch('meta');
+    // Meta
+    echo $this->fetch('meta');
 
-        // Styles
-        echo $this->Less->less([
-            'Bootstrap.less/bootstrap.less'
-            // 'Bootstrap.less/cakephp/styles.less'
-        ]);
-        echo $this->fetch('css');
+    // Styles
+    echo $this->Less->less([
+        'Bootstrap.less/bootstrap.less'
+    // 'Bootstrap.less/cakephp/styles.less'
+    ]);
+    echo $this->fetch('css');
 
-        // Sometimes we'll want to send scripts to the top (rarely..)
-        echo $this->fetch('script.top');
+    // Sometimes we'll want to send scripts to the top (rarely..)
+    echo $this->fetch('script.top');
     ?>
     <style>
-    h6.subheader {
-        font-weight: bold;
-        /*color: brown;*/
-        /*color: darkgreen;*/
-        color: forestgreen;
-    }
 
-    .pagination > li {
-        display: inline-block;
-    }
+        h6.subheader {
+            font-weight: bold;
+            /*color: brown;*/
+            /*color: darkgreen;*/
+            color: forestgreen;
+        }
+
+        .pagination > li {
+            display: inline-block;
+        }
     </style>
 </head>
 <body>

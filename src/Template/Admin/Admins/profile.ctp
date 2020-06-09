@@ -13,6 +13,6 @@
             'label' => 'Password',
         ]);
 
-        ?>
+    ?>
 <?= $this->Form->button(__('Update'), ['class' => 'btn-success']) ?>
 <?= $this->Form->end() ?>

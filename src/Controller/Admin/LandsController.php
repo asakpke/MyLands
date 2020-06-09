@@ -103,7 +103,6 @@ class LandsController extends AppController
             // die('Invalid ID');
             die();
         }
-        
 
         $this->set('land', $land);
     }
@@ -117,6 +116,7 @@ class LandsController extends AppController
     {
         // pr($this->Auth->user('id'));
         $land = $this->Lands->newEntity();
+        
         if ($this->request->is('post')) {
             // $data = $this->request->getData();
             // dd($data);
