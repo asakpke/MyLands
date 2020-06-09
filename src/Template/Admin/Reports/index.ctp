@@ -63,7 +63,7 @@ function myFunction() {
   document.getElementById("demo").innerHTML = "You selected: " + x;
 }
 </script> -->
-<br>
+
 <?php
 if (!empty($reports)) {
 	echo '<div class="row">';
@@ -108,10 +108,6 @@ if (!empty($reports)) {
 	<?php
 }
 else {
-		echo "No records to Show";
+	echo '<p class="list-group-item list-group-item-danger" style="font-size: 16px; width: 200px;">No Records To Show</p>';
 }
 ?>
-
-	
-
-	
