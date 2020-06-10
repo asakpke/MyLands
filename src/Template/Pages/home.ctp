@@ -53,7 +53,7 @@
             <!-- List group -->
           <ul class="list-group">
             <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
-             <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
+            <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
             <li class="list-group-item">Address: <?php echo $land->location?></li>
             <li class="list-group-item list-group-item-success">Demand: <?php echo $land->demand?></li>
           </ul>

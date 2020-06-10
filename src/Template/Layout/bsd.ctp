@@ -32,7 +32,7 @@ echo '<li>'.$this->Html->link(__('Land Statuses'), ['controller' => 'LandStatuse
 echo '<li>'.$this->Html->link(__('Costs'), ['controller' => 'Costs', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Page Elements'), ['controller' => 'PageElements', 'action' => 'index']).'</li>';
-echo '<li>'.$this->Html->link(__('Reports'), ['controller' => 'Reports', 'action' => 'index']).'</li>';
+
 
 ?>
 
@@ -98,12 +98,22 @@ echo '<li>'.$this->Html->link(__('Reports'), ['controller' => 'Reports', 'action
 <?php
 if ($this->Session->read('Auth.Admin')) {
 ?>
+<div class="container">
+<div class="row">
+<div class="dropdown">
+    <button class="dropbtn">Reports</button>
+    <div class="dropdown-content">
+        <a href="/admin/reports/index">Reports Added</a>
+    </div>
+</div>
 <div class="dropdown">
     <button class="dropbtn">Menu</button>
     <div class="dropdown-content">
         <a href="/admin/admins/profile">Edit Profile</a>
         <a href="/admins/logout">Logout</a>
     </div>
+</div>
+</div>
 </div>
 <?php
 }
