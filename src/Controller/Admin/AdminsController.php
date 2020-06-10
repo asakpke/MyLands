@@ -9,10 +9,12 @@ use App\Controller\AppController;
 class AdminsController extends AppController
 {
 	
-	public function profile($id = null){
-       $admin = $this->Admins->get($this->Auth->user('id'), [
+	public function profile($id = null) {
+
+        $admin = $this->Admins->get($this->Auth->user('id'), [
             'contain' => []
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
 
             $data = $this->request->getData();
@@ -20,6 +22,7 @@ class AdminsController extends AppController
             $data['pass'] = $hasher->hash($data['pass']);
 
             $admin = $this->Admins->patchEntity($admin, $data);
+            
             if ($this->Admins->save($admin)) {
                 $this->Flash->success(__('The admin has been saved.'));
 

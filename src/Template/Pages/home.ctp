@@ -3,14 +3,14 @@
 // pr($this->Session->read('Auth.Admin'));
 // pr($this->Session->read('Auth.Admin.id'));
 // echo $this->Session->read('Auth.Admin.id');
-?> 
+?>
 
-  <style type="text/css">
-    .pagination li{
-      display: inline-block;
-      margin-left: 5px;
-    }
-  </style>
+<style type="text/css">
+  .pagination li{
+    display: inline-block;
+    margin-left: 5px;
+  }
+</style>
 <!-- Jumbotron -->
 <div class="jumbotron">
     <?=$HomepageIntoText?>
@@ -36,46 +36,39 @@
 <!-- sheikh salar start -->
 
 <div class="row">
-  
   <?php
-// if (empty($page)) {
-//   # code...
-//   echo "this is empty";
-// }else
-// {
-//   echo "This is not empty";
-// }
-// dd($page);
   if (!empty($page)) {
-?>
+    ?>
     <h2 class="text-primary">Lands Records</h2>
 
-  <?php
-    foreach ($page as $land) {?>
+    <?php
+    foreach ($page as $land) {
+      ?>
       <div class="col-lg-4">
         <img src="img/land3.jpg" style="width: 300px;">
         <div class="panel panel-default" style="width: 300px;">
         <!-- Default panel contents -->
-          <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?></div>
+          <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?>
+          </div>
             <!-- List group -->
-            <ul class="list-group">
-              <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
-               <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
-              <li class="list-group-item">Address: <?php echo $land->location?></li>
-              <li class="list-group-item list-group-item-success">Demand: <?php echo $land->demand?></li>
-            </ul>
+          <ul class="list-group">
+            <li class="list-group-item"><?php if($land->kanal > 0){ echo 'Kanal '.$land->kanal; }?> 
+             <?php if($land->marla > 0){ echo 'Marla '.$land->marla; }?> </li>
+            <li class="list-group-item">Address: <?php echo $land->location?></li>
+            <li class="list-group-item list-group-item-success">Demand: <?php echo $land->demand?></li>
+          </ul>
         </div>
-    </div>
-  <?php
+      </div>
+    <?php
     }
     // echo "ok";
   }
-  else{
+  else {
     
     echo '<h4 class="list-group-item list-group-item-success">No Lands Are Public Or Added, Login and Add some Lands or public the lands if added already and refresh the page again.</h4>';
   }
   ?>
-  </div>
+</div>
 
 <div class="row">
   <div class="paginator">
@@ -88,9 +81,7 @@
   </div>
 </div>
 
-<?php
-// }?>
-  <!-- sheikh salar end -->
+<!-- sheikh salar end -->
 
 <!-- Example row of columns -->
 <div class="row">

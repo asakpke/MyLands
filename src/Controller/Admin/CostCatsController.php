@@ -63,13 +63,15 @@ class CostCatsController extends AppController
     public function add()
     {
         $costCat = $this->CostCats->newEntity();
+
         if ($this->request->is('post')) {
+
             $costCat = $this->CostCats->patchEntity($costCat, $this->request->getData());
             $costCat['admin_id'] = $this->Auth->user('id');
             
             if ($this->CostCats->save($costCat)) {
+                
                 $this->Flash->success(__('The cost cat has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The cost cat could not be saved. Please, try again.'));

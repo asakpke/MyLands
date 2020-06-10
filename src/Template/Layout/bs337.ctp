@@ -40,7 +40,7 @@
 
   <!-- Custom styles for this template -->
   <!-- <link href="https://getbootstrap.com/docs/3.3/examples/justified-nav/justified-nav.css" rel="stylesheet"> -->
-  <?= $this->Html->css('justified-nav.css') ?>    
+  <?= $this->Html->css('justified-nav.css') ?>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -49,85 +49,77 @@
     <![endif]-->
 
     <!-- <link href='https://fonts.googleapis.com/css?family=Amiri&subset=arabic,latin' rel='stylesheet' type='text/css'> -->
-    <link href='http://fonts.googleapis.com/earlyaccess/notonastaliqurdudraft.css' rel='stylesheet' type='text/css'>
-    <style>
+  <link href='http://fonts.googleapis.com/earlyaccess/notonastaliqurdudraft.css' rel='stylesheet' type='text/css'>
+  <style>
       /*.amiri{font-family:'Amiri',serif;}*/
-      .noto{font-family: 'Noto Nastaliq Urdu Draft', tahoma, serif; line-height: normal;}
+    .noto{font-family: 'Noto Nastaliq Urdu Draft', tahoma, serif; line-height: normal;}
       
       /*h6.subheader {
         font-weight: bold;
         }*/
-      </style>
-    </head>
+  </style>
+</head>
 
-    <body>
+<body>
 
-      <div class="container">
-
+  <div class="container">
         <!-- <div class="message warning" onclick="this.classList.add('hidden')">Testing...</div> -->
-
-        <?php
-        if (empty($isAdmin)
-            and $_SERVER['HTTP_HOST'] != 'mylands.pk'
-            and $_SERVER['HTTP_HOST'] != 'www.mylands.pk'
-            and $_SERVER['HTTP_HOST'] != 'localhost'
-            and $_SERVER['HTTP_HOST'] != 'localhost:8765'
-        ) {
-          echo '<div role="alert" class="alert alert-dismissible fade in alert-warning">'
-          .'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'
-          .'HURRY UP! This subdomain is still available for <a href="http://www.MyLands.pk/Admins/Signup"><span class="text-primary">FREE Trial</span></a> signup.'
-          .'</div>';
-        }
-        ?>
-
+    <?php
+    if (empty($isAdmin)
+      and $_SERVER['HTTP_HOST'] != 'mylands.pk'
+      and $_SERVER['HTTP_HOST'] != 'www.mylands.pk'
+      and $_SERVER['HTTP_HOST'] != 'localhost'
+      and $_SERVER['HTTP_HOST'] != 'localhost:8765'
+        ) 
+    {
+      echo '<div role="alert" class="alert alert-dismissible fade in alert-warning">'
+      .'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'
+      .'HURRY UP! This subdomain is still available for <a href="http://www.MyLands.pk/Admins/Signup"><span class="text-primary">FREE Trial</span></a> signup.'
+      .'</div>';
+    }
+    ?>
       <!-- The justified navigation menu is meant for single line per list item.
        Multiple lines will require custom code not provided by Bootstrap. -->
-       <div class="masthead">
-        <div class="row">
-          <div class="col-md-6">
-            <h3>
-              <!-- <img width="32" alt="Logo" src="/img/logo/logo32.png"> -->
-              <!-- <img width="32" alt="Logo" src="<?php
-                // if ($isAdmin) {
-
-                // }
-              ?>"> -->
-              <img width="32" alt="Logo" src="<?=$LogoImageURL?>">
+    <div class="masthead">
+      <div class="row">
+        <div class="col-md-6">
+          <h3>
+            <img width="32" alt="Logo" src="<?=$LogoImageURL?>">
               <!-- MyLands.pk -->
-              <?=$LogoText?>
+            <?=$LogoText?>
 
-            </h3>
-          </div>
-          <div class="col-md-6 mt-20 text-right">
-            <h4>Contact:<span class="text-success"> <?=$TopText?></span></h4>
-            <!-- <h4>Contact: <span class="em-addr text-success"><?=$TopText?></span></h4> -->
-          </div>
+          </h3>
         </div>
-        <nav>
-          <ul class="nav nav-justified">
+        <div class="col-md-6 mt-20 text-right">
+          <h4>Contact:<span class="text-success"> <?=$TopText?></span></h4>
+            <!-- <h4>Contact: <span class="em-addr text-success"><?=$TopText?></span></h4> -->
+        </div>
+      </div>
+      <nav>
+        <ul class="nav nav-justified">
             <!-- <li class="active"><a href="/">Home</a></li> -->
-            <?=$HeaderMenu?>
+        <?=$HeaderMenu?>
             <!-- <li><a href="http://esite.pk/" target="_blank">eSite.pk</a></li>            
             <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">50% Off</a></li>
             <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" target="_blank">Contact Us</a></li> -->
             <!-- <li><a href="/Admins/Login">Login</a></li> -->
             <!-- <?php
-            if (!empty($isAdmin)) {
-              echo '<li><a href="/Admins/Login">Login</a></li>';
-            }
+            //if (!empty($isAdmin)) {
+            //  echo '<li><a href="/Admins/Login">Login</a></li>';
+            // }
             ?> -->
             <!-- <li><a href="http://www.MyLands.pk/Admins/Signup"><span class="text-primary">FREE Trial</span></a></li> -->
             <!-- <li><a href="http://mylands.pk/admins/signup"><span class="text-primary">FREE Trial</span></a></li> -->
-          </ul>
-        </nav>
-      </div>
+        </ul>
+      </nav>
+    </div>
 
-      <?= $this->Flash->render() ?>
-      <?= $this->fetch('content') ?>
+    <?= $this->Flash->render() ?>
+    <?= $this->fetch('content') ?>
 
       <!-- Site footer -->
-      <footer class="footer">
-            <?= $HomepageFooter ?>
+    <footer class="footer">
+      <?= $HomepageFooter ?>
         
         <!-- <div class="col-md-4">     -->
 
@@ -151,26 +143,25 @@
         <!-- <div class="col-md-4">
           <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
         </div> -->
-        <div class="col-md-4" style="right: 30px;position: absolute;">
-          <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
-        </div>
-      </footer>
+      <div class="col-md-4" style="right: 30px;position: absolute;">
+        <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
+      </div>
+    </footer>
 
-    </div> <!-- /container -->
+  </div> <!-- /container -->
 
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <!-- <script src="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
-    <?= $this->Html->script('ie10-viewport-bug-workaround.js') ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script>
-      $( document ).ready(function() {
-        var user = 'aamir';
-        var domain = 'mylands.pk';
-        $(".em-addr").html(user + '&#64;' + domain + ', +923005393652');
-      });
-    </script>
-  </body>
-  </html>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!-- <script src="https://getbootstrap.com/docs/3.3/examples/justified-nav/../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+  <?= $this->Html->script('ie10-viewport-bug-workaround.js') ?>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script>
+    $( document ).ready(function() {
+      var user = 'aamir';
+      var domain = 'mylands.pk';
+      $(".em-addr").html(user + '&#64;' + domain + ', +923005393652');
+    });
+  </script>
+</body>
+</html>

@@ -59,59 +59,51 @@ class PagesController extends AppController
         // $this->layout = 'bs413';
         // echo $this->request->env('HTTP_HOST');
 
-//         $this->loadComponent('Auth');    
-//         // pr($this->Auth->user('id'));
-//         $result = $this->loadModel('Lands');
-//         $land = $this->result->get($this->Auth->user('id'), [
-//             'contain' => []
-//         ]);
-//         $data = $land->find('all')
-//                     ->where([
-//                         'is_public'=> 1,
-// //                        'admin_id'=> $this->Auth->user('id'),
-//                     ]);
+        // $this->loadComponent('Auth');    
+        // // pr($this->Auth->user('id'));
+        // $result = $this->loadModel('Lands');
+        // $land = $this->result->get($this->Auth->user('id'), [
+        //     'contain' => []
+        // ]);
+        // $data = $land->find('all')
+        //             ->where([
+        //                 'is_public'=> 1,
+        //  'admin_id'=> $this->Auth->user('id'),
+        //             ]);
         $result = $this->loadModel('Lands'); 
 
         $this->paginate = [
                 'limit' => 3,
-
-            // 'conditions' => [
-            //     'admin_id' => $this->viewVars['admin']->id,
-            // ],
-            // 'contain' => [
-            //     // 'Admins'
-            // ]
         ];
+
         if (!empty($this->viewVars['admin']->id)) {
-            # code...
             // dd($this->viewVars['admin']->id);
         
-        $pages = $this->paginate($result->find('all')->where([
+            $pages = $this->paginate($result->find('all')->where([
                 'is_public'=> 1,
                 'admin_id'=> $this->viewVars['admin']->id,
-            ]));
+                // 'order' => array('Lands.id' => 'DESC'),
+            ]),
+                array( 'order' => array('Lands.id' => 'desc'))
+            );
         }
         else
         {
             $pages = $this->paginate($result->find('all')->where([
                 'is_public'=> 1,
                 // 'admin_id'=> $this->viewVars['admin']->id,
-            ]));
+            ]),
+                array( 'order' => array('Lands.id' => 'desc'))
+            );
         }
         // $pages = $this->paginate($result);
         $results = $pages->toArray();
-        // if (!empty($results)) {
-        //     echo "it is not empty";
-        // }else{
-        //     echo "it is empty";
-        // }
         // dd($results);
         // $this->set('page',$pages);
         $this->set('page',$results);
-        // dd($pages);
 
-        // $this->set('land',$data);
-        // if ($this->request->is('post')) {
+            // $this->set('land',$data);
+            // if ($this->request->is('post')) {
             // dd($this->request->getData('filter'));
 
             // $conditions = array(
@@ -130,9 +122,5 @@ class PagesController extends AppController
                 
             
             // }
-
-
-        // $result = $this->loadModel('Lands'); 
-
     }
 }
