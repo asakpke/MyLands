@@ -5,6 +5,12 @@
             'placeholder' => 'Please enter your display name',
             'title' => 'Please enter your display name',
         ]);
+        echo $this->Form->input('phone', [
+            // 'type' => 'tel',
+            // 'pattern' => '[0-9]{11}',
+            'placeholder' => 'Please enter your valid phone number',
+            'title' => 'Please enter your valid phone number',
+        ]);
         
         echo $this->Form->input('email', [
             'type' => 'email',

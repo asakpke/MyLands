@@ -20,7 +20,10 @@ elseif ($this->fetch('title') && Configure::read('App.title')) {
 
 $this->start('navbar.top');
 // echo '<li><a href="#">Hello</a></li>';
+?>
+<a href="/" class="navbar-brand">MyLands.pk</a>
 
+<?php
 if ($this->Session->read('Auth.Master')) {
     echo '<li>'.$this->Html->link(__('Admins'), ['prefix' => 'master', 'controller' => 'Admins', 'action' => 'index']).'</li>';
     echo '<li>'.$this->Html->link(__('Trans'), ['prefix' => 'master', 'controller' => 'Trans', 'action' => 'index']).'</li>';
@@ -32,8 +35,6 @@ echo '<li>'.$this->Html->link(__('Land Statuses'), ['controller' => 'LandStatuse
 echo '<li>'.$this->Html->link(__('Costs'), ['controller' => 'Costs', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Cost Cats'), ['controller' => 'CostCats', 'action' => 'index']).'</li>';
 echo '<li>'.$this->Html->link(__('Page Elements'), ['controller' => 'PageElements', 'action' => 'index']).'</li>';
-
-
 ?>
 
 <!-- abc -->
