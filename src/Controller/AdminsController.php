@@ -64,6 +64,8 @@ class AdminsController extends AppController
 
     public function login()
     {
+        // dd($this->layout);
+        
         if ($this->request->is('post')) {
             $admin = $this->Auth->identify();
 
@@ -201,6 +203,7 @@ class AdminsController extends AppController
 
         if ($this->request->is('post')) {
             $data = $this->request->getData();
+            // dd($data);
             $data['status'] = 'Disabled';
             $data['is_verified'] = 0;
             $data['balance'] = 0;

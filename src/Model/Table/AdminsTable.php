@@ -73,7 +73,13 @@ class AdminsTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 255)
-            ->allowEmpty('name');
+            ->notEmpty('name');
+
+        $validator
+            ->scalar('phone')
+            ->maxLength('phone', 255)
+            ->requirePresence('phone', 'create')
+            ->notEmpty('phone');
 
         $validator
             ->email('email')
