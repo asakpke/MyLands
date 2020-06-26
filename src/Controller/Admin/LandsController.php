@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 // use Cake\Http\Exception\NotFoundException
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Routing\Router;
 
 /**
  * Lands Controller
@@ -121,11 +122,27 @@ class LandsController extends AppController
             // $data = $this->request->getData();
             // dd($data);
             // exit();
+
             $land = $this->Lands->patchEntity($land, $this->request->getData());
             $land['admin_id'] = $this->Auth->user('id');
             // dd($land);
             // exit;
             // pr($land);
+
+            // salar start
+            if (!empty($this->request->data['file']['name'])) {
+
+                $filename = $this->request->data['file']['name'];
+                $url = Router::url('/',true) . 'images/' . $filename;
+                $uploadpath = '/home/roshantech/MyLands/webroot/images/';
+                $uploadfile = $uploadpath . $land['admin_id'] .  $filename;
+
+                if (move_uploaded_file($this->request->data['file']['tmp_name'], $uploadfile)) {
+
+                    $land->main_image = $land['admin_id'] . $filename;
+                }
+            }
+            // salar end
 
             $land->demand = str_replace(',','',$land->demand);
             $land->sale = str_replace(',','',$land->sale);
@@ -153,6 +170,11 @@ class LandsController extends AppController
         ]);
         // $this->set(compact('land', 'admins', 'landTypes', 'landStatuses'));
         $this->set(compact('land', 'landTypes', 'landStatuses'));
+
+        $uploads = $this->Lands->find('all', ['order' => ['Lands.created' => 'DESC']]);
+        $uploadsRowNum = $uploads->count();
+        $this->set('uploads',$uploads);
+        $this->set('uploadsRowNum',$uploadsRowNum);
     }
 
     /**
@@ -180,19 +202,49 @@ class LandsController extends AppController
         }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
+
+            // pr($this->request->data['file']['name']);
+
+            // salar start
+            if (!empty($this->request->data['file']['name'])) {
+
+                // unlink('/home/roshantech/MyLands/webroot/images/' . $land->main_image);
+
+                $filename = $this->request->data['file']['name'];
+                $url = Router::url('/',true) . 'images/' . $filename;
+                $uploadpath = '/home/roshantech/MyLands/webroot/images/';
+                $uploadfile = $uploadpath . $land['admin_id'] .  $filename;
+                // unlink('/home/roshantech/MyLands/webroot/images/' . $land->main_image);
+
+                if (move_uploaded_file($this->request->data['file']['tmp_name'], $uploadfile)) {
+                    unlink('/home/roshantech/MyLands/webroot/images/' . $land->main_image);
+                    $land->main_image = $land['admin_id'] . $filename;   
+                }
+            }
+            // salar end
+            // pr($land);
+
             $land = $this->Lands->patchEntity($land, $this->request->getData());
             // echo '<h1>Land</h1>';
             // pr($land);
             // exit;
+
+            
+
             $land->demand = str_replace(',','',$land->demand);
             $land->sale = str_replace(',','',$land->sale);
             $land->cost = str_replace(',','',$land->cost);
 
+            pr($land);
+            
+
             if ($this->Lands->save($land)) {
                 $this->Flash->success(__('The land has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                // return $this->redirect(['action' => 'index']);
+                dd($land);
             }
+            // unlink($land['admin_id'] . $filename);
             $this->Flash->error(__('The land could not be saved. Please, try again.'));
         }
         // $admins = $this->Lands->Admins->find('list', ['limit' => 200]);
@@ -214,6 +266,11 @@ class LandsController extends AppController
             'landTypes',
             'landStatuses'
         ));
+
+        $uploads = $this->Lands->find('all', ['order' => ['Lands.created' => 'DESC']]);
+        $uploadsRowNum = $uploads->count();
+        $this->set('uploads',$uploads);
+        $this->set('uploadsRowNum',$uploadsRowNum);
     }
 
     /**
@@ -237,8 +294,11 @@ class LandsController extends AppController
         catch (RecordNotFoundException $e) {
            die(); 
         }
-
+        // salar start
+        unlink('/home/roshantech/MyLands/webroot/images/' . $land->main_image);
+        // salar
         if ($this->Lands->delete($land)) {
+            // dd($this->Lands->delete($land));
             $this->Flash->success(__('The land has been deleted.'));
         } else {
             $this->Flash->error(__('The land could not be deleted. Please, try again.'));

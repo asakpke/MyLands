@@ -47,6 +47,7 @@
                     <!-- <th><?= $this->Paginator->sort('acre') ?></th> -->
                     <th><?= $this->Paginator->sort('kanal') ?></th>
                     <th><?= $this->Paginator->sort('marla') ?></th>
+
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -86,3 +87,4 @@
         <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
+

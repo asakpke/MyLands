@@ -19,7 +19,7 @@
     </ul>
 </div>
 <div class="lands form col-lg-10 col-md-9 columns">
-    <?= $this->Form->create($land); ?>
+    <?= $this->Form->create($land, ['type' => 'file']); ?>
     <fieldset>
         <legend><?= __('Add Land') ?></legend>
         <?php
@@ -66,6 +66,9 @@
             ]);
             // sheikh salar start
             echo $this->Form->input('is_public');
+            // echo $this->Form->input('main_image', ['type'=>'file']);
+            echo $this->Form->input('file', ['type' => 'file']);
+
             // sheikh salar end
         ?>
     </fieldset>
