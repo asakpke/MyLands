@@ -69,7 +69,11 @@
 
             // sheikh salar start
             echo $this->Form->input('is_public');
-            echo $this->Form->input('file', ['type'=>'file']);
+            echo $this->Form->input('file ( Upload image with size 2mb)', [
+                'type'=>'file',
+                'accept' => 'image/*',
+                'size' => 200000,
+            ]);
             ?>
             <!-- <embed src="/images/<?= $land->main_image ?>" width="220px" height="150px"/> -->
             <?php 
@@ -86,7 +90,7 @@
                 // echo $this->Form->date('purchased');
             ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?><br><br>
     <?= $this->Form->end() ?>  
 </div>
 

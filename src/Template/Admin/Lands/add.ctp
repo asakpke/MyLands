@@ -67,12 +67,16 @@
             // sheikh salar start
             echo $this->Form->input('is_public');
             // echo $this->Form->input('main_image', ['type'=>'file']);
-            echo $this->Form->input('file', ['type' => 'file']);
+            echo $this->Form->input('file (upload image with size 2mb)', [
+                'type' => 'file',
+                'accept' => 'image/*',
+                // 'size' => 2000000,
+            ]);
 
             // sheikh salar end
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?><br><br>
     <?= $this->Form->end() ?>
 </div>
 <script>
