@@ -23,7 +23,7 @@
 </div>
 <div class="lands form col-lg-10 col-md-9 columns">
     <?= $this->Form->create($land, [
-        'type' => 'post',
+        'type' => 'file'
     ]); ?>
     <fieldset>
         <legend><?= __('Edit Land') ?></legend>
@@ -69,15 +69,34 @@
 
             // sheikh salar start
             echo $this->Form->input('is_public');
-            // sheikh salar end
+            echo $this->Form->input('file ( Upload image with size 2mb)', [
+                'type'=>'file',
+                'accept' => 'image/*',
+                'size' => 200000,
+            ]);
+            ?>
+            <!-- <embed src="/images/<?= $land->main_image ?>" width="220px" height="150px"/> -->
+            <?php 
+                echo $this->Html->image('../images/'.$land->main_image, [
+                    "width" => "220px",
+                    "height" => "150px"
 
-            // echo $this->Form->text('purchased', array('type' => 'date'))
-            // echo $this->Form->date('purchased');
-        ?>
+                ]); 
+
+               
+                // sheikh salar end
+
+                // echo $this->Form->text('purchased', array('type' => 'date'))
+                // echo $this->Form->date('purchased');
+            ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
-    <?= $this->Form->end() ?>
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?><br><br>
+    <?= $this->Form->end() ?>  
 </div>
+
+<!-- <h4>Uploaded Files</h4> -->
+           <!-- <?php //echo $this->Html->image($land->main_image); ?> -->
+   <!-- <embed src="<?= $land->main_image ?>" width="220px" height="150px"/> -->
 
 <script>
 // $( document ).ready(function() {

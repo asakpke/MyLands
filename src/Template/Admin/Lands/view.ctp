@@ -87,6 +87,12 @@
                 </div>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h6 class="subheader"><?= __('Land Image') ?></h6>
+                <p><?= h($land->main_image) ?></p>
+            </div>
+        </div>
         <!-- sheikh salar end -->
     </div>
     <div class="row texts">

@@ -35,17 +35,22 @@
 </div>
 <!-- sheikh salar start -->
 
+
+
 <div class="row">
   <?php
   if (!empty($page)) {
     ?>
     <h2 class="text-primary">Lands Records</h2>
+    <!-- <embed src="<?= $land->main_image ?>" width="220px" height="150px"/> -->
 
     <?php
     foreach ($page as $land) {
       ?>
       <div class="col-lg-4">
-        <img src="img/land3.jpg" style="width: 300px;">
+        <!-- <img src="img/land3.jpg" style="width: 300px;"> -->
+
+        <!-- <embed src="<?= $land->path ?>" width="220px" height="150px"/> -->
         <div class="panel panel-default" style="width: 300px;">
         <!-- Default panel contents -->
           <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?>
