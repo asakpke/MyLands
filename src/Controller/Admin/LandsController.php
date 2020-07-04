@@ -122,6 +122,7 @@ class LandsController extends AppController
             // $data = $this->request->getData();
             // dd($data);
             // exit();
+            // dd($this->Auth->user('id'));
 
             if ($this->request->data['file']['size'] > 2097152 || $this->request->data['file']['size'] == 0 && $this->request->data['file']['error'] != 4 && $this->request->data['file']['error'] != 0 && $this->request->data['file']['type'] != "image/.jpeg, image/.png, image/.jpg")
             {   
@@ -141,8 +142,9 @@ class LandsController extends AppController
                 if (!empty($this->request->data['file']['name'])) {
 
                     $filename = $this->request->data['file']['name'];
-                    $url = Router::url('/',true) . 'images/' . $filename;
-                    $uploadpath = '/home/roshantech/MyLands/webroot/images/';
+                    // $url = Router::url('/',true) . 'img/lands' . $filename;
+                    // $uploadpath = '/home/salar/MyLands/webroot/images/';
+                    $uploadpath = WWW_ROOT . 'img/lands/';
                     $uploadfile = $uploadpath . $land['admin_id'] .  $filename;
 
                     // if(($this->request->data['file']['size'] >= "2097152")) {
@@ -153,9 +155,9 @@ class LandsController extends AppController
 
                         $land->main_image = $land['admin_id'] . $filename;
                     }
-                    if ($this->request->data['file']['name'] > 200000) {
-                        echo "Please upload 2mb file";
-                    }
+                    // if ($this->request->data['file']['name'] > 200000) {
+                    //     echo "Please upload 2mb file";
+                    // }
                 }
                 // salar end
 
@@ -245,8 +247,8 @@ class LandsController extends AppController
                     // }
 
                     $filename = $this->request->data['file']['name'];
-                    $url = Router::url('/',true) . 'images/' . $filename;
-                    $uploadpath = '/home/roshantech/MyLands/webroot/images/';
+                    // $url = Router::url('/',true) . 'images/' . $filename;
+                    $uploadpath = WWW_ROOT . 'img/lands/';
                     $uploadfile = $uploadpath . $land['admin_id'] .  $filename;
                     // unlink('/home/roshantech/MyLands/webroot/images/' . $land->main_image);
 
@@ -255,8 +257,8 @@ class LandsController extends AppController
                     if (move_uploaded_file($this->request->data['file']['tmp_name'], $uploadfile)) {
                         // echo "<h1>In move upload</h1>";
 
-                        // if($this->request->data['file']['name'] != $land->main_image) {
-                            unlink('/home/roshantech/MyLands/webroot/images/' . $land->main_image);
+                        // if(!empty($uploadfile)) {
+                            unlink(WWW_ROOT . 'img/lands/' . $land->main_image);
                             $land->main_image = $land['admin_id'] . $filename; 
                         // }
                         
@@ -340,7 +342,7 @@ class LandsController extends AppController
            die(); 
         }
         // salar start
-        unlink('/home/roshantech/MyLands/webroot/images/' . $land->main_image);
+        unlink(WWW_ROOT . 'img/lands/' . $land->main_image);
         // salar
         if ($this->Lands->delete($land)) {
             // dd($this->Lands->delete($land));
