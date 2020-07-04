@@ -69,15 +69,16 @@
 
             // sheikh salar start
             echo $this->Form->input('is_public');
-            echo $this->Form->input('file ( Upload image with size 2mb)', [
+            echo $this->Form->input('file', [
                 'type'=>'file',
                 'accept' => 'image/*',
                 'size' => 200000,
+                'label' => 'Main Image (Upload image with size 2mb)',
             ]);
             ?>
             <!-- <embed src="/images/<?= $land->main_image ?>" width="220px" height="150px"/> -->
             <?php 
-                echo $this->Html->image('../images/'.$land->main_image, [
+                echo $this->Html->image('lands/'. $land->main_image, [
                     "width" => "220px",
                     "height" => "150px"
 

@@ -67,9 +67,10 @@
             // sheikh salar start
             echo $this->Form->input('is_public');
             // echo $this->Form->input('main_image', ['type'=>'file']);
-            echo $this->Form->input('file (upload image with size 2mb)', [
+            echo $this->Form->input('file', [
                 'type' => 'file',
                 'accept' => 'image/*',
+                'label' => 'Main Image (upload image with size 2mb)',
                 // 'size' => 2000000,
             ]);
 
