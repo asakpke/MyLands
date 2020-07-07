@@ -225,6 +225,12 @@ class AdminsController extends AppController
                     $data['subdomain']= strtolower($data['subdomain']).'.mylands.pk';
                 }
                 else {
+                    // $host = explode(':', $_SERVER['HTTP_HOST']);
+
+                    // if (count($host) == 2) {
+                    //     # code...
+                    // }
+
                     $data['subdomain']= strtolower($data['subdomain']).'.'.$_SERVER['HTTP_HOST'];
                 }
             }

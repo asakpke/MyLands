@@ -51,6 +51,13 @@
         <!-- <img src="img/land3.jpg" style="width: 300px;"> -->
 
         <!-- <embed src="<?= $land->path ?>" width="220px" height="150px"/> -->
+          <?php
+          echo $this->Html->image('lands/'. $land->main_image, [
+                    "width" => "300px",
+                    // "height" => "150px"
+
+                ]);
+          ?>
         <div class="panel panel-default" style="width: 300px;">
         <!-- Default panel contents -->
           <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?>
@@ -70,22 +77,26 @@
   }
   else {
     
-    echo '<h4 class="list-group-item list-group-item-success">No Lands Are Public Or Added, Login and Add some Lands or public the lands if added already and refresh the page again.</h4>';
+    // echo '<h4 class="list-group-item list-group-item-success">No Lands Are Public Or Added, Login and Add some Lands or public the lands if added already and refresh the page again.</h4>';
   }
   ?>
 </div>
-
-<div class="row">
-  <div class="paginator">
-    <ul class="pagination">
-      <?= $this->Paginator->prev('< ' . __('previous')) ?>
-      <?= $this->Paginator->numbers() ?>
-      <?= $this->Paginator->next(__('next') . ' >') ?>
-    </ul>
-    <p><?= $this->Paginator->counter() ?></p>
+<?php
+if (!empty($page)) {
+  ?>
+  <div class="row">
+    <div class="paginator">
+      <ul class="pagination">
+        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('next') . ' >') ?>
+      </ul>
+      <p><?= $this->Paginator->counter() ?></p>
+    </div>
   </div>
-</div>
-
+  <?php
+}
+?>
 <!-- sheikh salar end -->
 
 <!-- Example row of columns -->

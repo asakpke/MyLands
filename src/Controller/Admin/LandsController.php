@@ -205,7 +205,7 @@ class LandsController extends AppController
     public function edit($id = null)
     {
         try {
-            $land = $this->Lands->get($id, [
+            $existingland = $this->Lands->get($id, [
                 'conditions' => [
                     'Lands.admin_id' => $this->Auth->user('id')
                 ],
@@ -308,11 +308,12 @@ class LandsController extends AppController
             ]
         ]);
         $this->set(compact(
-            'land',
+            // 'land',
             // 'admins',
             'landTypes',
             'landStatuses'
         ));
+        $this->set('land',$existingland);
 
         $uploads = $this->Lands->find('all', ['order' => ['Lands.created' => 'DESC']]);
         $uploadsRowNum = $uploads->count();
