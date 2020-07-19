@@ -65,16 +65,24 @@
   <div class="container">
         <!-- <div class="message warning" onclick="this.classList.add('hidden')">Testing...</div> -->
     <?php
+    // echo $_SERVER['HTTP_HOST'];
+    // $host = explode('.', $_SERVER['HTTP_HOST']);
+    // pr($host);
+    // echo "<pre>";
+    // print_r($host);
+    // echo "</pre>";
+
+
     if (empty($isAdmin)
       and $_SERVER['HTTP_HOST'] != 'mylands.pk'
       and $_SERVER['HTTP_HOST'] != 'www.mylands.pk'
       and $_SERVER['HTTP_HOST'] != 'localhost'
       and $_SERVER['HTTP_HOST'] != 'localhost:8765'
-        ) 
-    {
+        ) {
+      $host = explode('.', $_SERVER['HTTP_HOST']);
       echo '<div role="alert" class="alert alert-dismissible fade in alert-warning">'
       .'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'
-      .'HURRY UP! This subdomain is still available for <a href="http://www.MyLands.pk/Admins/Signup"><span class="text-primary">FREE Trial</span></a> signup.'
+      .'HURRY UP! This subdomain is still available for <a href="http://mylands.pk/Admins/Signup?subdomain='.$host[0].'"><span class="text-primary">FREE Trial</span></a> signup.'
       .'</div>';
     }
     ?>

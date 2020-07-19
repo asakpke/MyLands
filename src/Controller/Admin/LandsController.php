@@ -205,7 +205,7 @@ class LandsController extends AppController
     public function edit($id = null)
     {
         try {
-            $land = $this->Lands->get($id, [
+            $existingland = $this->Lands->get($id, [
                 'conditions' => [
                     'Lands.admin_id' => $this->Auth->user('id')
                 ],
@@ -234,7 +234,7 @@ class LandsController extends AppController
             else {
 
                 // echo "<h1>Its in else</h1>";
-                $land = $this->Lands->patchEntity($land, $this->request->getData());
+                $land = $this->Lands->patchEntity($existingland, $this->request->getData());
 
                 // salar start
                 if (!empty($this->request->data['file']['name'])) {
@@ -258,7 +258,7 @@ class LandsController extends AppController
                         // echo "<h1>In move upload</h1>";
 
                         // if(!empty($uploadfile)) {
-                            unlink(WWW_ROOT . 'img/lands/' . $land->main_image);
+                            unlink(WWW_ROOT . 'img/lands/' . $existingland->main_image);
                             $land->main_image = $land['admin_id'] . $filename; 
                         // }
                         
@@ -308,11 +308,12 @@ class LandsController extends AppController
             ]
         ]);
         $this->set(compact(
-            'land',
+            // 'land',
             // 'admins',
             'landTypes',
             'landStatuses'
         ));
+        $this->set('land',$existingland);
 
         $uploads = $this->Lands->find('all', ['order' => ['Lands.created' => 'DESC']]);
         $uploadsRowNum = $uploads->count();

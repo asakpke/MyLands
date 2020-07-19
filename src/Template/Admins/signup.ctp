@@ -4,6 +4,7 @@
         echo $this->Form->input('name', [
             'placeholder' => 'Please enter your display name',
             'title' => 'Please enter your display name',
+            'autofocus',
         ]);
         echo $this->Form->input('phone', [
             // 'type' => 'tel',
@@ -28,6 +29,8 @@
         echo $this->Form->input('subdomain', [
             'placeholder' => 'Please enter a subdomain of your choice i.e test.mylands.pk. Enter here only the subdomain i.e "test".',
             'title' => 'Please enter a subdomain of your choice i.e test.mylands.pk. Enter here only the subdomain i.e "test".',
+            'value' => (!empty($_GET['subdomain']) ? $_GET['subdomain'] : ''),
+            
         ]);
     ?>
 <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>

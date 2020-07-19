@@ -10,6 +10,10 @@
     display: inline-block;
     margin-left: 5px;
   }
+  #image1:hover
+  {
+    opacity: 0.8;
+  }
 </style>
 <!-- Jumbotron -->
 <div class="jumbotron">
@@ -39,6 +43,8 @@
 
 <div class="row">
   <?php
+      
+
   if (!empty($page)) {
     ?>
     <h2 class="text-primary">Lands Records</h2>
@@ -48,9 +54,25 @@
     foreach ($page as $land) {
       ?>
       <div class="col-lg-4">
-        <!-- <img src="img/land3.jpg" style="width: 300px;"> -->
+          
+        <a target="_blank" href="img/lands/<?=$land->main_image?>" ><img src="<?php echo 'img/lands/' . $land->main_image; ?>" width="300px"></a>
+        <!-- img src="/lands/101Colosseum-by-Yoal-Desurmont.jpg" alt="Creating Image Links" > -->
 
-        <!-- <embed src="<?= $land->path ?>" width="220px" height="150px"/> -->
+
+          <?php
+          // echo $this->Html->image('lands/'. $land->main_image, [
+          //           "width" => "300px",
+          //           // "height" => "150px"
+          //           'title' => 'Click to View image',
+          //           'target' => '_blank',
+          //           // 'id' => 'image1',
+          //           // 'url' => WWW_ROOT . 'img/lands/' . $land->main_image,
+          //           'url' => WWW_ROOT . 'img/lands/' . $land->main_image,
+
+          //           // 'target' => '_blank',
+          //       ]);
+          // echo $this->Html->link('<span class="profile-avatar">'. $this->Html->image('lands/'. $land->main_image,array('width'=>'300px'), array('alt' => '')), array('controller' => 'lands', 'action' => 'view' ), array('class' => 'sf-with-ul', 'escape' => false)).'</span>';
+          ?>
         <div class="panel panel-default" style="width: 300px;">
         <!-- Default panel contents -->
           <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?>
@@ -70,22 +92,26 @@
   }
   else {
     
-    echo '<h4 class="list-group-item list-group-item-success">No Lands Are Public Or Added, Login and Add some Lands or public the lands if added already and refresh the page again.</h4>';
+    // echo '<h4 class="list-group-item list-group-item-success">No Lands Are Public Or Added, Login and Add some Lands or public the lands if added already and refresh the page again.</h4>';
   }
   ?>
 </div>
-
-<div class="row">
-  <div class="paginator">
-    <ul class="pagination">
-      <?= $this->Paginator->prev('< ' . __('previous')) ?>
-      <?= $this->Paginator->numbers() ?>
-      <?= $this->Paginator->next(__('next') . ' >') ?>
-    </ul>
-    <p><?= $this->Paginator->counter() ?></p>
+<?php
+if (!empty($page)) {
+  ?>
+  <div class="row">
+    <div class="paginator">
+      <ul class="pagination">
+        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('next') . ' >') ?>
+      </ul>
+      <p><?= $this->Paginator->counter() ?></p>
+    </div>
   </div>
-</div>
-
+  <?php
+}
+?>
 <!-- sheikh salar end -->
 
 <!-- Example row of columns -->
