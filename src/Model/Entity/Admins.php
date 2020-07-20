@@ -40,6 +40,7 @@ class Admins extends Entity
         'name' => true,
         'email' => true,
         'pass' => true,
+        'phone' => true,
         // 'pass' => false,
         'subdomain' => true,
         'remarks' => true,

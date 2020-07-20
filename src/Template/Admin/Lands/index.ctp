@@ -62,7 +62,7 @@ Advanced</button> -->
         }
     </script> -->
     <!-- <div class="row" id="myDIV" method="post" style="display: none;"> -->
-    <div class="row" id="myDIV">
+    <div class="row" id="myDIV" style="display: none;">
         <h4>
             <form method="post">
                 <div class="col-md-6">

@@ -103,5 +103,30 @@ class MastersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
+    } //delete
+
+    public function profile($id = null) {
+
+        $master = $this->Masters->get($this->Auth->user('id'), [
+            'contain' => []
+        ]);
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+
+            $data = $this->request->getData();
+            $hasher = new DefaultPasswordHasher();
+            $data['pass'] = $hasher->hash($data['pass']);
+
+            $master = $this->Masters->patchEntity($master, $data);
+            
+            if ($this->Masters->save($master)) {
+                $this->Flash->success(__('The master has been saved.'));
+
+                return $this->redirect(['action' => 'profile']);
+            }
+            $this->Flash->error(__('The master could not be saved. Please, try again.'));
+        }
+        $this->set(compact('master'));
+
+    } // profile
 }

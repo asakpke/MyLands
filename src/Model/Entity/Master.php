@@ -31,9 +31,12 @@ class Master extends Entity
         'name' => true,
         'email' => true,
         'pass' => true,
+        'phone' => true,
         'subdomain' => true,
         'remarks' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'forgot_password_hash' => true,
+        
     ];
 }
