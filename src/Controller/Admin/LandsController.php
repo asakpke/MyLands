@@ -49,6 +49,11 @@ class LandsController extends AppController
             $cond['OR']['LandStatuses.name LIKE'] = "%{$search}%";
         }
 
+        if ($this->request->is('post')) {
+
+            dd($this->request->is('post'));
+        }
+
         $this->paginate = [
             // // 'condition' => [
             'conditions' =>  $cond,

@@ -10,13 +10,20 @@
     display: inline-block;
     margin-left: 5px;
   }
-  #image1:hover
-  {
-    opacity: 0.8;
+  #search{
+    width:350px;
   }
+ /* #image1:hover
+  {
+    opacity: 0.7;
+    width:400px;
+    transition: 0.5s ease-in-out; 
+  }*/
 </style>
 <!-- Jumbotron -->
+
 <div class="jumbotron">
+
     <?=$HomepageIntoText?>
   
   <!-- <h1>
@@ -36,9 +43,9 @@
 مائی لینڈز ڈاٹ پی کے پراپرتی ڈیلرز کے لیے پروگرام ہے۔ اس میں آپ جائیداد کا ریکارڈ رکھ سکتے ہیں اور سرچ بھی کر  سکتے ہیں۔ یہ ریکارڈ آپ صرف اپنے لیے بھی محفوظ کر سکتے ہیں یا اسے پبلک بنا سکتے ہیں ۔ پبلک ریکارڈز سب لوگ دیکھ سکتے ہیں۔ اپنے آفس کے رجسٹر کھاتوں سے جان چھڑائیں اور آن لائن  کے طرف آئیں۔ 
   </p>
   <p><a class="btn btn-lg btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSeRL9KjbkI3UofX-4EOmZaBuefSodZ1x5BVkst3HaMykpJovQ/viewform?usp=sf_link" role="button" target="_blank">Get Connected Today</a></p> -->
+
 </div>
 <!-- sheikh salar start -->
-
 
 
 <div class="row">
@@ -48,6 +55,14 @@
   if (!empty($page)) {
     ?>
     <h2 class="text-primary">Lands Records</h2>
+    <!-- <div class="col-md-4" style="float: left;"> -->
+        <h2>
+            <form>
+                <input id="search" name="search" class="form-control" placeholder="Type your search & press enter key to filter lands" autofocus>
+            </form>
+        </h2>
+    <!-- </div> -->
+    <br><br>
     <!-- <embed src="<?= $land->main_image ?>" width="220px" height="150px"/> -->
 
     <?php
@@ -55,24 +70,7 @@
       ?>
       <div class="col-lg-4">
           
-        <a target="_blank" href="img/lands/<?=$land->main_image?>" ><img src="<?php echo 'img/lands/' . $land->main_image; ?>" width="300px"></a>
-        <!-- img src="/lands/101Colosseum-by-Yoal-Desurmont.jpg" alt="Creating Image Links" > -->
-
-
-          <?php
-          // echo $this->Html->image('lands/'. $land->main_image, [
-          //           "width" => "300px",
-          //           // "height" => "150px"
-          //           'title' => 'Click to View image',
-          //           'target' => '_blank',
-          //           // 'id' => 'image1',
-          //           // 'url' => WWW_ROOT . 'img/lands/' . $land->main_image,
-          //           'url' => WWW_ROOT . 'img/lands/' . $land->main_image,
-
-          //           // 'target' => '_blank',
-          //       ]);
-          // echo $this->Html->link('<span class="profile-avatar">'. $this->Html->image('lands/'. $land->main_image,array('width'=>'300px'), array('alt' => '')), array('controller' => 'lands', 'action' => 'view' ), array('class' => 'sf-with-ul', 'escape' => false)).'</span>';
-          ?>
+        <a target="_blank" href="img/lands/<?=$land->main_image?>" ><img id = "image1" src="<?php echo 'img/lands/' . $land->main_image; ?>" width="300px" ></a>
         <div class="panel panel-default" style="width: 300px;">
         <!-- Default panel contents -->
           <div class="panel-heading" style="font-weight: bold;">Name: <?php echo $land->name?>

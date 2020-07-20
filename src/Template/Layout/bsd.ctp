@@ -21,7 +21,7 @@ elseif ($this->fetch('title') && Configure::read('App.title')) {
 $this->start('navbar.top');
 // echo '<li><a href="#">Hello</a></li>';
 ?>
-<a href="/" class="navbar-brand">MyLands.pk</a>
+<!-- <a href="/" class="navbar-brand">MyLands.pk</a> -->
 
 <?php
 if ($this->Session->read('Auth.Master')) {

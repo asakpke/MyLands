@@ -18,7 +18,11 @@
             	'options' => $lands,
             	'default' => $land_id,
             ]);
-            echo $this->Form->input('cost_cat_id', ['options' => $costCats]);
+            echo $this->Form->input('cost_cat_id', [
+                'options' => $costCats,
+                'empty'=>true,
+                'default' => 1,
+            ]);
             // echo $this->Form->input('cost');
             echo $this->Form->input('cost',array(
 				'type'=>'text',
