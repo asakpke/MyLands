@@ -100,30 +100,44 @@ echo '<li>'.$this->Html->link(__('Page Elements'), ['controller' => 'PageElement
 if ($this->Session->read('Auth.Admin')) {
 ?>
 <div class="container">
-<div class="row">
-<div class="dropdown">
-    <button class="dropbtn">Reports</button>
-    <div class="dropdown-content">
-        <a href="/admin/reports/index">Reports Added</a>
+    <div class="row">
+        <div class="dropdown">
+            <button class="dropbtn">Reports</button>
+            <div class="dropdown-content">
+                <a href="/admin/reports/index">Reports Added</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="/admin/admins/profile">Edit Profile</a>
+                <a href="/admins/logout">Logout</a>
+            </div>
+        </div>
     </div>
-</div>
-<div class="dropdown">
-    <button class="dropbtn">Menu</button>
-    <div class="dropdown-content">
-        <a href="/admin/admins/profile">Edit Profile</a>
-        <a href="/admins/logout">Logout</a>
-    </div>
-</div>
-</div>
 </div>
 <?php
+}else if ($this->Session->read('Auth.Master')) {
+    ?>
+    <div class="container">
+    <div class="row">
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <a href="/master/masters/profile">Edit Profile</a>
+                <a href="/masters/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php    
 }
 // <!-- sheikh salar end -->
 
 
-if ($this->Session->read('Auth.Master')) {
-    echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Masters', 'action' => 'logout']).'</li>';
-}
+// if ($this->Session->read('Auth.Master')) {
+//     echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Masters', 'action' => 'logout']).'</li>';
+// }
 
 // if ($this->Session->read('Auth.Admin')) {
 //     echo '<li>'.$this->Html->link(__('Logout'), ['prefix' => false, 'controller' => 'Admins', 'action' => 'logout']).'</li>';

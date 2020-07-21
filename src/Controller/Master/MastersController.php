@@ -2,6 +2,8 @@
 namespace App\Controller\Master;
 
 use App\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
+
 
 /**
  * Masters Controller
@@ -120,7 +122,7 @@ class MastersController extends AppController
             $master = $this->Masters->patchEntity($master, $data);
             
             if ($this->Masters->save($master)) {
-                $this->Flash->success(__('The master has been saved.'));
+                $this->Flash->success(__('The password has been updated.'));
 
                 return $this->redirect(['action' => 'profile']);
             }
