@@ -152,7 +152,7 @@
           <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
         </div> -->
       <div class="col-md-4" style="right: 30px;position: absolute;">
-        <p class="text-right">Powered by <span class="text-muted"><a href="http://mylands.pk/">MyLands.pk</a></span></p>
+        <p class="text-right">Powered by <span class="text-muted"><a target="_blank" href="http://mylands.pk/">MyLands.pk</a></span>, a project of RoshanTech <span class="text-muted"><a target="_blank" href="http://esite.pk/">eSite.pk</a></span></p>
       </div>
     </footer>
 

@@ -52,6 +52,8 @@ class MastersController extends AppController
         $this->Auth->allow([
             'login',
             'logout',
+            'forgotPassword',
+            'forgotPassword2',
         ]);
     }
 
@@ -79,6 +81,78 @@ class MastersController extends AppController
             $this->Flash->error('Your username or password is incorrect.');
         }
     }
+
+    public function forgotPassword()
+    {
+        if ($this->request->is('post')) 
+        {
+            if (!empty($this->request->data))
+            {
+                $email = $this->request->data['email'];
+                // $admin = $this->Admins->findByEmail($email)->first();
+                $master = $this->Masters->findBySubdomainAndEmail($_SERVER['HTTP_HOST'],$email)->first();
+                // dd($admin);
+
+                if (!empty($master))
+                {
+                    $master->forgot_password_hash = md5(uniqid(rand(), true));
+
+                    $this->Masters->save($master);
+                    $this->Flash->success('Please click on password reset link, sent in your email address to reset password. Do check spam folder if you do not find it in inbox.');
+
+                    // SAS - Send forget password mail
+                    // $verification_url = 'http://'.$admin->subdomain.'/Admins/resetPassword/'.$admin->email_verification_hash;
+                    // $verification_url = 'http://'.$admin->subdomain.'/Admins/resetPassword/'.$admin->forgot_password_hash;
+                    $verification_url = 'http://Masters/forgotPassword2/'.$master->forgot_password_hash;
+                    // dd($verification_url);
+                    $email = new Email('default');
+                    $email->from(['aamir@mylands.pk' => 'Aamir Shahzad'])
+                        ->template('default', 'default')
+                        ->emailFormat('both')
+                        // ->emailFormat('html')
+                        ->to($master->email)
+                        ->subject($master.' Reset Password Link')
+                        ->send("<a href=\"{$verification_url}\">{$verification_url}</a>");
+                    // EAS - Send forget password mail
+                }
+                else
+                {
+                    $this->Flash->error('Sorry! Email address is not available here.');
+                }
+            }
+        }
+    } // forgotPassword()-------------------------------
+
+    public function forgotPassword2($token = null) {
+        if (!empty($token)) {
+
+            // $admin = $this->Admins->findByPasswordResetToken($token)->first();
+            $master = $this->Masters->findByForgotPasswordHash($token)->first();
+            // dd($admin);
+
+            if ($master) {
+                
+                $master->forgot_password_hash = null;
+                $this->Masters->save($master);
+
+                $this->Auth->setUser($master);
+                // return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect('/master/Masters/profile');
+                // EAS - Auto login & send to change password page
+            }
+            else {
+                $this->Flash->error('Sorry your password token has been expired.');
+            }
+        }
+        else {
+            $this->Flash->error('Error loading password reset.');
+        }
+
+        return $this->redirect('/masters/forgot-password');
+        // $this->set(compact('admin'));
+        // $this->set('_serialize', ['admin']);
+    // } // reset password
+    } // forgotPassword2()
 
     public function logout()
     {

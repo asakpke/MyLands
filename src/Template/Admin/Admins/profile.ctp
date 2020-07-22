@@ -12,6 +12,10 @@
             'title' => 'Please enter your password for login.',
             'label' => 'Password',
         ]);
+        echo $this->Form->input('phone', [
+            'placeholder' => 'Please enter your valid phone number',
+            'title' => 'Please enter your valid phone number',
+        ]);
 
     ?>
 <?= $this->Form->button(__('Update'), ['class' => 'btn-success']) ?>

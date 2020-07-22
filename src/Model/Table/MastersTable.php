@@ -56,6 +56,12 @@ class MastersTable extends Table
             ->scalar('name')
             ->maxLength('name', 255)
             ->allowEmpty('name');
+            
+        $validator
+            ->scalar('phone')
+            ->maxLength('phone', 255)
+            ->requirePresence('phone', 'create')
+            ->notEmpty('phone');
 
         $validator
             ->email('email')
@@ -77,6 +83,11 @@ class MastersTable extends Table
         $validator
             ->scalar('remarks')
             ->allowEmpty('remarks');
+            
+        $validator
+            ->scalar('forgot_password_hash')
+            ->maxLength('forgot_password_hash', 32)
+            ->allowEmpty('forgot_password_hash');
 
         return $validator;
     }

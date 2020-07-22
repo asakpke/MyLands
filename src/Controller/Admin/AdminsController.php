@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * 
