@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Master;
 
+use Cake\Auth\DefaultPasswordHasher;
 use App\Controller\AppController;
 
 /**
@@ -74,7 +75,12 @@ class AdminsController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $admin = $this->Admins->patchEntity($admin, $this->request->getData());
+
+            $data = $this->request->getData();
+            $hasher = new DefaultPasswordHasher();
+            $data['pass'] = $hasher->hash($data['pass']);
+
+            $admin = $this->Admins->patchEntity($admin, $data);
             if ($this->Admins->save($admin)) {
                 $this->Flash->success(__('The admin has been saved.'));
 

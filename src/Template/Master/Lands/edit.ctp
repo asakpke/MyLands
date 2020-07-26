@@ -45,6 +45,8 @@
             echo $this->Form->input('cost');
             echo $this->Form->input('remarks');
             echo $this->Form->input('purchased');
+            echo $this->Form->input('is_public');
+            
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit'), ['class' => 'btn-success']) ?>
